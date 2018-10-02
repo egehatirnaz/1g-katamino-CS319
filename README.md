@@ -22,7 +22,7 @@ Player should take the guide book for deciding which level to play. Then, the pl
 * **Katamino with multiple players**: Katamino might be played with two
 player. The game needs to be added another separator so, two separators will be located opposite numbers. For example, if first one is on the 3 another one is on 9. Nonetheless players can play at the same time and after level determines, players will begin at the same time and the winner will be the quickest player of current level. After a level finished the separators will close 1 level to each other. That means levels will be 4 and 8. The game's winner will be determined by the number of victories.
 
-* **Joker piece feature**: In the game, players have a bunch of pieces in their
+* **Joker piece feature**: In this version, players have a set of pieces in their
 hand and they have chance to get more pieces. Players may get more
 points when they finish the level they played earlier or with less action.
 They will buy the pieces which are useful for them by the help of these
@@ -34,11 +34,7 @@ rival. They can play individually and support each other to play more by
 sending gifts like point or the pieces which are useless. All the pieces may
 be bartered between the players according to their levels in the game.
 
-* **Playing in another modes**: Players may also play the game with different
-levels of difficulties and modes. Modes could be like starting the game from
-different moments and give the players limited time to complete the
-missions. Players may also play the game inside the different geometrical
-shapes( like triangle or elips).
+* **Katamino with more difficult logic**: Katamino board's width is a constant while its lenght is dynamic. In this version, the board's width will be dynamic either. That means that a player can play 6x4 version of the game. That creates many combinations for playing types and that creates a neccessity the number of cubes of the block for each level. In classic version, Katamino's blocks consists of 5 cubes but in that version it can consist of 3,4,5,6... There will be no limit.
 
 * **Making music or picture by playing the game**: All movement or action may
 represent a sound which are small parts of a song. The song may
