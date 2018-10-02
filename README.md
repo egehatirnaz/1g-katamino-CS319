@@ -8,10 +8,8 @@
 4) Burak Korkmaz
 5) Ege Hatırnaz
 
-### Description of the Project
-
-### Description of Katamino
-
+### About Katamino
+Katamino is a puzzle game about geometrical perception.
 
 #### General - How to Play:
 The game consists of 12 different pieces constructed of right angled blocks so each
@@ -71,11 +69,6 @@ Getting hint: All the pieces may carry a part of an image that is included in
 computer but they are invisible while players play the game. In the hard
 situations player may get hints from these photo kind of puzzle in order to
 complete the mission.
-
-#### Controls:
-
-
-#### Gameplay:
 
 
 
