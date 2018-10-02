@@ -15,31 +15,10 @@ This repository created for CS319 2018 fall semester course project. The project
 Katamino is a puzzle game about geometrical perception. The game has 12 unique blocks with different shapes, a guide book, a separator and a board. The board is a typical rectangle. The board’s width is filled by 5 squares and its length is filled by 13 squares. There is a guide book for each level and this book shows which shapes might be used for that level. The separator shows current level of the game and it determines the limits of the shape. The levels are 3 to 12. The game's aim is to fill the squares with unique blocks which determined by guide book with respect to current level. Each block consists of 5 cubes and these cubes merged in various types, so they are unique by their way of merging.
 
 ### How to Play Katamino?
+As mentioned above, the game's purpose is to fill the blank squares with unique blocks.
+Player should take the guide book for deciding which level to play. Then, the player should start with first level, which is 3, and he/she should use only given blocks which specified by guide book. The player should pass each level after he/she finished it. The levels' specifications should be followed by the guide book.
 
-
-
-#### General - How to Play:
-The game consists of 12 different pieces constructed of right angled blocks so each
-piece is made of 5 &quot;squares&quot;. (Think Tetris pieces, but 5 squares instead of 4.)
-
-An old version of the game had only 10 pieces; the completely straight 5 square
-and the 5 square &quot;plus sign&quot; were not included. Both versions also have a bunch of
-&quot;filler&quot; pieces of 1 or 2 squares.
-
-The gameboard is constructed with a movable divider so one can take sets of 4 up
-to the whole set of 12 pieces and form them into a 5 block by X rectangle. (Where
-X = the number of wood blocks in your set.)
-
-The two or three player strategy game is accomplished on a square board divided
-into 64 smaller squares. Players take turns to place a piece on the gameboard. The
-first player who cannot place a piece anymore loses. (Similar to Blokus )
-
-The two player puzzle game mode is accomplished by dividing the board into two
-sections, each player chooses five blocks and are also given 4 small &quot;filler&quot; blocks
-of 1 and 2 squares. The first one to fit all their blocks perfectly into their half of the
-rectangle board, wins.
-
-#### Additional Features:
+#### What feautures do we want to add to Katamino?
 * **Katamino with multiple players**: Katamino may also be played with two
 player. It is played in the same field with two separators. Players are using
 these separators step by step in each time. They don’t have time limitation
