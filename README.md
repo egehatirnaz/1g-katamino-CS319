@@ -18,7 +18,7 @@ Katamino is a puzzle game about geometrical perception. The game has 12 unique b
 As mentioned above, the game's purpose is to fill the blank squares with unique blocks.
 Player should take the guide book for deciding which level to play. Then, the player should start with first level, which is 3, and he/she should use only given blocks which specified by guide book. The player should pass each level after he/she finished it. The levels' specifications should be followed by the guide book.
 
-#### What feautures do we want to add to Katamino?
+### What feautures do we want to add to Katamino?
 * **Katamino with multiple players**: Katamino may also be played with two
 player. It is played in the same field with two separators. Players are using
 these separators step by step in each time. They don’t have time limitation
