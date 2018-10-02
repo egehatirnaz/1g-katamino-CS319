@@ -33,7 +33,7 @@ of 1 and 2 squares. The first one to fit all their blocks perfectly into their h
 rectangle board, wins.
 
 #### Additional Features:
-Katamino with multiple players: Katamino may also be played with two
+* **Katamino with multiple players**: Katamino may also be played with two
 player. It is played in the same field with two separators. Players are using
 these separators step by step in each time. They don’t have time limitation
 for this. That means the ones finished first will gain a point. In the next part,
@@ -43,29 +43,29 @@ some cards will lead you. In the software version of the game, a kind of
 leading cards( or something else that leads players inside the game) will be
 used. In each step the number of squares in the field will increase.
 
-Joker piece feature: In the game, players have a bunch of pieces in their
+* **Joker piece feature**: In the game, players have a bunch of pieces in their
 hand and they have chance to get more pieces. Players may get more
 points when they finish the level they played earlier or with less action.
 They will buy the pieces which are useful for them by the help of these
 points. They can also play the game in the field they wanted with spending
 these game points.
 
-Sending and barter pieces: Players may also play the game without being
+* **Sending and barter pieces**: Players may also play the game without being
 rival. They can play individually and support each other to play more by
 sending gifts like point or the pieces which are useless. All the pieces may
 be bartered between the players according to their levels in the game.
 
-Playing in another modes: Players may also play the game with different
+* **Playing in another modes**: Players may also play the game with different
 levels of difficulties and modes. Modes could be like starting the game from
 different moments and give the players limited time to complete the
 missions. Players may also play the game inside the different geometrical
 shapes( like triangle or elips).
 
-Making music or picture by playing the game: All movement or action may
+* **Making music or picture by playing the game**: All movement or action may
 represent a sound which are small parts of a song. The song may
 automatically separated by the software.
 
-Getting hint: All the pieces may carry a part of an image that is included in
+* **Getting hint**: All the pieces may carry a part of an image that is included in
 computer but they are invisible while players play the game. In the hard
 situations player may get hints from these photo kind of puzzle in order to
 complete the mission.
