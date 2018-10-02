@@ -2,7 +2,11 @@
 ## CS 319 Project - Group: 1.g
 
 ### Group Members
-
+1) Yusuf Samsum
+2) Fırat Yıldız
+3) Mehmet Mert Epsileli
+4) Burak Korkmaz
+5) Ege Hatırnaz
 
 ### Description of the Project
 
