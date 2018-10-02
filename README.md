@@ -1,15 +1,22 @@
-# Katamino-CS319
-## CS 319 Project - Group: 1.g
+# Only Eray Can Judge Me (Group 1.g)
+## CS 319 Project - Katamino
 
-### Group Members
+### Project Group Members
 1) Yusuf Samsum
 2) Fırat Yıldız
 3) Mehmet Mert Epsileli
 4) Burak Korkmaz
 5) Ege Hatırnaz
 
-### About Katamino
-Katamino is a puzzle game about geometrical perception.
+### About Project
+This repository created for CS319 2018 fall semester course project. The project's topic is implementing Katamino game with some additional concepts.
+
+### What is Katamino?
+Katamino is a puzzle game about geometrical perception. The game has 12 unique blocks with different shapes, a guide book, a separator and a board. The board is a typical rectangle. The board’s width is filled by 5 squares and its length is filled by 13 squares. There is a guide book for each level and this book shows which shapes might be used for that level. The separator shows current level of the game and it determines the limits of the shape. The levels are 3 to 12. The game's aim is to fill the squares with unique blocks which determined by guide book with respect to current level. Each block consists of 5 cubes and these cubes merged in various types, so they are unique by their way of merging.
+
+### How to Play Katamino?
+
+
 
 #### General - How to Play:
 The game consists of 12 different pieces constructed of right angled blocks so each
