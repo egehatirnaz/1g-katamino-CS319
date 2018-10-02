@@ -18,16 +18,9 @@ Katamino is a puzzle game about geometrical perception. The game has 12 unique b
 As mentioned above, the game's purpose is to fill the blank squares with unique blocks.
 Player should take the guide book for deciding which level to play. Then, the player should start with first level, which is 3, and he/she should use only given blocks which specified by guide book. The player should pass each level after he/she finished it. The levels' specifications should be followed by the guide book.
 
-### What feautures do we want to add to Katamino?
-* **Katamino with multiple players**: Katamino may also be played with two
-player. It is played in the same field with two separators. Players are using
-these separators step by step in each time. They don’t have time limitation
-for this. That means the ones finished first will gain a point. In the next part,
-the same process will be repeated in the next step( means with more
-space) by giving to each other new pieces used in the game. In all games
-some cards will lead you. In the software version of the game, a kind of
-leading cards( or something else that leads players inside the game) will be
-used. In each step the number of squares in the field will increase.
+### What feautures do we plan adding to Katamino?
+* **Katamino with multiple players**: Katamino might be played with two
+player. The game needs to be added another separator so, two separators will be located opposite numbers. For example, if first one is on the 3 another one is on 9. Nonetheless players can play at the same time and after level determines, players will begin at the same time and the winner will be the quickest player of current level. After a level finished the separators will close 1 level to each other. That means levels will be 4 and 8. The game's winner will be determined by the number of victories.
 
 * **Joker piece feature**: In the game, players have a bunch of pieces in their
 hand and they have chance to get more pieces. Players may get more
