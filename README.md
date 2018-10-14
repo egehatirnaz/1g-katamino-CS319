@@ -9,7 +9,7 @@
 4) Burak Korkmaz
 5) Ege Hatırnaz
 
-### Project Description
+### Project Topic
 This repository is created for CS-319 2018 fall semester course project. The project's topic is implementing Katamino game with some additional concepts such as leaderboard with respect to time, and a new Challenge mode with an extra piece or pieces to make the game harder.
 
 ### What is original Katamino?
