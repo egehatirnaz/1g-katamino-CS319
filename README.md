@@ -44,9 +44,20 @@ Improve the Game: Players have chance to add new solutions which did not forsee 
 
 ### References
 [1]"Description of Katamino". http://en.gigamic.com/game/katamino  [Accessed: 9 October,2018]
+
+
 [2]"Gigamic Katamino Classic Puzzle and Game". https://www.tarquingroup.com/gifts/gigamic-katamino-classic-puzzle-and-game.html
+
+
+
 [3] "Visual-spatial Games for Active Brains". https://www.imacs.org/blog/2011/07/visual-spatial-games/
+
+
+
 [4] "The Theory of Tetris". http://liacs.leidenuniv.nl/~kosterswa/tetris/tot.pdf
+
+
+
 [5] "A CLOSER LOOK AT TETRIS: ANALYSIS OF A VARIANT GAME". http://euclid.trentu.ca/aejm/V4N1/Tsuruda.V4N1.pdf
 
 
