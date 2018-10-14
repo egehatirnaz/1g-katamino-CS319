@@ -41,7 +41,7 @@ What’s more, players have chance to improve the game while finding new solutio
 * **Getting hint**: All the pieces may carry a part of an image that is included in the computer but they are invisible while players play the game. In the hard situations, player may get hints from these photo kind of puzzle in order to complete the mission.
 
 ### References
-[1] - "Description of Katamino". http://en.gigamic.com/game/katamino [Accessed: 9 October,2018]
+[1] - "Description of Katamino". http://en.gigamic.com/game/katamino  [Accessed:9 October,2018]
 
 
 
