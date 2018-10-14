@@ -12,7 +12,7 @@
 ### About Project
 This repository is created for CS-319 2018 fall semester course project. The project's topic is implementing Katamino game with some additional concepts such as leaderboard with respect to time, and a new Challenge mode with an extra piece or pieces to make the game harder.
 
-### What is Katamino?
+### What is actual Katamino?
 Katamino is a puzzle game about geometrical perception. The game has 12 unique blocks with different shapes, a guidebook, a separator, and a board. The board is a typical rectangle. The board’s width is filled by 5 squares and its length is filled by 13 squares. There is a guidebook for each level and this book shows which shapes might be used for that level. The separator shows the current level of the game and it determines the limits of the shape. The levels are 3 to 12. The game's aim is to fill the squares with unique blocks which determined by guidebook with respect to current level. Each block consists of 5 cubes and these cubes merged in various types, so they are unique by their way of merging.
 
 ### Project Requirements
