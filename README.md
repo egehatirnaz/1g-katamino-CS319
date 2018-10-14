@@ -14,7 +14,7 @@ This repository is created for CS-319 2018 fall semester course project. The pro
 
 ### What is original Katamino?
 Katamino is a puzzle game about geometrical perception. The game has 12 unique blocks with different shapes, a guidebook, a separator, and a board. The board is a typical rectangle. The board’s width is filled by 5 squares and its length is filled by 13 squares. There is a guidebook for each level and this book shows which shapes might be used for that level. The separator shows the current level of the game and it determines the limits of the shape. The levels are 3 to 12. The game's aim is to fill the squares with unique blocks which determined by guidebook with respect to current level. Each block consists of 5 cubes and these cubes merged in various types, so they are unique by their way of merging.
-The game's purpose is to fill the blank squares with unique blocks.The player should take the guidebook for deciding which level to play. Then, the player should start with the first level, which is 3, and he/she should use only given blocks which specified by the guidebook. The player should pass each level after he/she finished it. The levels' specifications should be followed by the guidebook.
+The game's purpose is to fill the blank squares with unique blocks.The player should take the guidebook for deciding which level to play. Then, the player should start with the first level, which is 3, and he/she should use only given blocks which specified by the guidebook. The player should pass each level after he/she finished it. The levels' specifications should be followed by the guidebook.[1]
 
 ### Project Requirements
 * Java 8 (Language)
