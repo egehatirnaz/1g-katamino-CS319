@@ -1,4 +1,4 @@
-# Only Eray Can Judge Me (Group 1.g)
+# Only Eray Can Judge Me (Group 1G)
 ## CS 319 Project - Katamino
 ## Section - 01
 
