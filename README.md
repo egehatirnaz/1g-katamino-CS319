@@ -41,6 +41,8 @@ Giving Hints: Players who don't succeed to find the solution are given hints lik
 
 Improve the Game: Players have chance to add new solutions which did not forsee by designers. That also makes the game interactive. 
 
+Game's Learning Machine: The machine inside the game will learn the player's actions and offer them new games according to their preferences. Also that will help players to add new solutions. Some solutions which is learned from some (more intellegent) players will expand the game solutions. These solutions will also be offered other players and make game more user-centered. 
+
 
 ### References
 [1]"Description of Katamino". http://en.gigamic.com/game/katamino  [Accessed: 9 October,2018]
