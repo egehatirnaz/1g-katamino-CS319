@@ -45,22 +45,22 @@ Game's Learning Machine: The machine inside the game will learn the player's act
 
 
 ### References
-[1]"Description of Katamino". http://en.gigamic.com/game/katamino  [Accessed: 9 October,2018]
+[1] "Description of Katamino". http://en.gigamic.com/game/katamino [Accessed: 9 October,2018]
 
 
-[2]"Gigamic Katamino Classic Puzzle and Game". https://www.tarquingroup.com/gifts/gigamic-katamino-classic-puzzle-and-game.html
-
-
-
-[3] "Visual-spatial Games for Active Brains". https://www.imacs.org/blog/2011/07/visual-spatial-games/
+[2] "Gigamic Katamino Classic Puzzle and Game". https://www.tarquingroup.com/gifts/gigamic-katamino-classic-puzzle-and-game.html [Accessed: 8 October,2018]
 
 
 
-[4] "The Theory of Tetris". http://liacs.leidenuniv.nl/~kosterswa/tetris/tot.pdf
+[3] "Visual-spatial Games for Active Brains". https://www.imacs.org/blog/2011/07/visual-spatial-games/ [Accessed: 8 October,2018]
 
 
 
-[5] "A CLOSER LOOK AT TETRIS: ANALYSIS OF A VARIANT GAME". http://euclid.trentu.ca/aejm/V4N1/Tsuruda.V4N1.pdf
+[4] "The Theory of Tetris". http://liacs.leidenuniv.nl/~kosterswa/tetris/tot.pdf [Accessed: 9 October,2018]
+
+
+
+[5] "A CLOSER LOOK AT TETRIS: ANALYSIS OF A VARIANT GAME". http://euclid.trentu.ca/aejm/V4N1/Tsuruda.V4N1.pdf [Accessed: 9 October,2018]
 
 
 
