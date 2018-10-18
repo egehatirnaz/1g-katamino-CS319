@@ -28,3 +28,16 @@ Location: Bilkent MA Building
 
 ### Action Items
 - 
+
+
+## Meeting on Oct 16, 15:40
+
+Participants: Mert, Fırat
+
+Location: Bilkent Library B Block
+
+### Agenda
+- Discussing about drawing sequence diagrams
+
+### Action Items
+- [Mert, Fırat] Working on sequence diagrams.
