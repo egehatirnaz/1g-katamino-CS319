@@ -23,21 +23,41 @@ Participants: Yusuf, Mert, Burak
 Location: Bilkent MA Building 
 
 ### Agenda
-- Working on Github account Readme.md file
-- Use case diagram and dynamic models are discussed
+* Working on Github account Readme.md file
+* Use case diagram and dynamic models are discussed
 
 ### Action Items
-- 
+* Readme.md file has completed. 
 
 
-## Meeting on Oct 16, 15:40
+## Meeting on Oct 16, 15:40 - 23:30
 
 Participants: Mert, Fırat
 
 Location: Bilkent Library B Block
 
 ### Agenda
-- Discussing about drawing sequence diagrams
+* Discussing about drawing sequence diagrams
 
 ### Action Items
-- [Mert, Fırat] Working on sequence diagrams.
+* [Mert, Fırat] Working on sequence diagrams.
+
+
+
+
+## Meeting on Oct 18, 18:40 - 24:00
+
+Participants: Burak, Fırat, Mert, Yusuf 
+
+Location: Bilkent Library T Building
+
+### Agenda
+* Completing drawing sequence diagrams, 
+* Starting scenarios, flow of events, state and action diagrams.
+
+### Action Items
+* [Fırat] Working on sequence diagrams.
+* [Mert, Yusuf] Class and Object diagrams.
+* [Burak, Fırat] Completed activity diagram.
+* [Burak, Fırat, Mert, Yusuf] Discussed and work shared left parts of the sanalysis report.
+* [Burak] Editing Meeting.md file.
