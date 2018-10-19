@@ -43,7 +43,21 @@ Location: Bilkent Library B Block
 * [Mert, Fırat] Working on sequence diagrams.
 
 
+## Meeting on Oct 17, 18:40 - 24:00
 
+Participants: Fırat, Mert, Yusuf 
+
+Location: Bilkent Library T Building
+
+### Agenda
+* Starting drawing sequence diagrams, 
+* Starting flow of events.
+* Defining the last condition of use-case diagram with small changes.
+
+### Action Items
+* [Fırat, Yusuf, Mert] Working on sequence diagrams.
+* [Mert, Yusuf, Firat] Fixing the bugs on use-case diagram.
+* [Mert] Working on flow of events part.
 
 ## Meeting on Oct 18, 18:40 - 24:00
 
@@ -53,11 +67,11 @@ Location: Bilkent Library T Building
 
 ### Agenda
 * Completing drawing sequence diagrams, 
-* Starting scenarios, flow of events, state and action diagrams.
+* Starting scenarios, state and action diagrams.
 
 ### Action Items
-* [Fırat] Working on sequence diagrams.
+* [Burak, Fırat, Mert, Yusuf] Discussed and work shared left parts of the sanalysis report.
 * [Mert, Yusuf] Class and Object diagrams.
 * [Burak, Fırat] Completed activity diagram.
-* [Burak, Fırat, Mert, Yusuf] Discussed and work shared left parts of the sanalysis report.
-* [Burak] Editing Meeting.md file.
+* [Fırat] Working on sequence diagrams'scenarios.
+
