@@ -21,7 +21,7 @@ The game's purpose is to fill the blank squares with unique blocks.The player sh
 * Visual Paradigm (Diagrams)
 * Balsamiq (Mockups)
 * PostgreSQL (Database)
-* JavaScript Graphics Library (GUI)
+* WebGL (GUI)
 
 ### What will we do?
 Java 8 will be used during the project as programming language. Eclipse will be used as IDE for implementing the program. Also, diagrams will be drawn on Visual Paradigm for reports and mockups will be drawn on Balsamiq 3 for user interface. PostgreSQL will be used for database system that will be used in program. Our plan is to run the program on any web browser. Therefore, GUI will be implemented by JavaScript Graphics Library(WebGL).  
