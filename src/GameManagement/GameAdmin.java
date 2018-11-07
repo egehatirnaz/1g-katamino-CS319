@@ -20,6 +20,8 @@ public class GameManagement{
     LeaderBoardDataBase leaderBoardDB;
     FrameManager demonstration;
     Player player;
+    private final int LEVEL_FIRST = 1;
+    private final int LEVEL_LAST = 5; // TODO : CHANGE THIS ACCORDINGLY TO THE LAST LEVEL OF THE GAME
     int currentLevel;
     boolean finishGame;
     String gameMode;
