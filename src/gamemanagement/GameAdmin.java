@@ -142,5 +142,6 @@ public class GameAdmin {
     public void setAvailableHint(int availableHint) {
         this.availableHint = availableHint;
     }
+
 }
 
