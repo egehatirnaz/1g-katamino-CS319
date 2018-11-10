@@ -1,18 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GameManagement;
 
-/**
- *
- * @author firatyildiz
+/*
+  Game Management Class
+
+  This class is the center piece of system decomposition.
+
+  Ege Hatırnaz
+  07.11.2018
  */
+
 import java.util.*;
 import java.lang.*;
 
-public class GameAdmin {
+public class GameAdmin{
     Settings settings;
     ControlManager controlManager;
     GameMapper gameMapper;
@@ -71,13 +71,13 @@ public class GameAdmin {
 
     /*** GETTER AND SETTER METHODS ****/
 
-    public Control getManager() {
+    /*public Control getManager() {
         return Manager;
     }
 
     public void setManager(Control manager) {
         Manager = manager;
-    }
+    }*/
 
     public GameMapper getGameMapper() {
         return gameMapper;
@@ -142,6 +142,4 @@ public class GameAdmin {
     public void setAvailableHint(int availableHint) {
         this.availableHint = availableHint;
     }
-
 }
-
