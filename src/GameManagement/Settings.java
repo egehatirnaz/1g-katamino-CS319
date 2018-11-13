@@ -9,13 +9,7 @@ package GameManagement;
  *
  * @author firatyildiz
  */
-import java.util.*;
-import java.lang.*;
 
-class LeaderBoard {
-    Player[] players;
+class Settings {
     
-    public LeaderBoard(Player[] playerList){
-        players = playerList;
-    }   
 }

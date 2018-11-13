@@ -10,7 +10,6 @@ package GameManagement;
  * @author firatyildiz
  */
 
-import java.util.*;
 import java.lang.*;
 
 class Player {
