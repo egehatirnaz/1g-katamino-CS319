@@ -16,6 +16,7 @@ import javafx.util.Duration;
 import javafx.embed.swing.JFXPanel;
 import java.nio.file.Paths;
 
+
 public class GameAdmin{
 
     Settings settings;
@@ -38,7 +39,6 @@ public class GameAdmin{
     private static GameAdmin gameManager = new GameAdmin();
 
 
-
     /* Main method for testing stuff */
     public static void main(String[] args){
         GameAdmin gm = new GameAdmin();
@@ -53,9 +53,7 @@ public class GameAdmin{
         media.play();
     }
 
-    public void updateLevel(){
 
-    }
 
     public String getGameMode(){
 
