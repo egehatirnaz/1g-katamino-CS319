@@ -25,5 +25,6 @@ public class GameMapper {
 
     GameMapper(){
         setSquares(13, 5);
+        setSquare(13,5);
     }
 }
