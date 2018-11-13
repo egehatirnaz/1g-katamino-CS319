@@ -5,24 +5,31 @@
  */
 package GameManagement;
 
-import java.util.*;
+import java.util.ArrayList;
+import javafx.scene.paint.Color;
 /**
  *
- * @author firatyildiz
+ * @author burak korkmaz
+ * @author yusuf samsum
  */
 public class GameMapper {
     
     // properties
     private Square[][] squares;
+    private int currentLevel;
+    private Block[] blocks;
+    private SolutionSet sols;
     
     // constructor
-    public GameMapper(int width, int height){
-        squares = new Square[width][height];
-        setSquares(width,height);
+    public GameMapper(int currentLevel ){
+        squares = null;
+        pieces = null;
+        this.currentLevel = currentLevel;
     }
     
     // methods 
     private void setSquares(int width, int height){
+        squares = new Square[width][height];
         for(int i = 0; i < height; i++){
             int xCoor = i * 10;
             for(int j = 0; i < width; i++){
@@ -35,6 +42,34 @@ public class GameMapper {
         }
     }
     
+    public void runGame()
+    {
+        setSquares( 2 + currentLevel, 5 );
+        
+        setupEntity(currentLevel);
+        
+    }
     
-
+    private void setupEntity( int currentLevel )
+    {
+        
+    }
+    
+    private boolean updateLevel()
+    {
+        for( int i = 0; i < squares.length; i++ )
+        {
+            for( int k = 0; k < squares[i].length; k++ )
+            {
+                if( !squares[i][k].getStateOfSquare() )
+                    return false;
+            }
+        }
+        currentLevel++;
+        runGame();
+        return true;
+    }
+    
+    
 }
+
