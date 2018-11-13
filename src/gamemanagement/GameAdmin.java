@@ -11,8 +11,13 @@ package GameManagement;
 
 import java.util.*;
 import java.lang.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.embed.swing.JFXPanel;
+import java.nio.file.Paths;
 
 public class GameAdmin{
+
     Settings settings;
     ControlManager controlManager;
     GameMapper gameMapper;
@@ -27,9 +32,17 @@ public class GameAdmin{
     String gameMode;
     int availableHint;
 
+    /* Main method for testing stuff */
+    public static void main(String[] args){
+        final JFXPanel fxPanel = new JFXPanel(); //panel for sound
+        MediaPlayer media = new MediaPlayer(new Media(Paths.get("src/GameManagement/media/hatirnaz_distant.mp3").toUri().toString()));
+        media.play();
+    }
+
     /*
        GameManagement Constructor
      */
+
     public GameAdmin(){
 
     }
@@ -71,13 +84,13 @@ public class GameAdmin{
 
     /*** GETTER AND SETTER METHODS ****/
 
-    /*public Control getManager() {
-        return Manager;
+    public ControlManager getControlManager() {
+        return controlManager;
     }
 
-    public void setManager(Control manager) {
-        Manager = manager;
-    }*/
+    public void setControlManager(ControlManager controlManager) {
+        this.controlManager = controlManager;
+    }
 
     public GameMapper getGameMapper() {
         return gameMapper;
