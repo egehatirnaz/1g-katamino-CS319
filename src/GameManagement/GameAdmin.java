@@ -11,8 +11,14 @@ package GameManagement;
 
 import java.util.*;
 import java.lang.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.embed.swing.JFXPanel;
+import java.nio.file.Paths;
 
-public class GameManagement{
+
+public class GameAdmin{
+    /*
     Settings settings;
     ControlManager controlManager;
     GameMapper gameMapper;
@@ -26,12 +32,22 @@ public class GameManagement{
     boolean finishGame;
     String gameMode;
     int availableHint;
+    */
+
+    /* Test Method */
+    public static void main(String[] args){
+        final JFXPanel fxPanel = new JFXPanel(); //panel for sound
+        MediaPlayer media = new MediaPlayer(new Media(Paths.get("src/GameManagement/media/hatirnaz_distant.mp3").toUri().toString()));
+        media.play();
+    }
 
     /*
        GameManagement Constructor
      */
+    /*
     public GameManagement(){
-
+        MediaPlayer GameManagement.media = new MediaPlayer(new Media(Paths.get("../GameManagement.media/title_music.mp3").toUri().toString()));
+        GameManagement.media.play();
     }
 
     public void updateLevel(){
@@ -39,8 +55,7 @@ public class GameManagement{
     }
 
     public String getGameMode(){
-
-        return "";
+        return gameMode;
     }
 
     public void pairBlockandID(int blockID){
@@ -48,8 +63,7 @@ public class GameManagement{
     }
 
     public int getCurrentLevel(){
-
-        return -1;
+        return currentLevel;
     }
 
     public void refreshSetBlocks(){
@@ -70,7 +84,7 @@ public class GameManagement{
 
 
     /*** GETTER AND SETTER METHODS ****/
-
+/*
     public Control getManager() {
         return Manager;
     }
@@ -141,5 +155,5 @@ public class GameManagement{
 
     public void setAvailableHint(int availableHint) {
         this.availableHint = availableHint;
-    }
+    }*/
 }
