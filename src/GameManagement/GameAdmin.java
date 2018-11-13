@@ -9,16 +9,15 @@ package GameManagement;
   07.11.2018
  */
 
-import java.util.*;
 import java.lang.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 import javafx.embed.swing.JFXPanel;
 import java.nio.file.Paths;
 
-
 public class GameAdmin{
-    /*
+
     Settings settings;
     ControlManager controlManager;
     GameMapper gameMapper;
@@ -32,22 +31,26 @@ public class GameAdmin{
     boolean finishGame;
     String gameMode;
     int availableHint;
-    */
+    private final JFXPanel fx = new JFXPanel(); //panel for sound. must be called.
+    private MediaPlayer media;
 
-    /* Test Method */
+
+    private static GameAdmin gameManager = new GameAdmin();
+
+
+
+    /* Main method for testing stuff */
     public static void main(String[] args){
-        final JFXPanel fxPanel = new JFXPanel(); //panel for sound
-        MediaPlayer media = new MediaPlayer(new Media(Paths.get("src/GameManagement/media/hatirnaz_distant.mp3").toUri().toString()));
-        media.play();
+        GameAdmin gm = new GameAdmin();
     }
 
     /*
-       GameManagement Constructor
+       GameAdmin Constructor
      */
-    /*
-    public GameManagement(){
-        MediaPlayer GameManagement.media = new MediaPlayer(new Media(Paths.get("../GameManagement.media/title_music.mp3").toUri().toString()));
-        GameManagement.media.play();
+
+    public GameAdmin(){
+        setMedia("src/GameManagement/media/title_music.mp3");
+        media.play();
     }
 
     public void updateLevel(){
@@ -55,6 +58,7 @@ public class GameAdmin{
     }
 
     public String getGameMode(){
+
         return gameMode;
     }
 
@@ -63,6 +67,7 @@ public class GameAdmin{
     }
 
     public int getCurrentLevel(){
+
         return currentLevel;
     }
 
@@ -82,15 +87,37 @@ public class GameAdmin{
 
     }
 
-
-    /*** GETTER AND SETTER METHODS ****/
-/*
-    public Control getManager() {
-        return Manager;
+    public void setMedia(String loc){
+        media = new MediaPlayer(new Media(Paths.get(loc).toUri().toString()));
+    }
+    public void setVolume(double val){
+        //0.0 = mute ; 1.0 = full volume
+        if(media != null){
+            media.setVolume(val);
+        }
+    }
+    public double getVolume(){
+        if(media != null){
+            return media.getVolume();
+        }
+        return 0.0;
+    }
+    public void muteMusic(){
+        setVolume(0.0);
+    }
+    public void unmuteMusic(){
+        setVolume(1.0);
     }
 
-    public void setManager(Control manager) {
-        Manager = manager;
+
+    /*** GETTER AND SETTER METHODS ****/
+
+    public ControlManager getControlManager() {
+        return controlManager;
+    }
+
+    public void setControlManager(ControlManager controlManager) {
+        this.controlManager = controlManager;
     }
 
     public GameMapper getGameMapper() {
@@ -155,5 +182,5 @@ public class GameAdmin{
 
     public void setAvailableHint(int availableHint) {
         this.availableHint = availableHint;
-    }*/
+    }
 }
