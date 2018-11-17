@@ -41,7 +41,7 @@ public class GameAdmin{
 
     /* Main method for testing stuff */
     public static void main(String[] args){
-        GameAdmin gm = new GameAdmin();
+        GameAdmin gAdmin = new GameAdmin();
     }
 
     /*

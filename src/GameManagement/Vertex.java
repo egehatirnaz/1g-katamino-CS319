@@ -6,7 +6,11 @@
 package GameManagement;
 
 import java.util.ArrayList;
+
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 /**
  *
@@ -114,9 +118,10 @@ public class Vertex {
         }
         return result;
     }
-    
-    
-    
-    
-    
+
+    public  void updateLocation()
+    {
+        adjacencyList.clear();
+        createAdjacents();
+    }
 }
