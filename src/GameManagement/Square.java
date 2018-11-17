@@ -7,6 +7,7 @@ package GameManagement;
 
 // import javafx.geometry.Rectangle2D;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 /**
  *
  * @author User
@@ -57,5 +58,15 @@ public class Square
     public void setFilled( boolean state )
     {
         isFilled = state;
+    }
+    
+    public boolean getStateOfSquare()
+    {
+        return isFilled;
+    }
+    
+    public Rectangle getRect()
+    {
+        return singleSquare;
     }
 }

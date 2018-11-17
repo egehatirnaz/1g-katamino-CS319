@@ -7,6 +7,7 @@ package GameManagement;
 
 import java.util.ArrayList;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 /**
  *
  * @author burak korkmaz
@@ -17,40 +18,63 @@ public class GameMapper {
     // properties
     private Square[][] squares;
     private int currentLevel;
-    private Block[] blocks;
-    private SolutionSet sols;
+    final int MAXLEVEL = 13;
+    final int MINLEVEL = 1;
+   // private Block[] blocks;
+   // private SolutionSet sols;
     
     // constructor
     public GameMapper(int currentLevel ){
         squares = null;
-        pieces = null;
+     //   pieces = null;
         this.currentLevel = currentLevel;
+        setSquares( 13, 5 );
     }
     
     // methods 
+    
     private void setSquares(int width, int height){
         squares = new Square[width][height];
-        for(int i = 0; i < height; i++){
-            int xCoor = i * 10;
-            for(int j = 0; i < width; i++){
-                int yCoor = j * 10;
-                squares[i][j].setXCoordinate(xCoor);
-                squares[i][j].setYCoordinate(yCoor);
-                squares[i][j].setHeight(10);
-                squares[i][j].setFilled(false);
+        for(int i = 0; i < squares.length; i++){
+            double xCoor = i * 100 + 200;
+            for(int j = 0; j < squares[i].length; j++){
+                double yCoor = j * 100 + 200;
+                squares[i][j] = new Square(xCoor, yCoor, 100.0,100.0);
+                squares[i][j].getRect().setStroke( Color.BURLYWOOD);
+                squares[i][j].getRect().setFill( Color.AQUA);
             }
         }
+        
+        runGame();
     }
+    
     
     public void runGame()
     {
-        setSquares( 2 + currentLevel, 5 );
-        
-        setupEntity(currentLevel);
-        
+                  // setupEntity(currentLevel);
+    }
+    /*
+    public Rectangle getLevelStick()
+    {
+        Rectangle stick = null;
+        if( currentLevel > MINLEVEL - 1 && currentLevel < MAXLEVEL + 1 )
+        {
+            stick = new Rectangle( squares[currentLevel + 3][0].getXCoodinate(),squares[currentLevel + 3][0].getYCoordinate(), 100.0, 500.0  );
+            for( int i = currentLevel + 3; i < MAXLEVEL + 1; i++  )
+            {
+                for( int k = 0; k < squares[i].length; k++ )
+                    squares[i][k].getRect().setFill( Color.GRAY );
+            }
+        }
+        return stick;
+    }*/
+    
+    public Square[][] getSquares()
+    {
+        return squares;
     }
     
-    private void setupEntity( int currentLevel )
+   /* private void setupEntity( int currentLevel )
     {
         
     }
@@ -68,8 +92,7 @@ public class GameMapper {
         currentLevel++;
         runGame();
         return true;
-    }
+    }*/
     
     
 }
-
