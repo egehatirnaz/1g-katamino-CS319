@@ -120,6 +120,24 @@ Location: Bilkent T Building
 * [Ege] Connect the Github accounts.
 
 
+## Meeting on Nov 17, 13:00 - 04:00
+
+Participants: Burak, Fırat, Mert, Yusuf, Ege 
+
+Location: Bilkent T Building
+
+### Agenda
+* Block movements have been completed. 
+* Work on the code gathering.
+* Some moves have been made in main screen.
+
+### Action Items
+* [Burak, Fırat, Mert, Yusuf, Ege] Discussed on how the implemented classes will be gathered.
+* [Mert, Fırat] Implement the Block movements.
+* [Burak, Yusuf] Work on the compability of main screen for blocks.
+* [Ege] Work on gathering the classes.
+
+
 
 
 
