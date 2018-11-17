@@ -80,3 +80,26 @@ Location: Bilkent T Building
 * [Mert, Yusuf] They will deal with explaining objects and classes.
 * [Burak, Fırat] They will deal with Overview, introduction.
 
+
+
+## Meeting on Nov 11, 17:00 - 04:00
+
+Participants: Burak, Fırat, Mert, Yusuf 
+
+Location: Bilkent T Building
+
+### Agenda
+* Github connection has been done 
+* Control classes started to be implemented
+* UI classes has been started to implemeted
+
+### Action Items
+* [Burak, Fırat, Mert, Yusuf] Discussed on the structure and work on Github connection.
+* [Mert, Fırat] Implemented the control classes.
+* [Burak, Yusuf] Start to implement GUI classes.
+
+
+
+
+
+
