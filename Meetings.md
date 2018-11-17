@@ -89,15 +89,35 @@ Participants: Burak, Fırat, Mert, Yusuf
 Location: Bilkent T Building
 
 ### Agenda
-* Github connection has been done 
-* Control classes started to be implemented
-* UI classes has been started to implemeted
+* Github connection tried to be connected.
+* Control classes started to be implemented.
+* UI classes has been started to implemeted.
 
 ### Action Items
 * [Burak, Fırat, Mert, Yusuf] Discussed on the structure and work on Github connection.
 * [Mert, Fırat] Implemented the control classes.
 * [Burak, Yusuf] Start to implement GUI classes.
 
+
+
+
+## Meeting on Nov 13, 17:00 - 04:00
+
+Participants: Burak, Fırat, Mert, Yusuf, Ege 
+
+Location: Bilkent T Building
+
+### Agenda
+* Github connection has been done. 
+* Implement the Block class and discuss on their movement. 
+* UI classes has been implemented.
+* Main Screen implemented.
+
+### Action Items
+* [Burak, Fırat, Mert, Yusuf, Ege] Discussed on how the implemented classes will be gathered.
+* [Mert, Fırat] Implement the Block class and tried to to movement with Blocks.
+* [Burak, Yusuf] Implement the main screen.
+* [Ege] Connect the Github accounts.
 
 
 
