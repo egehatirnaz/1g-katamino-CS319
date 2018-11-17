@@ -5,6 +5,7 @@
  */
 package GameManagement;
 
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -14,8 +15,14 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
+import jfxtras.labs.scene.control.window.Window;
+import jfxtras.labs.scene.layout.ScalableContentPane;
+import jfxtras.labs.util.event.MouseControlUtil;
 
 /**
  *
@@ -50,29 +57,26 @@ public class VertexTest extends Application {
         // v.rotateRight();
         
         ArrayList<Square> adj = v.getAdjacent();
-        
-        root.getChildren().add( v.getMain().getRect() );
-     
-           System.out.println( "Main X: " + v.getMain().getXCoodinate() );
-           System.out.println( "Main Y: " + v.getMain().getXCoodinate() );
 
-        v.getMain().getRect().setOnMousePressed(circleOnMousePressedEventHandler);
-        v.getMain().getRect().setOnMouseDragged(circleOnMouseDraggedEventHandler);
 
-       /* for( int i = 0; i < v.getAdjacent().size(); i++ )
-        {
-            v.getAdjacent().get(i).setXCoordinate( translationX );
-            v.getAdjacent().get(i).setYCoordinate( translationY );
-        }*/
+        Image one = new Image(Paths.get("src/GameManagement/media/green.png").toUri().toString());
+        ImageView img1 = new ImageView(one);
+        Image two = new Image(Paths.get("src/GameManagement/media/blue.png").toUri().toString());
+        ImageView img2 = new ImageView(two);
+        Image three = new Image(Paths.get("src/GameManagement/media/yellow.png").toUri().toString());
+        ImageView img3 = new ImageView(three);
+        img1.setRotate(90);
+        //img2.setRotate(180);
+        //img3.setRotate(180);
 
-        for( int i = 0; i < adj.size(); i++)
-        {
-            
-            root.getChildren().add( adj.get(i).getRect() );
-            System.out.println( "X: " + adj.get(i).getXCoodinate() );
-            System.out.println( "Y: " +  adj.get(i).getYCoordinate() );
-        }
-        
+        MouseControlUtil.makeDraggable(img1);
+        MouseControlUtil.makeDraggable(img2);
+        MouseControlUtil.makeDraggable(img3);
+        root.getChildren().add(img1);
+        root.getChildren().add(img2);
+        root.getChildren().add(img3);
+
+
         int ex[] = { 1 ,2 , 3, 4, 5 };
         
         ex = v.shiftRight(ex);
@@ -88,46 +92,6 @@ public class VertexTest extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-
-
-
-    /**
-     * @param args the command line arguments
-     */
-    /* DRAG DROP METHODS AND TESTS -Ege */
-    double orgSceneX, orgSceneY;
-    double orgTranslateX, orgTranslateY;
-    EventHandler<MouseEvent> circleOnMousePressedEventHandler =
-            new EventHandler<MouseEvent>() {
-
-                @Override
-                public void handle(MouseEvent t) {
-                    orgSceneX = t.getSceneX();
-                    orgSceneY = t.getSceneY();
-                    orgTranslateX = ((Rectangle)(t.getSource())).getX();
-                    orgTranslateY = ((Rectangle)(t.getSource())).getX();
-
-                }
-            };
-
-    EventHandler<MouseEvent> circleOnMouseDraggedEventHandler =
-            new EventHandler<MouseEvent>() {
-
-                @Override
-                public void handle(MouseEvent t) {
-                    double offsetX = t.getSceneX() - orgSceneX;
-                    double offsetY = t.getSceneY() - orgSceneY;
-                    double newTranslateX = orgTranslateX + offsetX;
-                    double newTranslateY = orgTranslateY + offsetY;
-
-
-                    ((Rectangle)(t.getSource())).setX(newTranslateX);
-                    ((Rectangle)(t.getSource())).setY(newTranslateY);
-                    translationX = newTranslateX;
-                    translationY = newTranslateY;
-
-                }
-            };
 
     
 }
