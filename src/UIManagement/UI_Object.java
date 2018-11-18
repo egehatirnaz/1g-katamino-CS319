@@ -84,8 +84,9 @@ public class UI_Object extends Application {
     public void play(){
         //VBox layout2 = new VBox(20);
         //FXMLLoader loader2 = new FXMLLoader(getClass().getResource("NormalMode.fxml"));
-
-        new BoardTest().start(new Stage());
+        BoardTest bT = new BoardTest();
+        bT.start(new Stage());
+        window.setScene(bT.returnScene());
 
         //layout2.getChildren().setAll((VBox)loader2.load());
         //scene2 = new Scene(layout2, 640, 425);
