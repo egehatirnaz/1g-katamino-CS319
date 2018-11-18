@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.191" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+    <MenuBar VBox.vgrow="NEVER">
+      <menus>
+        <Menu mnemonicParsing="false" text="New Game">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Classic Mode" />
+            <MenuItem mnemonicParsing="false" text="Challenge Mode" />
+            <Menu mnemonicParsing="false" text="Open Recent" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Dynamic Mode" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="About">
+               <items>
+            <MenuItem mnemonicParsing="false" text="Credits" />
+               </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Solutions" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+      <children>
+        <Label alignment="CENTER" layoutX="155.0" layoutY="177.0" style="&#10;" text="Drag components from Library here…" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
+          <font>
+            <Font size="18.0" />
+          </font>
+        </Label>
+            <ImageView fitHeight="425.0" fitWidth="641.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Pictures/4s9npagpsqj01.jpg" />
+               </image>
+               <effect>
+                  <Lighting diffuseConstant="1.14" light="$null" specularConstant="0.16" specularExponent="15.71" surfaceScale="0.91">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                  </Lighting>
+               </effect>
+            </ImageView>
+            <Label layoutX="175.0" layoutY="55.0" text="Leaderboards" textAlignment="CENTER">
+               <font>
+                  <Font name="Phosphate Inline" size="41.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="0.9615384615384617" startX="1.0" startY="0.07211538461538469">
+                     <stops>
+                        <Stop color="#9a0505" />
+                        <Stop color="BLACK" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+            <TableView editable="true" layoutX="202.0" layoutY="122.0" prefHeight="200.0" prefWidth="199.0">
+              <columns>
+                <TableColumn prefWidth="116.0" text="Name" />
+                <TableColumn prefWidth="82.0" text="Time" />
+              </columns>
+            </TableView>
+            <Slider layoutX="401.0" layoutY="122.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="16.0" value="70.0" />
+            <Button layoutX="23.0" layoutY="28.0" mnemonicParsing="false" text="Return" />
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>
