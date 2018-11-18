@@ -5,32 +5,35 @@
  */
 package GameManagement;
 
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.TransferMode;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
-/*import jfxtras.labs.scene.control.window.Window;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
+import jfxtras.labs.scene.control.window.Window;
 import jfxtras.labs.scene.layout.ScalableContentPane;
-import jfxtras.labs.util.event.MouseControlUtil;*/
+import jfxtras.labs.util.event.MouseControlUtil;
 
 /**
  *
  * @author User
  */
 public class VertexTest extends Application {
+
+    double translationX = 0;
+    double translationY = 0;
+
     
-    double orgSceneX, orgSceneY;
     @Override
     public void start(Stage primaryStage) {
         /*Button btn = new Button();
@@ -44,54 +47,36 @@ public class VertexTest extends Application {
         });*/
         
         Pane root = new Pane();
-        double mainX, mainY = 300.0;
-        double height = 100.0;
+        
         Square main = new Square( 300, 300, 100, 100 );
         
-        int directions[][] = {{1,0,0,0}, {1,1,0,0} , {1,0,0,1}, {0,0,1,0} };
+        int directions[][] = {{1,0,0,0}, {2,0,0,0} , {3,0,0,0}, {1,1,0,0} };
         
         Vertex v = new Vertex( main, directions );
-        
-        v.rotateRight();
+
+        // v.rotateRight();
         
         ArrayList<Square> adj = v.getAdjacent();
-        
-        root.getChildren().add( v.getMain().getRect() );
-     
-           //System.out.println( "Main X: " + v.getMain().getXCoodinate() );
-           //System.out.println( "Main Y: " + v.getMain().getXCoodinate() );
-        
-        for( int i = 0; i < adj.size(); i++)
-        {
-            
-            root.getChildren().add( adj.get(i).getRect() );
-            //System.out.println( "X: " + adj.get(i).getXCoodinate() );
-            //System.out.println( "Y: " +  adj.get(i).getYCoordinate() );
-        }
-        
-        v.getMain().getRect().setCursor(Cursor.HAND);
-        
-        v.getMain().getRect().setOnMouseDragged((t) ->{
-           // double offsetX = t.getSceneX() - v.getMain().getRect().getX();
-           // double offsetY = t.getSceneY() - v.getMain().getRect().getY();
-            //System.out.println();
-            v.getMain().setXCoordinate( t.getSceneX() );
-            v.getMain().setYCoordinate( t.getSceneY() );
-            /* for( int i = 0; i < adj.size(); i++)
-            {
-            
-            adj.get(i).setXCoordinate(t.getSceneX());
-            adj.get(i).setYCoordinate(t.getSceneY());
-            //System.out.println( "X: " + adj.get(i).getXCoodinate() );
-            //System.out.println( "Y: " +  adj.get(i).getYCoordinate() );
-            }*/
-            
-             
-           // root.requestLayout();
-            
-        });
-       // MouseControlUtil.makeDraggable(v);
-        /*
+
+
+        Image one = new Image(Paths.get("src/GameManagement/media/green.png").toUri().toString());
+        ImageView img1 = new ImageView(one);
+        Image two = new Image(Paths.get("src/GameManagement/media/blue.png").toUri().toString());
+        ImageView img2 = new ImageView(two);
+        Image three = new Image(Paths.get("src/GameManagement/media/yellow.png").toUri().toString());
+        ImageView img3 = new ImageView(three);
+        img1.setRotate(90);
+        //img2.setRotate(180);
+        //img3.setRotate(180);
+
+        MouseControlUtil.makeDraggable(img1);
+        MouseControlUtil.makeDraggable(img2);
+        MouseControlUtil.makeDraggable(img3);
+        root.getChildren().add(img1);
+        root.getChildren().add(img2);
+        root.getChildren().add(img3);
+
+
         int ex[] = { 1 ,2 , 3, 4, 5 };
         
         ex = v.shiftRight(ex);
@@ -99,9 +84,7 @@ public class VertexTest extends Application {
         for( int i = 0; i < 5; i++)
             System.out.println( ex[i] );
         
-         */
-        
-        
+         
         Scene scene = new Scene(root, 1000, 1000);
         
         
@@ -110,11 +93,5 @@ public class VertexTest extends Application {
         primaryStage.show();
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        launch(args);
-    }
     
 }
