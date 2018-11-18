@@ -152,11 +152,12 @@ Location: Bilkent G Building
 * Work on Main Game Frames.
 * Coordinates of blocks found.
 * The Blocks has started to work with block moves.
+* Final report has been written
 
 ### Action Items
 * [Burak, Fırat, Mert, Yusuf, Ege] Discussed on how the implemented classes will be gathered.
-* [Mert, Burak] Work on the blocks.
-* [Fırat, Yusuf] Work on Main Frame and it's order.
+* [Mert, Burak, Yusuf] Work on the blocks, Main Frame and it's order .
+* [Fırat] Write the final report.
 * [Ege] Implement the other Game Screens.
 
 
