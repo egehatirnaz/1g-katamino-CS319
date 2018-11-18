@@ -141,5 +141,23 @@ Location: Bilkent EA Building
 
 
 
+## Meeting on Nov 18, 10:00 - 22:00
+
+Participants: Burak, Fırat, Mert, Yusuf, Ege 
+
+Location: Bilkent G Building
+
+### Agenda
+* Work on Game Frames.
+* Work on Main Game Frames.
+* Coordinates of blocks found.
+* The Blocks has started to work with block moves.
+
+### Action Items
+* [Burak, Fırat, Mert, Yusuf, Ege] Discussed on how the implemented classes will be gathered.
+* [Mert, Burak] Work on the blocks.
+* [Fırat, Yusuf] Work on Main Frame and it's order.
+* [Ege] Implement the other Game Screens.
+
 
 
