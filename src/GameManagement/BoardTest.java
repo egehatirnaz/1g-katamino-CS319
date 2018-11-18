@@ -41,6 +41,7 @@ import java.util.ArrayList;
  */
 public class BoardTest extends Application {
 
+    private Scene window;
     final int startx= 200;
     final int starty= 190;
     double originX, originY;
@@ -287,8 +288,12 @@ public class BoardTest extends Application {
         //root.getChildren().get(root.getChildren().indexOf(img3)).con
         primaryStage.setTitle("Katamino");
         primaryStage.setScene(scene);
-        primaryStage.show();
+        //primaryStage.show();
+        window = scene;
+    }
 
+    public Scene returnScene() {
+        return window;
     }
 
     /**
