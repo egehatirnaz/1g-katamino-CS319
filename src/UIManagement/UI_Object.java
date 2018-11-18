@@ -10,21 +10,27 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+import java.nio.file.Paths;
+
 public class UI_Object extends Application {
     Stage window;
     Scene scene1, scene2;
     Parent scene3;
+    private MediaPlayer media;
 
     @Override
     public void start(Stage stage) throws Exception{
         window = stage;
-
+        media = new MediaPlayer(new Media(Paths.get("src/GameManagement/media/hatirnaz_rush.mp3").toUri().toString()));
+        media.play();
 
         Label label1 = new Label("Welcome to the first scene");
         Button button1 = new Button("Go to scene 2");
