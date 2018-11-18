@@ -9,9 +9,12 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.paint.Color;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseDragEvent;
@@ -20,93 +23,222 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import jfxtras.labs.util.event.MouseControlUtil;
 
 import javax.swing.*;
+import java.awt.*;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 /**
  *
- * @author User
+ * @author mert epsileli - burak korkmaz - yusuf samsum
  */
 public class BoardTest extends Application {
-    
+
+    final int startx= 200;
+    final int starty= 190;
+    double originX, originY;
     @Override
     public void start(Stage primaryStage) {
         /*Button btn = new Button();
         btn.setText("Say 'Hello World'");
         btn.setOnAction(new EventHandler<ActionEvent>() {
-            
+
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("Hello World!");
             }
         });*/
-        
+
         GameMapper gm = new GameMapper( 5 );
         Group root = new Group();
-        
+        int start;
+
         Square[][] boardSquares = gm.getSquares();
         for( int i = 0; i < boardSquares.length; i++ )
         {
             for( int k = 0; k < boardSquares[i].length; k++ ){
                 root.getChildren().add( boardSquares[i][k].getRect());
                 System.out.println( boardSquares[i][k].getXCoodinate() + " y: " +  boardSquares[i][k].getYCoordinate() );
-            }              
+
+                System.out.println(root.getChildren().get(i).computeAreaInScreen());
+            }
         }
         /*
         if( gm.getLevelStick() != null );
             root.getChildren().add( gm.getLevelStick() );
-
 */
         /*GridPane gp = new GridPane();
         gp.setPadding(new Insets(5));
         gp.setHgap(10);
         gp.setVgap(10);*/
-        Image one = new Image(Paths.get("src/GameManagement/media/green.png").toUri().toString());
 
-        ImageView img1 = new ImageView(one);
-        EventHandler<MouseEvent> eh = new EventHandler<MouseEvent>() {
+        Image green = new Image(Paths.get("src/GameManagement/media/green.png").toUri().toString());
+        Image blue = new Image( Paths.get( "src/GameManagement/media/blue.png" ).toUri().toString() );
+        Image yellow = new Image( Paths.get( "src/GameManagement/media/yellow.png" ).toUri().toString() );
+        //JPanel P = new JPanel();
+        Scene scene = new Scene(root, 1000, 1000);
+        ImageView img1 = new ImageView(green);
+        ImageView img2 = new ImageView(blue);
+        ImageView img3 = new ImageView(yellow);
+
+        ArrayList<ImageView> imageList =  new ArrayList<ImageView>();
+
+        imageList.add( img1 );
+        imageList.add( img2 );
+        imageList.add( img3 );
+
+        for( int i = 0; i < imageList.size(); i++ )
+        {
+            imageList.get(i).setCursor(Cursor.HAND);
+
+            imageList.get(i).setOnMousePressed( (t) -> {
+                        originX = t.getSceneX();
+                        originY = t.getSceneY();
+
+                        ImageView anImage = (ImageView)(t.getSource());
+                        anImage.toFront();
+                    }
+            );
+
+            imageList.get(i).setOnMouseDragged(  (t) ->
+                    {
+                        double offsetX = t.getSceneX() - originX;
+                        double offsetY = t.getSceneY() - originY;
+
+                        ImageView anImage = (ImageView)(t.getSource());
+
+                        anImage.setX( offsetX + anImage.getX() );
+                        anImage.setY( offsetY + anImage.getY() );
+
+                        originX  = t.getSceneX();
+                        originY = t.getSceneY();
+                    }
+
+            );
+            imageList.get(i).setOnMouseReleased((t)-> {
+                for( int k = 0; k < boardSquares.length; k++ ) {
+                    for (int j = 0; j < boardSquares[k].length; j++) {
+                        Circle c = new Circle();
+                        c.setCenterY((250) + (j) * 100);
+                        c.setCenterX((250) + (k) * 100);
+                        c.setRadius(3);
+                        c.setFill(Color.RED);
+                        root.getChildren().add(c);
+                        for( int noOfImage = 0; noOfImage < imageList.size(); noOfImage++ )
+                        {
+                            if (root.getChildren().get(root.getChildren().indexOf(imageList.get(noOfImage))).contains((250) + (k) * 100, (250) + (j) * 100)) {
+                                c.setFill(Color.GREEN);
+                                boardSquares[k][j].setFilled(true);
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+
+
+
+
+        /*EventHandler<MouseEvent> eventH = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                root.getChildren().remove(img1);
-                img1.setRotate(90);
-                root.getChildren().add(img1);
-                System.out.println("girdim");
-            }
-        };
-        JPanel P = new JPanel();
-        Scene scene = new Scene(root, 1000, 1000);
+                ImageView img;
+                img = (ImageView) event.getSource() ;
+                if(event.getClickCount() % 2 == 0) {
+                    System.out.println( "Rotated!!" );
+                    img.setRotate(img.getRotate() + 90);
+                }
 
-        img1.setX(150);
-        img1.setX(200);
-        img1.addEventHandler(MouseEvent.MOUSE_PRESSED, eh);
+
+                Point p = MouseInfo.getPointerInfo().getLocation();
+                img.setX(event.getSceneX());
+                img.setY(event.getSceneY());
+                //if(img.getBoundsInParent().contains(boardSquares[1][1]))
+                System.out.println(img.getX());
+                //img.getBoundsInParent().;
+                //System.out.println(img.getX());
+                //System.out.println(p.getX());
+                //System.out.println(p.getY());
+                System.out.println("İşte bu amk " + event.getSceneX());
+                //event.getSceneX();
+                //event.getSceneY();
+                //System.out.println(img.getBoundsInParent());
+                for( int i = 0; i < boardSquares.length; i++ ) {
+                    for (int k = 0; k < boardSquares[i].length; k++) {
+                        Circle c = new Circle();
+                        c.setCenterY((250)+(k)*100);
+                        c.setCenterX((250)+(i)*100);
+                        c.setRadius(3);
+                        c.setFill(Color.RED);
+                        root.getChildren().add(c);
+                        if(root.getChildren().get(root.getChildren().indexOf(img)).contains((250)+(i)*100,(250)+(k)*100)){
+                            c.setFill(Color.GREEN);
+                            boardSquares[i][k].setFilled(true);
+                        };
+
+                    }
+
+
+        };
+
+*/
+
+        //img1.setX(150);
+        //System.out.println(root.getChildren().get(root.getChildren().indexOf(boardSquares[0][0])).getScaleX());
+       // img1.addEventHandler(MouseEvent.MOUSE_CLICKED, eventH);
+/*
         Image two = new Image(Paths.get("src/GameManagement/media/blue.png").toUri().toString());
         ImageView img2 = new ImageView(two);
         Image three = new Image(Paths.get("src/GameManagement/media/yellow.png").toUri().toString());
         ImageView img3 = new ImageView(three);
-        img1.setRotate(90);
+        img3.setX(150);
+        img3.setY(140);
+*/
+        //img2.addEventHandler(MouseEvent.MOUSE_CLICKED, eventH);
+        //img3.addEventHandler(MouseEvent.MOUSE_CLICKED, eventH);
+
         //JLabel picLabel = new JLabel(new ImageIcon(img1));
         //HBox pictures = new HBox();
         //img2.setRotate(180);
         //img3.setRotate(180);
-
-        MouseControlUtil.makeDraggable(img1);
+        //if(img1.getOnDragDropped() != null ){
+        //    img1.setRotate(10);
+        //}
+        /*MouseControlUtil.makeDraggable(img1);
         MouseControlUtil.makeDraggable(img2);
-        MouseControlUtil.makeDraggable(img3);
+        MouseControlUtil.makeDraggable(img3);*/
         root.getChildren().add(img1);
         root.getChildren().add(img2);
         root.getChildren().add(img3);
-        //gp.add(pictures,1,1);
 
+        /*for( int i = 0; i < boardSquares.length; i++ ) {
+            for (int k = 0; k < boardSquares[i].length; k++) {
+                Circle c = new Circle();
+                c.setCenterY((250)+(k)*100);
+                c.setCenterX((250)+(i)*100);
+                c.setRadius(3);
+                root.getChildren().add(c);
+                System.out.println(img3.getX() + "y : " + img3.getY());
+                System.out.println(root.getChildren().get(root.getChildren().indexOf(img3)).contains((250)+(i)*100,(250)+(k)*100) + "x : " + ((startx)+(i)*100) + " y : " + ((starty)+(k)*100));
+            }
+        }*/
+
+        //System.out.println(root.getChildren().get(root.getChildren().indexOf(img3)).contains(root.getChildren().get(root.getChildren().indexOf(boardSquares[1][2]))));
+        //gp.add(pictures,1,1);
+        //System.out.println(boardSquares[0][0].setXCoordinate(););
+        //root.getChildren().get(root.getChildren().indexOf(img3))
 
         //root.getChildren().add(gp);
 
-
-        primaryStage.setTitle("Hello World!");
+        //root.getChildren().get(root.getChildren().indexOf(img3)).con
+        primaryStage.setTitle("Katamino");
         primaryStage.setScene(scene);
         primaryStage.show();
 
