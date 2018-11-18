@@ -1,6 +1,7 @@
 package UIManagement;
 
 
+import GameManagement.BoardTest;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,6 +19,7 @@ import javafx.stage.Stage;
 public class UI_Object extends Application {
     Stage window;
     Scene scene1, scene2;
+    Parent scene3;
 
     @Override
     public void start(Stage stage) throws Exception{
@@ -34,7 +36,7 @@ public class UI_Object extends Application {
         scene1 = new Scene(layout1, 640, 425);
 
         Button butt = (Button) loader.getNamespace().get("normalModeID");
-        butt.setOnAction(e -> window.setScene(scene2));
+        butt.setOnAction(e -> play());
 
         /*
         //L1
@@ -45,10 +47,11 @@ public class UI_Object extends Application {
 
 
 
-
+        /*
         //B2
         Button button2 = new Button("Go to scene 1");
         button2.setOnAction(e -> window.setScene(scene1));
+        */
 
 
         VBox layout2 = new VBox(20);
@@ -70,5 +73,15 @@ public class UI_Object extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public void play(){
+        //VBox layout2 = new VBox(20);
+        //FXMLLoader loader2 = new FXMLLoader(getClass().getResource("NormalMode.fxml"));
+
+        new BoardTest().start(new Stage());
+
+        //layout2.getChildren().setAll((VBox)loader2.load());
+        //scene2 = new Scene(layout2, 640, 425);
     }
 }
