@@ -29,7 +29,7 @@ public class UI_Object extends Application {
     @Override
     public void start(Stage stage) throws Exception{
         window = stage;
-        media = new MediaPlayer(new Media(Paths.get("src/GameManagement/media/hatirnaz_rush.mp3").toUri().toString()));
+        media = new MediaPlayer(new Media(Paths.get("src/GameManagement/media/title.mp3").toUri().toString()));
         media.play();
 
         Label label1 = new Label("Welcome to the first scene");
