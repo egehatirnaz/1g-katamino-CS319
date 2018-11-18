@@ -27,7 +27,7 @@ public class GameMapper {
     public GameMapper(int currentLevel ){
         squares = null;
      //   pieces = null;
-        this.currentLevel = currentLevel;
+        this.currentLevel = currentLevel + 2;
         setSquares( 13, 5 );
     }
     
@@ -40,8 +40,14 @@ public class GameMapper {
             for(int j = 0; j < squares[i].length; j++){
                 double yCoor = j * 100 + 200;
                 squares[i][j] = new Square(xCoor, yCoor, 100.0,100.0);
-                squares[i][j].getRect().setStroke( Color.BURLYWOOD);
-                squares[i][j].getRect().setFill( Color.AQUA);
+                if(i>=currentLevel  ){
+                    squares[i][j].getRect().setStroke(Color.BURLYWOOD);
+                    squares[i][j].getRect().setFill(Color.GRAY);
+                }
+                else {
+                    squares[i][j].getRect().setStroke(Color.BURLYWOOD);
+                    squares[i][j].getRect().setFill(Color.AQUA);
+                }
             }
         }
         
@@ -68,7 +74,21 @@ public class GameMapper {
         }
         return stick;
     }*/
-    
+
+    public boolean isLevelFinished(){
+        for(int i = 0; i < currentLevel; i++){
+            for(int j = 0; j < squares[i].length; j++) {
+                if(squares[i][j].getStateOfSquare()==false)
+                    return false;
+            }
+        }
+        return true;
+    }
+
+    public int getCurrentLevel(){
+        return currentLevel;
+    }
+
     public Square[][] getSquares()
     {
         return squares;
