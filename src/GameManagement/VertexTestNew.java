@@ -78,8 +78,6 @@ public class VertexTestNew extends Application {
         
          
         Scene scene = new Scene(root, 1000, 1000);
-        
-        
         primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);
         primaryStage.show();

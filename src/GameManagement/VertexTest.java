@@ -7,8 +7,8 @@ package GameManagement;
 
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import javafx.application.Application;
-import javafx.event.ActionEvent;
+import javafx.application.*;
+import javafx.event.*;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -26,7 +26,7 @@ import jfxtras.labs.util.event.MouseControlUtil;
 
 /**
  *
- * @author User
+ * @author Firat Yildiz
  */
 public class VertexTest extends Application {
 
@@ -87,10 +87,9 @@ public class VertexTest extends Application {
          
         Scene scene = new Scene(root, 1000, 1000);
         
-        
-        primaryStage.setTitle("Hello World!");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        //primaryStage.setTitle("Hello World!");
+        //primaryStage.setScene(scene);
+        //primaryStage.show();
     }
 
     
