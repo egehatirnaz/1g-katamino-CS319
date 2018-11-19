@@ -42,22 +42,11 @@ import java.util.ArrayList;
 public class BoardTest extends Application {
 
     private Scene window;
-    final int startx= 200;
-    final int starty= 190;
     double originX, originY;
     @Override
     public void start(Stage primaryStage) {
-        /*Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });*/
-
-        GameMapper gm = new GameMapper( 1 );
+        int currentLevel = 1;
+        GameMapper gm = new GameMapper( currentLevel );
         Group root = new Group();
 
         /*Timeline time = new Timeline();
@@ -67,9 +56,6 @@ public class BoardTest extends Application {
         timer.setY(100);
         root.getChildren().add(timer);*/
 
-        int start;
-
-
 
         Square[][] boardSquares = gm.getSquares();
         for( int i = 0; i < boardSquares.length; i++ )
@@ -78,64 +64,36 @@ public class BoardTest extends Application {
                 root.getChildren().add( boardSquares[i][k].getRect());
                 System.out.println( boardSquares[i][k].getXCoodinate() + " y: " +  boardSquares[i][k].getYCoordinate() );
 
-                System.out.println(root.getChildren().get(i).computeAreaInScreen());
+                // System.out.println(root.getChildren().get(i).computeAreaInScreen());
             }
         }
-        /*
-        if( gm.getLevelStick() != null );
-            root.getChildren().add( gm.getLevelStick() );
-*/
-        /*GridPane gp = new GridPane();
-        gp.setPadding(new Insets(5));
-        gp.setHgap(10);
-        gp.setVgap(10);*/
 
-        Image green = new Image(Paths.get("src/GameManagement/media/green.png").toUri().toString());
-        Image blue = new Image( Paths.get( "src/GameManagement/media/blue.png" ).toUri().toString() );
-        Image yellow = new Image( Paths.get( "src/GameManagement/media/yellow.png" ).toUri().toString() );
-        Image stick = new Image(Paths.get("src/GameManagement/media/Stick.png").toUri().toString());
-        Image award = new Image(Paths.get("src/GameManagement/media/award.png").toUri().toString());
-        //JPanel P = new JPanel();
+
         Scene scene = new Scene(root, 1000, 1000);
-        ImageView img1 = new ImageView(green);
-        ImageView img2 = new ImageView(blue);
-        ImageView img3 = new ImageView(yellow);
-        ImageView stickView = new ImageView(stick);
-        ImageView awardView = new ImageView(award);
-        stickView.setX(485);
-        stickView.setY(130);
 
-        ArrayList<ImageView> imageList =  new ArrayList<ImageView>();
 
-        imageList.add( img1 );
-        imageList.add( img2 );
-        imageList.add( img3 );
+        ArrayList<ImageView> imageList =  gm.getInitialImageList();
 
         for( int i = 0; i < imageList.size(); i++ )
         {
             imageList.get(i).setCursor(Cursor.HAND);
 
+            int index = i;
             imageList.get(i).setOnMousePressed( (t) -> {
                         originX = t.getSceneX();
                         originY = t.getSceneY();
 
                         ImageView anImage = (ImageView)(t.getSource());
+                        anImage.setImage( gm.getOriginalSizeImage(index) );
                         anImage.toFront();
-                        double angle = anImage.getRotate();
-
                         if(t.getClickCount()%2==0) {
-                            //anImage.setRotate(40);
-                            //System.out.println(anImage.getRotate());
                             SnapshotParameters param = new SnapshotParameters();
                             param.setFill(Color.TRANSPARENT);
                             param.setTransform(new Rotate(90,anImage.getImage().getHeight()/2,anImage.getImage().getWidth()/2));
                             anImage.setImage(anImage.snapshot(param,null));
 
-                            //anImage.setRotate(anImage.getRotate()+90);
-                            // anImage.getTransforms().add(new Rotate(90,anImage.getX(),anImage.getY()));
-
-                            System.out.println("Rotation" + anImage.getX());
-                            System.out.println("Rotation" + anImage.getBoundsInParent());
+                            //System.out.println("Rotation" + anImage.getX());
+                            //System.out.println("Rotation" + anImage.getBoundsInParent());
                         }
                     }
             );
@@ -159,15 +117,15 @@ public class BoardTest extends Application {
             imageList.get(i).setOnMouseReleased((t)-> {
                 for( int k = 0; k < gm.getCurrentLevel(); k++ ) {
                     for (int j = 0; j < boardSquares[k].length; j++) {
-                        Circle c = new Circle();
+                        /*Circle c = new Circle();
                         c.setCenterY((250) + (j) * 100);
                         c.setCenterX((250) + (k) * 100);
                         c.setRadius(3);
-                        //c.setFill(Color.RED);
+                        c.setFill(Color.RED);*/
                         boardSquares[k][j].setFilled(false);
                         //root.getChildren().add(c);
                         for( int noOfImage = 0; noOfImage < imageList.size(); noOfImage++ ) {
-                            if (root.getChildren().get(root.getChildren().indexOf(imageList.get(noOfImage))).contains((250) + (k) * 100, (250) + (j) * 100)) {
+                            if (root.getChildren().get(root.getChildren().indexOf(imageList.get(noOfImage))).contains((300) + (k) * 100, (150) + (j) * 100)) {
                                 //c.setFill(Color.GREEN);
                                 boardSquares[k][j].setFilled(true);
                             }
@@ -175,120 +133,24 @@ public class BoardTest extends Application {
                     }
                 }
                 if(gm.isLevelFinished()){
-                    System.out.println("Malatya");
-                    //awardView.setX(;
-                    awardView.setX(500);
-                    awardView.setY(200);
+                    System.out.println("Game is over");
+                    ImageView awardView = gm.getAward();
                     root.getChildren().add(awardView);
-                    img1.setDisable(true);
-                    img2.setDisable(true);
-                    img3.setDisable(true);
+                    for( int noOfBlock = 0; noOfBlock < imageList.size(); noOfBlock++)
+                        imageList.get(noOfBlock).setDisable( true );
+                    gm.updateLevel();
                 }
             });
         }
 
+        for( int i = 0; i < imageList.size(); i++)
+            root.getChildren().add( imageList.get(i));
 
+        root.getChildren().add(gm.getStickView( currentLevel ));
 
-
-
-        /*EventHandler<MouseEvent> eventH = new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                ImageView img;
-                img = (ImageView) event.getSource() ;
-                if(event.getClickCount() % 2 == 0) {
-                    System.out.println( "Rotated!!" );
-                    img.setRotate(img.getRotate() + 90);
-                }
-
-
-                Point p = MouseInfo.getPointerInfo().getLocation();
-                img.setX(event.getSceneX());
-                img.setY(event.getSceneY());
-                //if(img.getBoundsInParent().contains(boardSquares[1][1]))
-                System.out.println(img.getX());
-                //img.getBoundsInParent().;
-                //System.out.println(img.getX());
-                //System.out.println(p.getX());
-                //System.out.println(p.getY());
-                System.out.println("İşte bu amk " + event.getSceneX());
-                //event.getSceneX();
-                //event.getSceneY();
-                //System.out.println(img.getBoundsInParent());
-                for( int i = 0; i < boardSquares.length; i++ ) {
-                    for (int k = 0; k < boardSquares[i].length; k++) {
-                        Circle c = new Circle();
-                        c.setCenterY((250)+(k)*100);
-                        c.setCenterX((250)+(i)*100);
-                        c.setRadius(3);
-                        c.setFill(Color.RED);
-                        root.getChildren().add(c);
-                        if(root.getChildren().get(root.getChildren().indexOf(img)).contains((250)+(i)*100,(250)+(k)*100)){
-                            c.setFill(Color.GREEN);
-                            boardSquares[i][k].setFilled(true);
-                        };
-
-                    }
-
-
-        };
-
-*/
-
-        //img1.setX(150);
-        //System.out.println(root.getChildren().get(root.getChildren().indexOf(boardSquares[0][0])).getScaleX());
-       // img1.addEventHandler(MouseEvent.MOUSE_CLICKED, eventH);
-/*
-        Image two = new Image(Paths.get("src/GameManagement/media/blue.png").toUri().toString());
-        ImageView img2 = new ImageView(two);
-        Image three = new Image(Paths.get("src/GameManagement/media/yellow.png").toUri().toString());
-        ImageView img3 = new ImageView(three);
-        img3.setX(150);
-        img3.setY(140);
-*/
-        //img2.addEventHandler(MouseEvent.MOUSE_CLICKED, eventH);
-        //img3.addEventHandler(MouseEvent.MOUSE_CLICKED, eventH);
-
-        //JLabel picLabel = new JLabel(new ImageIcon(img1));
-        //HBox pictures = new HBox();
-        //img2.setRotate(180);
-        //img3.setRotate(180);
-        //if(img1.getOnDragDropped() != null ){
-        //    img1.setRotate(10);
-        //}
-        /*MouseControlUtil.makeDraggable(img1);
-        MouseControlUtil.makeDraggable(img2);
-        MouseControlUtil.makeDraggable(img3);*/
-        root.getChildren().add(img1);
-        root.getChildren().add(img2);
-        root.getChildren().add(img3);
-
-        root.getChildren().add(stickView);
-
-
-        /*for( int i = 0; i < boardSquares.length; i++ ) {
-            for (int k = 0; k < boardSquares[i].length; k++) {
-                Circle c = new Circle();
-                c.setCenterY((250)+(k)*100);
-                c.setCenterX((250)+(i)*100);
-                c.setRadius(3);
-                root.getChildren().add(c);
-                System.out.println(img3.getX() + "y : " + img3.getY());
-                System.out.println(root.getChildren().get(root.getChildren().indexOf(img3)).contains((250)+(i)*100,(250)+(k)*100) + "x : " + ((startx)+(i)*100) + " y : " + ((starty)+(k)*100));
-            }
-        }*/
-
-        //System.out.println(root.getChildren().get(root.getChildren().indexOf(img3)).contains(root.getChildren().get(root.getChildren().indexOf(boardSquares[1][2]))));
-        //gp.add(pictures,1,1);
-        //System.out.println(boardSquares[0][0].setXCoordinate(););
-        //root.getChildren().get(root.getChildren().indexOf(img3))
-
-        //root.getChildren().add(gp);
-
-        //root.getChildren().get(root.getChildren().indexOf(img3)).con
         primaryStage.setTitle("Katamino");
         primaryStage.setScene(scene);
-        //primaryStage.show();
+        primaryStage.show();
         window = scene;
     }
 
