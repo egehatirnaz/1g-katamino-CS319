@@ -73,19 +73,25 @@ public class BoardTest extends Application {
 
 
         ArrayList<ImageView> imageList =  gm.getInitialImageList();
+        ArrayList<Double> fitHeightList = gm.getOriginalHeightScale();
+        ArrayList<Double> fitWidthList = gm.getOriginalWidthScale();
 
         for( int i = 0; i < imageList.size(); i++ )
         {
             imageList.get(i).setCursor(Cursor.HAND);
 
-            int index = i;
+            double fitHeight = fitHeightList.get(i);
+            double fitWidth = fitWidthList.get(i);
             imageList.get(i).setOnMousePressed( (t) -> {
                         originX = t.getSceneX();
                         originY = t.getSceneY();
 
+                        // Image test = new Image(Paths.get("src/GameManagement/media/1.png").toUri().toString());
                         ImageView anImage = (ImageView)(t.getSource());
-                        anImage.setImage( gm.getOriginalSizeImage(index) );
-                        anImage.toFront();
+                        anImage.setFitWidth(fitWidth);
+                        anImage.setFitHeight(fitHeight);
+                        anImage.setPreserveRatio(false);
+                        // rotate logic
                         if(t.getClickCount()%2==0) {
                             SnapshotParameters param = new SnapshotParameters();
                             param.setFill(Color.TRANSPARENT);
@@ -104,7 +110,6 @@ public class BoardTest extends Application {
                         double offsetY = t.getSceneY() - originY;
 
                         ImageView anImage = (ImageView)(t.getSource());
-
                         anImage.setX( offsetX + anImage.getX() );
                         anImage.setY( offsetY + anImage.getY() );
 

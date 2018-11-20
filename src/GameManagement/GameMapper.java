@@ -23,7 +23,8 @@ public class GameMapper {
     private Square[][] squares;
     private int currentLevel;
     private ArrayList<ImageView> list;
-    private ArrayList<ImageView> originalSizelist;
+    private ArrayList<Double>  originalHeightScale;
+    private ArrayList<Double>  originalWidthScale;
     private  final int MAXLEVEL = 10;
     private final int MINLEVEL = 1;
     private final int BOARDWIDTH = 13;
@@ -38,7 +39,8 @@ public class GameMapper {
     public GameMapper(int currentLevel ){
         squares = null;
         this.currentLevel = currentLevel + 2;
-        originalSizelist = new ArrayList<>();
+        originalHeightScale = new ArrayList<>();
+        originalWidthScale = new ArrayList<>();
         list = new ArrayList<>();
         setSquares(BOARDWIDTH,BOARDHEIGHT);
     }
@@ -76,7 +78,7 @@ public class GameMapper {
 
         ImageView stickView = new ImageView(stick);
 
-        stickView.setX(STICKCOORDX + ( (currentLevel - 1) * SQUARESIZE ) );
+        stickView.setX(STICKCOORDX + ( (currentLevel - 2) * SQUARESIZE ) );
         stickView.setY(STICKCOORDY);
         return  stickView;
     }
@@ -101,18 +103,9 @@ public class GameMapper {
         list.add(img1);
         list.add(img2);
         list.add(img3);
-        originalSizelist.add(img1);
-        originalSizelist.add(img2);
-        originalSizelist.add(img3);
         setupEntity();
         return  list;
     }
-
-    public Image getOriginalSizeImage( int index )
-    {
-        return originalSizelist.get(index).getImage();
-    }
-
 
     private void setupEntity()
     {
@@ -120,11 +113,23 @@ public class GameMapper {
         {
             list.get(i).setX(BOARDCOORDX + i * 3 * SQUARESIZE);
             list.get(i).setY( 5 * SQUARESIZE + BOARDCOORDY + 100 );
+            originalHeightScale.add( list.get(i).getFitHeight() );
+            originalWidthScale.add( list.get(i).getFitWidth() );
             list.get(i).setFitHeight(100);
             list.get(i).setFitWidth(100);
             list.get(i).setPreserveRatio(true);
         }
 
+    }
+
+    public ArrayList<Double> getOriginalHeightScale()
+    {
+        return originalHeightScale;
+    }
+
+    public  ArrayList<Double> getOriginalWidthScale()
+    {
+        return  originalWidthScale;
     }
 
     public boolean isLevelFinished(){
@@ -136,6 +141,7 @@ public class GameMapper {
         }
         return true;
     }
+
 
     public int getCurrentLevel(){
         return currentLevel;
