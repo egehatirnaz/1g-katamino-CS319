@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="444.0" prefWidth="651.0" style="-fx-background-color: #CE2D10;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIManagement.SettingsController">
+   <children>
+      <Pane layoutX="14.0" layoutY="14.0" prefHeight="64.0" prefWidth="627.0">
+         <children>
+            <HBox layoutX="-14.0" layoutY="-14.0" prefHeight="122.0" prefWidth="645.0" />
+         </children>
+      </Pane>
+      <Pane layoutY="71.0" prefHeight="259.0" prefWidth="651.0" style="-fx-background-color: #CE2D10; -fx-background-radius: 20;">
+         <children>
+            <TextField layoutX="92.0" layoutY="32.0" opacity="0.39" prefHeight="51.0" prefWidth="473.0" style="-fx-background-color: #952813; -fx-border-color: #FAAA00; -fx-background-insets: 0; -fx-background-radius: 20; -fx-border-radius: 20;" text="Enter your Nickname">
+               <font>
+                  <Font name="Sinhala Sangam MN" size="21.0" />
+               </font>
+            </TextField>
+            <Button layoutX="156.0" layoutY="104.0" mnemonicParsing="false" opacity="0.73" prefHeight="51.0" prefWidth="141.0" style="-fx-background-color: #FF9D00; -fx-background-radius: 20;" onAction="#handleSaveClick" fx:id="saveID"  text="Save "  textFill="#ddcaca" >
+               <font>
+                  <Font name="Wingdings 2" size="17.0" />
+               </font>
+            </Button>
+            <Button layoutX="328.0" layoutY="104.0" mnemonicParsing="false" opacity="0.73" prefHeight="51.0" prefWidth="141.0" style="-fx-background-color: #62D389; -fx-background-radius: 20;" text="Cancel" textFill="#ddcaca">
+               <font>
+                  <Font name="Wingdings 2" size="17.0" />
+               </font>
+            </Button>
+            <Text fill="#bfa6a6" layoutX="227.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign In " />
+            <Text fill="#bfaeae" layoutX="227.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Music" />
+            <RadioButton layoutX="318.0" layoutY="197.0" mnemonicParsing="false" />
+            <RadioButton layoutX="318.0" layoutY="228.0" mnemonicParsing="false" />
+            <Separator layoutX="32.0" layoutY="21.0" opacity="0.4" prefHeight="3.0" prefWidth="585.0" />
+            <Text fill="#685252" layoutX="250.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SETTINGS">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Separator layoutX="33.0" layoutY="375.0" opacity="0.4" prefHeight="3.0" prefWidth="566.0" />
+   </children>
+</AnchorPane>
