@@ -18,5 +18,9 @@ public class MainMenuController {
         System.out.println("Start Pressed");
     }
 
+    @FXML protected void handleExit(ActionEvent event) {
+        System.exit(0);
+    }
+
 
 }

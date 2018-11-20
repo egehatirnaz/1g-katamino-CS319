@@ -11,7 +11,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #560057;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIManagement.MainMenuController">
    <children>
-      <Button layoutX="135.0" layoutY="269.0" mnemonicParsing="false" opacity="0.48" prefHeight="48.0" prefWidth="331.0" style="-fx-background-color: #24001D; -fx-background-radius: 20; -fx-border-radius: 20;" text="QUIT GAME" textFill="#b29898">
+      <Button layoutX="135.0" layoutY="269.0" mnemonicParsing="false" opacity="0.48" prefHeight="48.0" prefWidth="331.0" style="-fx-background-color: #24001D; -fx-background-radius: 20; -fx-border-radius: 20;" onAction="#handleExit" text="QUIT GAME" textFill="#b29898">
          <font>
             <Font size="21.0" />
          </font>
