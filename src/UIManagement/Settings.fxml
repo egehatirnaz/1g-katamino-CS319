@@ -24,12 +24,12 @@
                   <Font name="Sinhala Sangam MN" size="21.0" />
                </font>
             </TextField>
-            <Button layoutX="156.0" layoutY="104.0" mnemonicParsing="false" opacity="0.73" prefHeight="51.0" prefWidth="141.0" style="-fx-background-color: #FF9D00; -fx-background-radius: 20;" onAction="#handleSaveClick" fx:id="saveID"  text="Save "  textFill="#ddcaca" >
+            <Button layoutX="156.0" layoutY="104.0" mnemonicParsing="false" opacity="0.73" prefHeight="51.0" prefWidth="141.0" style="-fx-background-color: #FF9D00; -fx-background-radius: 20;" onAction="#handleSaveClick"  text="Save "  textFill="#ddcaca" >
                <font>
                   <Font name="Wingdings 2" size="17.0" />
                </font>
             </Button>
-            <Button layoutX="328.0" layoutY="104.0" mnemonicParsing="false" opacity="0.73" prefHeight="51.0" prefWidth="141.0" style="-fx-background-color: #62D389; -fx-background-radius: 20;" text="Cancel" textFill="#ddcaca">
+            <Button layoutX="328.0" layoutY="104.0" mnemonicParsing="false" opacity="0.73" prefHeight="51.0" prefWidth="141.0" style="-fx-background-color: #62D389; -fx-background-radius: 20;" onAction="#handleCancelClick" text="Cancel" textFill="#ddcaca">
                <font>
                   <Font name="Wingdings 2" size="17.0" />
                </font>
@@ -43,6 +43,12 @@
                <font>
                   <Font size="36.0" />
                </font>
+            </Text>
+         </children>
+      </Pane>
+      <Separator layoutX="33.0" layoutY="375.0" opacity="0.4" prefHeight="3.0" prefWidth="566.0" />
+   </children>
+</AnchorPane>
             </Text>
          </children>
       </Pane>
