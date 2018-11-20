@@ -9,29 +9,14 @@ import javafx.stage.Stage;
 
 public class MainMenuController {
 
-    @FXML protected void handleNormalMode(ActionEvent event) throws Exception{
-        System.out.println("Normal Mode Pressed!");
+    @FXML protected void handleSettings(ActionEvent event) throws Exception{
+        System.out.println("Settings Pressed");
 
     }
 
-    @FXML protected void handleChallengeMode(ActionEvent event) {
-        System.out.println("Challenge Mode Pressed!");
+    @FXML protected void handleStart(ActionEvent event) {
+        System.out.println("Start Pressed");
     }
 
-    @FXML protected void handleDynamicMode(ActionEvent event) {
-        System.out.println("Dynamic Mode Pressed!");
-    }
-
-    @FXML protected void handleHowToPlay(ActionEvent event) {
-        System.out.println("How To Play Pressed!");
-    }
-
-    @FXML protected void handleSolutions(ActionEvent event) {
-        System.out.println("Solutions Pressed!");
-    }
-
-    @FXML protected void handleLeaderboard(ActionEvent event) {
-        System.out.println("Leaderboard Pressed!");
-    }
 
 }
