@@ -24,7 +24,13 @@ public class SettingsController {
             geri don
         }*/
 
-
+        stage = (Stage)((Button) event.getSource()).getScene().getWindow();
+        StackPane layout = new StackPane();
+        Scene scene;
+        BoardTest bT = new BoardTest();
+        bT.start(new Stage());
+        scene = bT.returnScene();
+        stage.setScene(scene);
         System.out.println("Helo");
 
     }
