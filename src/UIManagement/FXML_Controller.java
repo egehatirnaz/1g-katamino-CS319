@@ -30,4 +30,10 @@ public class FXML_Controller implements Initializable {
         VBox pane = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         rootPane.getChildren().setAll(pane);
     }
+
+    @FXML
+    public void loadNickName(ActionEvent event) throws Exception{
+        VBox pane = FXMLLoader.load(getClass().getResource("Settings.fxml"));
+        rootPane.getChildren().setAll(pane);
+    }
 }

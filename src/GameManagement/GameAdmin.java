@@ -19,7 +19,6 @@ import java.nio.file.Paths;
 
 public class GameAdmin{
 
-    Settings settings;
     ControlManager controlManager;
     GameMapper gameMapper;
     LeaderBoard leaderBoard;

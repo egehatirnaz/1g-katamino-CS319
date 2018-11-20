@@ -1,107 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SeparatorMenuItem?>
-<?import javafx.scene.effect.Lighting?>
-<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.191" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIManagement.MainMenuController">
-  <children>
-    <MenuBar VBox.vgrow="NEVER">
-      <menus>
-        <Menu mnemonicParsing="false" text="New Game">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Classic Mode" />
-            <MenuItem mnemonicParsing="false" text="Challenge Mode" />
-            <MenuItem mnemonicParsing="false" text="Dynamic Mode" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="About">
-               <items>
-            <MenuItem mnemonicParsing="false" text="Credits" />
-               </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Help">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Solutions" />
-          </items>
-        </Menu>
-      </menus>
-    </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS" >
-      <children>
-        <Label alignment="CENTER" layoutX="155.0" layoutY="177.0" style="&#10;" text="Drag components from Library here…" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
-          <font>
-            <Font size="18.0" />
-          </font>
-        </Label>
-            <ImageView fitHeight="428.0" fitWidth="641.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@/UIManagement/res/bg.jpg" />
-               </image>
-               <effect>
-                  <Lighting diffuseConstant="1.14" light="$null" specularConstant="0.16" specularExponent="15.71" surfaceScale="0.91">
-                     <bumpInput>
-                        <Shadow />
-                     </bumpInput>
-                  </Lighting>
-               </effect>
-            </ImageView>
-            <Label layoutX="167.0" layoutY="27.0" text="KATAMINO" textAlignment="CENTER">
-               <font>
-                  <Font name="Phosphate Inline" size="64.0" />
-               </font>
-               <textFill>
-                  <LinearGradient endX="1.0" endY="0.9615384615384617" startX="1.0" startY="0.07211538461538469">
-                     <stops>
-                        <Stop color="#9a0505" />
-                        <Stop color="BLACK" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </textFill>
-            </Label>
-            <Button layoutX="117.0" layoutY="175.0" mnemonicParsing="false" text="Normal Mode" textAlignment="CENTER" fx:id="normalModeID" onAction="#handleNormalMode">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
-            <Button layoutX="262.0" layoutY="175.0" mnemonicParsing="false" text="Challenge Mode" onAction="#handleChallengeMode" textAlignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
-            <Button layoutX="418.0" layoutY="175.0" mnemonicParsing="false" text="Dynamic Mode" onAction="#handleDynamicMode" textAlignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
-            <Button layoutX="130.0" layoutY="271.0" mnemonicParsing="false" text="Solutions" onAction="#handleSolutions" textAlignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
-            <Button layoutX="273.0" layoutY="271.0" mnemonicParsing="false" text="Leaderboard" onAction="#handleLeaderboard" textAlignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
-            <Button layoutX="427.0" layoutY="271.0" mnemonicParsing="false" text="How To Play" onAction="#handleHowToPlay" textAlignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
-      </children>
-    </AnchorPane>
-  </children>
-</VBox>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #560057;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIManagement.MainMenuController">
+   <children>
+      <Button layoutX="135.0" layoutY="269.0" mnemonicParsing="false" opacity="0.48" prefHeight="48.0" prefWidth="331.0" style="-fx-background-color: #24001D; -fx-background-radius: 20; -fx-border-radius: 20;" text="QUIT GAME" textFill="#b29898">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Button>
+      <Button layoutX="134.0" layoutY="193.0" mnemonicParsing="false" opacity="0.64" prefHeight="48.0" prefWidth="331.0" style="-fx-background-color: #24001D; -fx-background-radius: 20; -fx-border-radius: 20;" onAction="#handleSettings" fx:id="settingsID" text="SETTINGS" textFill="#bfa6a6">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Button>
+      <Button layoutX="134.0" layoutY="117.0" mnemonicParsing="false" opacity="0.83" prefHeight="48.0" prefWidth="331.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #24001D;" onAction="#handleStart" fx:id="startID" text="START GAME" textFill="#b59f9f">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Button>
+      <Separator layoutX="87.0" layoutY="351.0" opacity="0.38" prefHeight="3.0" prefWidth="435.0" />
+      <Separator layoutX="76.0" layoutY="84.0" opacity="0.38" prefHeight="3.0" prefWidth="435.0" />
+      <Text layoutX="178.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="KATAMINO">
+         <font>
+            <Font name="Zapfino" size="26.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="88.0" fitWidth="90.0" layoutX="14.0" layoutY="97.0">
+         <image>
+            <Image url="@/UIManagement/res/sushi.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="102.0" fitWidth="90.0" layoutX="486.0" layoutY="90.0">
+         <image>
+            <Image url="@/UIManagement/res/rice.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="102.0" fitWidth="90.0" layoutX="14.0" layoutY="218.0">
+         <image>
+            <Image url="@/UIManagement/res/sumo-fighter.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="88.0" fitWidth="90.0" layoutX="486.0" layoutY="241.0">
+         <image>
+            <Image url="@/UIManagement/res/japanese-shuriken.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>

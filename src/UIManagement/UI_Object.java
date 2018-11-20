@@ -3,11 +3,13 @@ package UIManagement;
 
 import GameManagement.BoardTest;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
@@ -17,14 +19,17 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.nio.file.Paths;
 
 public class UI_Object extends Application {
     Stage window;
     Scene scene1, scene2;
+    Scene scene;
     Parent scene3;
     private MediaPlayer media;
+    private double x,y;
 
     @Override
     public void start(Stage stage) throws Exception{
@@ -36,21 +41,49 @@ public class UI_Object extends Application {
         Button button1 = new Button("Go to scene 2");
         button1.setOnAction(e -> window.setScene(scene2));
 
-        VBox layout1 = new VBox(20);
+        Parent root;
+        root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
-        layout1.getChildren().setAll((VBox)loader.load());
-        scene1 = new Scene(layout1, 640, 425);
-
-        Button butt = (Button) loader.getNamespace().get("normalModeID");
-        butt.setOnAction(e -> play());
-
-        /*
-        //L1
+        Parent root1 = FXMLLoader.load(getClass().getResource("Settings.fxml"));
         VBox layout1 = new VBox(20);
-        layout1.getChildren().addAll(label1,button1);
-        scene1 = new Scene(layout1, 200, 200);
-        */
+        layout1.getChildren().setAll((Parent)loader.load());
+        scene1 = new Scene(layout1, 600, 400);
+        Button butt = (Button) loader.getNamespace().get("startID");
 
+        butt.setOnAction(event->{
+            play();
+            /*FXMLLoader loader1 = new FXMLLoader(getClass().getResource("Settings.fxml"));
+            Button butt2 = (Button) loader1.getNamespace().get("saveID");
+            window.setScene(new Scene(root1));
+            window.initStyle(StageStyle.UNDECORATED);
+            butt2.setOnAction(e->play());
+            root1.setOnMousePressed(event1 -> {
+                x = event1.getSceneX();
+                y = event1.getSceneY();
+            });
+            root1.setOnMouseDragged(event1 -> {
+                window.setX(event1.getScreenX() - x);
+                window.setY(event1.getScreenY() - y);
+            });*/
+        });
+        Button butt1 = (Button) loader.getNamespace().get("settingsID");
+        //for dragging
+        butt1.setOnAction(e->{
+            window.setScene(new Scene(root1));
+            window.initStyle(StageStyle.UNDECORATED);
+            root1.setOnMousePressed(event -> {
+                x = event.getSceneX();
+                y = event.getSceneY();
+            });
+            root1.setOnMouseDragged(event -> {
+                window.setX(event.getScreenX() - x);
+                window.setY(event.getScreenY() - y);
+            });
+                });
+
+
+
+        //L1
 
 
         /*
@@ -65,6 +98,7 @@ public class UI_Object extends Application {
         layout2.getChildren().setAll((VBox)loader2.load());
         scene2 = new Scene(layout2, 640, 425);
 
+
         /*
         //L2
         VBox layout2 = new VBox(20);
@@ -72,6 +106,7 @@ public class UI_Object extends Application {
         scene2 = new Scene(layout2, 200, 200);*/
 
         window.setScene(scene1);
+        window.initStyle(StageStyle.UNDECORATED);
         window.setTitle("Katamino");
         window.show();
 
@@ -87,7 +122,6 @@ public class UI_Object extends Application {
         BoardTest bT = new BoardTest();
         bT.start(new Stage());
         window.setScene(bT.returnScene());
-
         //layout2.getChildren().setAll((VBox)loader2.load());
         //scene2 = new Scene(layout2, 640, 425);
     }
