@@ -34,7 +34,7 @@ public class UI_Object extends Application {
     public void start(Stage stage) throws Exception{
         window = stage;
         media = new MediaPlayer(new Media(Paths.get("src/GameManagement/media/title.mp3").toUri().toString()));
-        media.play();
+        //media.play();
 
         Label label1 = new Label("Welcome to the first scene");
         Button button1 = new Button("Go to scene 2");
@@ -47,41 +47,6 @@ public class UI_Object extends Application {
         VBox layout1 = new VBox(20);
         layout1.getChildren().setAll((Parent)loader.load());
         scene1 = new Scene(layout1, 600, 400);
-        Button butt = (Button) loader.getNamespace().get("startID");
-        //Button buttQ = (Button) loader.getNamespace().get("quitID");;
-
-        butt.setOnAction(event->{
-            //play();
-            //FXMLLoader loader1 = new FXMLLoader(getClass().getResource("Settings.fxml"));
-            //Button butt2 = (Button) loader1.getNamespace().get("saveID");
-            window.setScene(new Scene(root1));
-            window.initStyle(StageStyle.UNDECORATED);
-            //butt2.setOnAction(e->play());
-
-        });
-        Button butt1 = (Button) loader.getNamespace().get("settingsID");
-        //for dragging
-        butt1.setOnAction(e->{
-            window.setScene(new Scene(root1));
-            window.initStyle(StageStyle.UNDECORATED);
-            root1.setOnMousePressed(event -> {
-                x = event.getSceneX();
-                y = event.getSceneY();
-            });
-            root1.setOnMouseDragged(event -> {
-                window.setX(event.getScreenX() - x);
-                window.setY(event.getScreenY() - y);
-            });
-        });
-
-        //L1
-
-
-        /*
-        //B2
-        Button button2 = new Button("Go to scene 1");
-        button2.setOnAction(e -> window.setScene(scene1));
-        */
 
 
         VBox layout2 = new VBox(20);
@@ -89,12 +54,6 @@ public class UI_Object extends Application {
         layout2.getChildren().setAll((VBox)loader2.load());
         scene2 = new Scene(layout2, 640, 425);
 
-
-        /*
-        //L2
-        VBox layout2 = new VBox(20);
-        layout2.getChildren().addAll(button2);
-        scene2 = new Scene(layout2, 200, 200);*/
         scene1.setOnMousePressed(event -> {
             x = event.getSceneX();
             y = event.getSceneY();
