@@ -48,23 +48,16 @@ public class UI_Object extends Application {
         layout1.getChildren().setAll((Parent)loader.load());
         scene1 = new Scene(layout1, 600, 400);
         Button butt = (Button) loader.getNamespace().get("startID");
-        Button buttQ = (Button) loader.getNamespace().get("quitID");;
+        //Button buttQ = (Button) loader.getNamespace().get("quitID");;
 
         butt.setOnAction(event->{
-            play();
-            /*FXMLLoader loader1 = new FXMLLoader(getClass().getResource("Settings.fxml"));
-            Button butt2 = (Button) loader1.getNamespace().get("saveID");
+            //play();
+            //FXMLLoader loader1 = new FXMLLoader(getClass().getResource("Settings.fxml"));
+            //Button butt2 = (Button) loader1.getNamespace().get("saveID");
             window.setScene(new Scene(root1));
             window.initStyle(StageStyle.UNDECORATED);
-            butt2.setOnAction(e->play());
-            root1.setOnMousePressed(event1 -> {
-                x = event1.getSceneX();
-                y = event1.getSceneY();
-            });
-            root1.setOnMouseDragged(event1 -> {
-                window.setX(event1.getScreenX() - x);
-                window.setY(event1.getScreenY() - y);
-            });*/
+            //butt2.setOnAction(e->play());
+
         });
         Button butt1 = (Button) loader.getNamespace().get("settingsID");
         //for dragging
@@ -81,9 +74,6 @@ public class UI_Object extends Application {
             });
         });
 
-        /*buttQ.setOnAction(e->{
-            window.close();
-        });*/
         //L1
 
 
@@ -105,7 +95,14 @@ public class UI_Object extends Application {
         VBox layout2 = new VBox(20);
         layout2.getChildren().addAll(button2);
         scene2 = new Scene(layout2, 200, 200);*/
-
+        scene1.setOnMousePressed(event -> {
+            x = event.getSceneX();
+            y = event.getSceneY();
+        });
+        scene1.setOnMouseDragged(event -> {
+            window.setX(event.getScreenX() - x);
+            window.setY(event.getScreenY() - y);
+        });
         window.setScene(scene1);
         window.initStyle(StageStyle.UNDECORATED);
         window.setTitle("Katamino");
