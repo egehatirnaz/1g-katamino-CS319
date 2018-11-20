@@ -1,0 +1,9 @@
+.text-input
+{
+-fx-text-fill : #fff;
+}
+.radio-color
+{
+-fx-mark-highlight-color : #9B3C00;
+-fx-mark-color : #776C00;    
+}
