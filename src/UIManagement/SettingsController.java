@@ -8,15 +8,21 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class SettingsController {
     public Button butt;
+    private double x,y;
+    @FXML
+    Stage stage;
     //ControlManager neC =new ControlManager();
 
     @FXML
-    protected void handleSaveClick(){
+    protected void handleSaveClick(ActionEvent event) throws IOException {
 
         /*if(neC.sth){
             oyun ekranina git ve kaydet
@@ -24,7 +30,6 @@ public class SettingsController {
         else{
             geri don
         }*/
-
         stage = (Stage)((Button) event.getSource()).getScene().getWindow();
         StackPane layout = new StackPane();
         Scene scene;
@@ -35,4 +40,17 @@ public class SettingsController {
         System.out.println("Helo");
 
     }
+
+    @FXML
+    protected void handleCancelClick(ActionEvent event) throws IOException{
+        stage = (Stage)((Button) event.getSource()).getScene().getWindow();
+        Parent root;
+        root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
+        VBox layout1 = new VBox(20);
+        layout1.getChildren().setAll((Parent)loader.load());
+        Scene scene1 = new Scene(layout1, 600, 400);
+        stage.setScene(scene1);
+    }
+
 }
