@@ -51,8 +51,8 @@ public class UI_Object extends Application {
         Button buttQ = (Button) loader.getNamespace().get("quitID");;
 
         butt.setOnAction(event->{
-            //play();
-            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("Settings.fxml"));
+            play();
+            /*FXMLLoader loader1 = new FXMLLoader(getClass().getResource("Settings.fxml"));
             Button butt2 = (Button) loader1.getNamespace().get("saveID");
             window.setScene(new Scene(root1));
             window.initStyle(StageStyle.UNDECORATED);
@@ -64,7 +64,7 @@ public class UI_Object extends Application {
             root1.setOnMouseDragged(event1 -> {
                 window.setX(event1.getScreenX() - x);
                 window.setY(event1.getScreenY() - y);
-            });
+            });*/
         });
         Button butt1 = (Button) loader.getNamespace().get("settingsID");
         //for dragging
@@ -79,11 +79,11 @@ public class UI_Object extends Application {
                 window.setX(event.getScreenX() - x);
                 window.setY(event.getScreenY() - y);
             });
-                });
-
-        buttQ.setOnAction(e->{
-            window.close();
         });
+
+        /*buttQ.setOnAction(e->{
+            window.close();
+        });*/
         //L1
 
 
