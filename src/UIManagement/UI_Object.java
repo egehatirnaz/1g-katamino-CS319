@@ -1,6 +1,5 @@
 package UIManagement;
 
-
 import GameManagement.BoardTest;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -49,6 +48,7 @@ public class UI_Object extends Application {
         layout1.getChildren().setAll((Parent)loader.load());
         scene1 = new Scene(layout1, 600, 400);
         Button butt = (Button) loader.getNamespace().get("startID");
+        Button buttQ = (Button) loader.getNamespace().get("quitID");;
 
         butt.setOnAction(event->{
             play();
@@ -79,10 +79,11 @@ public class UI_Object extends Application {
                 window.setX(event.getScreenX() - x);
                 window.setY(event.getScreenY() - y);
             });
-                });
+        });
 
-
-
+        /*buttQ.setOnAction(e->{
+            window.close();
+        });*/
         //L1
 
 
