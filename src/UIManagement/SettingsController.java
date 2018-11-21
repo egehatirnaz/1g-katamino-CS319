@@ -30,6 +30,7 @@ public class SettingsController {
         else{
             geri don
         }*/
+        /*
         stage = (Stage)((Button) event.getSource()).getScene().getWindow();
         StackPane layout = new StackPane();
         Scene scene;
@@ -37,7 +38,12 @@ public class SettingsController {
         bT.start(new Stage());
         scene = bT.returnScene();
         stage.setScene(scene);
-        System.out.println("Helo");
+        System.out.println("Helo");*/
+        //Scene scene = (Scene)((Button) event.getSource()).getScene();
+        BoardTest bT = new BoardTest();
+        bT.start(new Stage());
+        stage.setScene(bT.returnScene());
+        stage.setResizable(true);
 
     }
 

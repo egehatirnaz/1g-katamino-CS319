@@ -2,7 +2,9 @@ package UIManagement;
 
 import GameManagement.BoardTest;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -20,9 +22,11 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.IOException;
 import java.nio.file.Paths;
 
 public class UI_Object extends Application {
+    @FXML
     Stage window;
     Scene scene1, scene2;
     Scene scene;
@@ -34,11 +38,7 @@ public class UI_Object extends Application {
     public void start(Stage stage) throws Exception{
         window = stage;
         media = new MediaPlayer(new Media(Paths.get("src/GameManagement/media/title.mp3").toUri().toString()));
-        //media.play();
-
-        Label label1 = new Label("Welcome to the first scene");
-        Button button1 = new Button("Go to scene 2");
-        button1.setOnAction(e -> window.setScene(scene2));
+        media.play();
 
         Parent root;
         root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
@@ -82,4 +82,5 @@ public class UI_Object extends Application {
         //layout2.getChildren().setAll((VBox)loader2.load());
         //scene2 = new Scene(layout2, 640, 425);
     }
+
 }
