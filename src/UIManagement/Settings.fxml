@@ -49,9 +49,3 @@
       <Separator layoutX="33.0" layoutY="375.0" opacity="0.4" prefHeight="3.0" prefWidth="566.0" />
    </children>
 </AnchorPane>
-            </Text>
-         </children>
-      </Pane>
-      <Separator layoutX="33.0" layoutY="375.0" opacity="0.4" prefHeight="3.0" prefWidth="566.0" />
-   </children>
-</AnchorPane>
