@@ -1,10 +1,11 @@
 package UIManagement;
 
 import GameManagement.BoardTest;
+import GameManagement.Square;
+import GameManagement.Vertex;
+import GameManagement.VertexSaveAsImage;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,7 +23,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.IOException;
 import java.nio.file.Paths;
 
 public class UI_Object extends Application {
@@ -40,6 +40,10 @@ public class UI_Object extends Application {
         media = new MediaPlayer(new Media(Paths.get("src/GameManagement/media/title.mp3").toUri().toString()));
         media.play();
 
+        Label label1 = new Label("Welcome to the first scene");
+        Button button1 = new Button("Go to scene 2");
+        button1.setOnAction(e -> window.setScene(scene2));
+
         Parent root;
         root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
@@ -47,6 +51,51 @@ public class UI_Object extends Application {
         VBox layout1 = new VBox(20);
         layout1.getChildren().setAll((Parent)loader.load());
         scene1 = new Scene(layout1, 600, 400);
+        Button butt = (Button) loader.getNamespace().get("startID");
+        Button buttQ = (Button) loader.getNamespace().get("quitID");;
+
+        butt.setOnAction(event->{
+            play();
+            /*FXMLLoader loader1 = new FXMLLoader(getClass().getResource("Settings.fxml"));
+            Button butt2 = (Button) loader1.getNamespace().get("saveID");
+            window.setScene(new Scene(root1));
+            window.initStyle(StageStyle.UNDECORATED);
+            butt2.setOnAction(e->play());
+            root1.setOnMousePressed(event1 -> {
+                x = event1.getSceneX();
+                y = event1.getSceneY();
+            });
+            root1.setOnMouseDragged(event1 -> {
+                window.setX(event1.getScreenX() - x);
+                window.setY(event1.getScreenY() - y);
+            });*/
+        });
+        Button butt1 = (Button) loader.getNamespace().get("settingsID");
+        //for dragging
+        butt1.setOnAction(e->{
+            window.setScene(new Scene(root1));
+            window.initStyle(StageStyle.UNDECORATED);
+            root1.setOnMousePressed(event -> {
+                x = event.getSceneX();
+                y = event.getSceneY();
+            });
+            root1.setOnMouseDragged(event -> {
+                window.setX(event.getScreenX() - x);
+                window.setY(event.getScreenY() - y);
+            });
+        });
+
+        /*buttQ.setOnAction(e->{
+            window.close();
+        });*/
+        //L1
+
+
+        /*
+        //B2
+        Button button2 = new Button("Go to scene 1");
+        button2.setOnAction(e -> window.setScene(scene1));
+        */
 
 
         VBox layout2 = new VBox(20);
@@ -54,14 +103,13 @@ public class UI_Object extends Application {
         layout2.getChildren().setAll((VBox)loader2.load());
         scene2 = new Scene(layout2, 640, 425);
 
-        scene1.setOnMousePressed(event -> {
-            x = event.getSceneX();
-            y = event.getSceneY();
-        });
-        scene1.setOnMouseDragged(event -> {
-            window.setX(event.getScreenX() - x);
-            window.setY(event.getScreenY() - y);
-        });
+
+        /*
+        //L2
+        VBox layout2 = new VBox(20);
+        layout2.getChildren().addAll(button2);
+        scene2 = new Scene(layout2, 200, 200);*/
+
         window.setScene(scene1);
         window.initStyle(StageStyle.UNDECORATED);
         window.setTitle("Katamino");
@@ -82,5 +130,4 @@ public class UI_Object extends Application {
         //layout2.getChildren().setAll((VBox)loader2.load());
         //scene2 = new Scene(layout2, 640, 425);
     }
-
 }

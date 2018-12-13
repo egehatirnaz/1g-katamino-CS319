@@ -7,14 +7,17 @@ package GameManagement;
 
 import java.util.ArrayList;
 
+import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
- * @author User
+ * @author yusuf samsum
  */
 public class Vertex {
     
@@ -23,19 +26,25 @@ public class Vertex {
     private ArrayList<Square> adjacencyList;
     private int[][] directions; // R , D , L , U
     private final int DIRECTIONLENGTH = 4;
+    String savingLocation;
+    Color color;
     // private final double SQUAREHEIGHT = 100;
-    
     //constructor
-    public Vertex( Square mainSquare, int[][] directions )
+    public Vertex( Square mainSquare, int[][] directions, Color color, String savingLocation )
     {
         vertex = mainSquare;
         this.directions = directions;
+        this.color = color;
+        mainSquare.getRect().setFill(color);
         createAdjacents();
+        this.savingLocation = savingLocation;
+        System.out.println( "Const: " + color );
     }
     
     
     private void createAdjacents()
     {
+        System.out.println( "color: " + color);
         adjacencyList =  new ArrayList<Square>();
         for( int onePiece = 0; onePiece < directions.length; onePiece++ )
         {     
@@ -44,7 +53,8 @@ public class Vertex {
             double newY = vertex.getYCoordinate();
             double height = vertex.getHeight();
             Square piece = new Square( newX, newY, height, height);
-            piece.getRect().setStroke( Color.BURLYWOOD);
+            piece.getRect().setStroke( Color.AQUA);
+            piece.getRect().setFill( color );
             for( int pieceDirection = 0; pieceDirection < directions[onePiece].length; pieceDirection++ )
             {
                 int distance = directions[onePiece][pieceDirection];

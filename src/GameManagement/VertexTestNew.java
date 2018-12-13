@@ -34,7 +34,7 @@ public class VertexTestNew extends Application {
             public void handle(ActionEvent event) {
                 System.out.println("Hello World!");
             }
-        });*/
+        });
 
         Pane root = new Pane();
 
@@ -75,7 +75,7 @@ public class VertexTestNew extends Application {
         Scene scene = new Scene(root, 1000, 1000);
         primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);
-        primaryStage.show();
+        primaryStage.show();*/
     }
 
 

@@ -94,15 +94,16 @@ public class GameMapper {
 
     public ArrayList<ImageView> getInitialImageList()
     {
-        Image green = new Image(Paths.get("src/GameManagement/media/green.png").toUri().toString());
-        Image blue = new Image( Paths.get( "src/GameManagement/media/blue.png" ).toUri().toString() );
+        String str = "src/GameManagement/media/green.png";
+        Image green = new Image( Paths.get(str).toUri().toString());
+        Image blue = new Image( Paths.get( "src/GameManagement/media/aBlock.png" ).toUri().toString() );
         Image yellow = new Image( Paths.get( "src/GameManagement/media/yellow.png" ).toUri().toString() );
-        ImageView img1 = new ImageView(green);
-        ImageView img2 = new ImageView(blue);
-        ImageView img3 = new ImageView(yellow);
-        list.add(img1);
-        list.add(img2);
-        list.add(img3);
+        ImageView img1 = new ImageView( green );
+        ImageView img2 = new ImageView( blue );
+        ImageView img3 = new ImageView( yellow );
+        list.add( img1 );
+        list.add( img2 );
+        list.add( img3 );
         setupEntity();
         return  list;
     }

@@ -5,6 +5,8 @@
  */
 package GameManagement;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -33,6 +35,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.nio.file.Paths;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 /**
@@ -45,24 +49,23 @@ public class BoardTest extends Application {
     double originX, originY;
     @Override
     public void start(Stage primaryStage) {
+        setBlocks();
         int currentLevel = 1;
         GameMapper gm = new GameMapper( currentLevel );
         Group root = new Group();
 
-        /*Timeline time = new Timeline();
-        Text timer = new Text();
-        timer.setText(time.toString());
-        timer.setX(100);
-        timer.setY(100);
-        root.getChildren().add(timer);*/
+        ArrayList<ImageView> imageList =  gm.getInitialImageList();
 
+        final ArrayList<Double> fitHeightList = gm.getOriginalHeightScale();
+        final ArrayList<Double> fitWidthList = gm.getOriginalWidthScale();
 
         Square[][] boardSquares = gm.getSquares();
+
         for( int i = 0; i < boardSquares.length; i++ )
         {
             for( int k = 0; k < boardSquares[i].length; k++ ){
                 root.getChildren().add( boardSquares[i][k].getRect());
-                System.out.println( boardSquares[i][k].getXCoodinate() + " y: " +  boardSquares[i][k].getYCoordinate() );
+                // System.out.println( boardSquares[i][k].getXCoodinate() + " y: " +  boardSquares[i][k].getYCoordinate() );
 
                 // System.out.println(root.getChildren().get(i).computeAreaInScreen());
             }
@@ -72,9 +75,6 @@ public class BoardTest extends Application {
         Scene scene = new Scene(root, 1000, 1000);
 
 
-        ArrayList<ImageView> imageList =  gm.getInitialImageList();
-        ArrayList<Double> fitHeightList = gm.getOriginalHeightScale();
-        ArrayList<Double> fitWidthList = gm.getOriginalWidthScale();
 
         for( int i = 0; i < imageList.size(); i++ )
         {
@@ -88,16 +88,14 @@ public class BoardTest extends Application {
 
                         // Image test = new Image(Paths.get("src/GameManagement/media/1.png").toUri().toString());
                         ImageView anImage = (ImageView)(t.getSource());
-                        anImage.setFitWidth(fitWidth);
-                        anImage.setFitHeight(fitHeight);
-                        anImage.setPreserveRatio(false);
+
+                        anImage.toFront();
                         // rotate logic
                         if(t.getClickCount()%2==0) {
                             SnapshotParameters param = new SnapshotParameters();
                             param.setFill(Color.TRANSPARENT);
                             param.setTransform(new Rotate(90,anImage.getImage().getHeight()/2,anImage.getImage().getWidth()/2));
                             anImage.setImage(anImage.snapshot(param,null));
-
                             //System.out.println("Rotation" + anImage.getX());
                             //System.out.println("Rotation" + anImage.getBoundsInParent());
                         }
@@ -110,9 +108,12 @@ public class BoardTest extends Application {
                         double offsetY = t.getSceneY() - originY;
 
                         ImageView anImage = (ImageView)(t.getSource());
+                        anImage.setFitWidth(fitWidth);
+                        anImage.setFitHeight(fitHeight);
                         anImage.setX( offsetX + anImage.getX() );
                         anImage.setY( offsetY + anImage.getY() );
 
+                        anImage.setPreserveRatio(false);
 
                         originX  = t.getSceneX();
                         originY = t.getSceneY();
@@ -168,6 +169,22 @@ public class BoardTest extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public void setBlocks()
+    {
+        Square s = new Square( 100.0, 100.0, 100, 100 );
+        int directions[][] = { {1,0,0,0}, {1,0,0,1}, {2,0,0,1}, {3,0,0,1} };
+        String loc = "src/GameManagement/media/aBlock.png";
+        Color c = Color.BLUE;
+        System.out.println( c );
+        Vertex v = new Vertex(s,directions,c,loc);
+
+        VertexSaveAsImage save = new VertexSaveAsImage();
+
+        save.setRequirements( v, loc);
+        save.start(new Stage());
+
     }
 
 }
