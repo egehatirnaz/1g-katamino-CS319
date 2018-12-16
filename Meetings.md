@@ -162,3 +162,19 @@ Location: Bilkent G Building
 
 
 
+## Meeting on Nov 24, 13:00 - 16:00
+
+Participants: Burak, Fırat, Mert, Yusuf, Ege 
+
+Location: Bilkent G Building
+
+### Agenda
+* [Burak, Fırat, Mert, Yusuf, Ege]Work on Analysis Report Iteration 2. 
+
+### Action Items
+* [Yusuf, Mert, Fırat, Burak] Work on Introduction and Overview part of the report.
+* [Ege] Work on Requirement part of the report.
+* [Yusuf, Mert, Fırat, Burak] Work on system Model and Conclusion.
+
+
+
