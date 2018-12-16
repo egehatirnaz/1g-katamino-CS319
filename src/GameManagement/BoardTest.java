@@ -186,5 +186,4 @@ public class BoardTest extends Application {
         save.start(new Stage());
 
     }
-
 }
