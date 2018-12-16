@@ -51,7 +51,7 @@ public class BoardTest extends Application {
     public void start(Stage primaryStage) {
         setBlocks();
         int currentLevel = 1;
-        GameMapper gm = new GameMapper( currentLevel );
+        GameMapper gm = new NormalModeMapper();
         Group root = new Group();
 
         ArrayList<ImageView> imageList =  gm.getInitialImageList();
@@ -75,27 +75,34 @@ public class BoardTest extends Application {
         Scene scene = new Scene(root, 1000, 1000);
 
 
-
+        System.out.println( "ImageSize: "  + imageList.size() );
         for( int i = 0; i < imageList.size(); i++ )
         {
             imageList.get(i).setCursor(Cursor.HAND);
-
+            System.out.println( "FitSize: " + fitHeightList.size() );
             double fitHeight = fitHeightList.get(i);
             double fitWidth = fitWidthList.get(i);
             imageList.get(i).setOnMousePressed( (t) -> {
                         originX = t.getSceneX();
                         originY = t.getSceneY();
 
+
                         // Image test = new Image(Paths.get("src/GameManagement/media/1.png").toUri().toString());
                         ImageView anImage = (ImageView)(t.getSource());
 
+                        //System.out.println( "x1 : "  + anImage.getX() );
+                        //System.out.println( "y1 : "  + anImage.getY() );
                         anImage.toFront();
                         // rotate logic
                         if(t.getClickCount()%2==0) {
+                            anImage.setFitWidth(fitWidth);
+                            anImage.setFitHeight(fitHeight);
                             SnapshotParameters param = new SnapshotParameters();
                             param.setFill(Color.TRANSPARENT);
                             param.setTransform(new Rotate(90,anImage.getImage().getHeight()/2,anImage.getImage().getWidth()/2));
                             anImage.setImage(anImage.snapshot(param,null));
+                           // anImage.setFitWidth(100);
+                           // anImage.setFitHeight(100);
                             //System.out.println("Rotation" + anImage.getX());
                             //System.out.println("Rotation" + anImage.getBoundsInParent());
                         }
@@ -104,12 +111,17 @@ public class BoardTest extends Application {
 
             imageList.get(i).setOnMouseDragged(  (t) ->
                     {
+                        ImageView anImage = (ImageView)(t.getSource());
+
+                        anImage.setFitWidth(fitWidth);
+                        anImage.setFitHeight(fitHeight);
+
                         double offsetX = t.getSceneX() - originX;
                         double offsetY = t.getSceneY() - originY;
 
-                        ImageView anImage = (ImageView)(t.getSource());
-                        anImage.setFitWidth(fitWidth);
-                        anImage.setFitHeight(fitHeight);
+                        //System.out.println( "x2 : "  + anImage.getX() );
+                        //System.out.println( "y2 : "  + anImage.getY() );
+
                         anImage.setX( offsetX + anImage.getX() );
                         anImage.setY( offsetY + anImage.getY() );
 
@@ -138,7 +150,7 @@ public class BoardTest extends Application {
                         }
                     }
                 }
-                if(gm.isLevelFinished()){
+                if(gm.isLevelFinished(1)){
                     System.out.println("Game is over");
                     ImageView awardView = gm.getAward();
                     root.getChildren().add(awardView);
