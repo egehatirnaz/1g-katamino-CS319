@@ -13,9 +13,10 @@ public class DynamicModeMapper extends GameMapper {
     }
 
     @Override
-    ImageView getStickView(int currentLevel) {
+    ImageView getStickView() {
         return null;
     }
+
 
     @Override
     ArrayList<ImageView> getInitialImageList() {
@@ -31,5 +32,8 @@ public class DynamicModeMapper extends GameMapper {
     void setInitialImageList() {
 
     }
+
+    @Override
+    void setStickView(int currentLevel) {}
 
 }

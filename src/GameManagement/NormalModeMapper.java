@@ -15,6 +15,7 @@ public class NormalModeMapper extends CommonMapper {
     }
 
 
+
     @Override
     ArrayList<ImageView> getInitialImageList() {
         return  imageList;
@@ -22,6 +23,11 @@ public class NormalModeMapper extends CommonMapper {
 
     @Override
     void setInitialImageList() {
+        int currentLevel = getCurrentLevel();
+        /*
+        database'den currentlevella ilgili dosya yeri veya block sayısı gelmeli,
+
+         */
         String str = "src/GameManagement/media/green.png";
         Image green = new Image( Paths.get(str).toUri().toString());
         Image blue = new Image( Paths.get( "src/GameManagement/media/aBlock.png" ).toUri().toString() );

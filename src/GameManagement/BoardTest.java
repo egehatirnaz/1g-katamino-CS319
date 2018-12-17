@@ -47,13 +47,13 @@ public class BoardTest extends Application {
 
     private Scene window;
     double originX, originY;
+    int startLevel = 1;
+    GameMapper gm = new NormalModeMapper();
     @Override
     public void start(Stage primaryStage) {
-        setBlocks();
-        int currentLevel = 1;
-        GameMapper gm = new NormalModeMapper();
+        //setBlocks();
         Group root = new Group();
-
+        System.out.println( "Stage im " + gm.getCurrentLevel() );
         ArrayList<ImageView> imageList =  gm.getInitialImageList();
 
         final ArrayList<Double> fitHeightList = gm.getOriginalHeightScale();
@@ -95,8 +95,8 @@ public class BoardTest extends Application {
                         anImage.toFront();
                         // rotate logic
                         if(t.getClickCount()%2==0) {
-                            anImage.setFitWidth(fitWidth);
-                            anImage.setFitHeight(fitHeight);
+                            //anImage.setFitWidth(fitWidth);
+                            //anImage.setFitHeight(fitHeight);
                             SnapshotParameters param = new SnapshotParameters();
                             param.setFill(Color.TRANSPARENT);
                             param.setTransform(new Rotate(90,anImage.getImage().getHeight()/2,anImage.getImage().getWidth()/2));
@@ -133,39 +133,48 @@ public class BoardTest extends Application {
 
             );
             imageList.get(i).setOnMouseReleased((t)-> {
-                for( int k = 0; k < gm.getCurrentLevel(); k++ ) {
+                for( int k = 0; k < gm.getCurrentLevel() + 2; k++ ) {
                     for (int j = 0; j < boardSquares[k].length; j++) {
-                        /*Circle c = new Circle();
+                        Circle c = new Circle();
                         c.setCenterY((250) + (j) * 100);
                         c.setCenterX((250) + (k) * 100);
                         c.setRadius(3);
-                        c.setFill(Color.RED);*/
+                        c.setFill(Color.RED);
                         boardSquares[k][j].setFilled(false);
-                        //root.getChildren().add(c);
+                        root.getChildren().add(c);
                         for( int noOfImage = 0; noOfImage < imageList.size(); noOfImage++ ) {
                             if (root.getChildren().get(root.getChildren().indexOf(imageList.get(noOfImage))).contains((300) + (k) * 100, (150) + (j) * 100)) {
-                                //c.setFill(Color.GREEN);
+                                c.setFill(Color.GREEN);
                                 boardSquares[k][j].setFilled(true);
                             }
                         }
                     }
                 }
-                if(gm.isLevelFinished(1)){
+                if ( gm.isLevelFinished(startLevel)){
+                    imageList.clear();
+                    fitHeightList.clear();
+                    fitWidthList.clear();
+                    try {
+                        Thread.sleep( 1000 );
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    startLevel++;
+                    this.start( primaryStage );
+                }
+                /*if(){
                     System.out.println("Game is over");
-                    ImageView awardView = gm.getAward();
-                    root.getChildren().add(awardView);
+
                     for( int noOfBlock = 0; noOfBlock < imageList.size(); noOfBlock++)
                         imageList.get(noOfBlock).setDisable( true );
-                    gm.updateLevel();
-                }
+                }*/
             });
         }
 
         for( int i = 0; i < imageList.size(); i++)
             root.getChildren().add( imageList.get(i));
 
-        root.getChildren().add(gm.getStickView( currentLevel ));
-
+        root.getChildren().add(gm.getStickView());
         primaryStage.setTitle("Katamino");
         primaryStage.setScene(scene);
         primaryStage.show();

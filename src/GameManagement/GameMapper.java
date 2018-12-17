@@ -24,16 +24,18 @@ public abstract class GameMapper {
     private int currentLevel;
     private ArrayList<Double>       originalHeightScale;
     private ArrayList<Double>       originalWidthScale;
-    private ArrayList<Double>       initialHeightScale;
-    private ArrayList<Double>       initialWidthScale;
+    //private ArrayList<Double>       initialHeightScale;
+    //private ArrayList<Double>       initialWidthScale;
     private final double SQUARESIZE = 100.0;
     private final double BOARDCOORDX = 250.0;
     private final double BOARDCOORDY = 100.0;
+    private ImageView awardView;
     // constructor
     public GameMapper(){
         this.currentLevel = 1;
         originalHeightScale = new ArrayList<>();
         originalWidthScale = new ArrayList<>();
+        setAward();
     }
     
     // methods
@@ -41,6 +43,7 @@ public abstract class GameMapper {
     abstract void setGame( int currentLevel );
 
     void setSquares(int width, int height, int currentLevel){
+        System.out.println( "setSquares cur level : "  + currentLevel );
         currentLevel += 2;
         squares = new Square[width][height];
         for(int i = 0; i < squares.length; i++){
@@ -61,19 +64,22 @@ public abstract class GameMapper {
     }
 
 
-    abstract  ImageView getStickView( int currentLevel );
+    abstract  ImageView getStickView();
     abstract  ArrayList<ImageView> getInitialImageList();
     abstract boolean isLevelFinished( int currentLevel );
     abstract void setInitialImageList();
-
+    abstract void setStickView( int currentLevel );
 
     public ImageView getAward()
     {
+        return  awardView;
+    }
+    public void setAward()
+    {
         Image award = new Image(Paths.get("src/GameManagement/media/award.png").toUri().toString());
-        ImageView awardView = new ImageView(award);
+        awardView = new ImageView(award);
         awardView.setX(500);
         awardView.setY(200);
-        return  awardView;
     }
 
 
@@ -116,10 +122,8 @@ public abstract class GameMapper {
 
     
     public void updateLevel() {
-        if (isLevelFinished(currentLevel)) {
-            currentLevel++;
-            setGame(currentLevel);
-        }
+        currentLevel++;
+        setGame(currentLevel);
     }
     
     
