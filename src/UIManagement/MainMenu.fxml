@@ -8,20 +8,24 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #560057;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIManagement.MainMenuController">
    <children>
-      <Button layoutX="135.0" layoutY="269.0" mnemonicParsing="false" opacity="0.48" prefHeight="48.0" prefWidth="331.0" style="-fx-background-color: #24001D; -fx-background-radius: 20; -fx-border-radius: 20;" onAction="#handleExit" fx:id="quitID" text="QUIT GAME" textFill="#b29898">
+      <Button fx:id="quitID" layoutX="189.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleExit" opacity="0.48" prefHeight="32.0" prefWidth="221.0" style="-fx-background-color: #24001D; -fx-background-radius: 20; -fx-border-radius: 20;" text="QUIT GAME" textFill="#b29898">
          <font>
             <Font size="21.0" />
          </font>
       </Button>
-      <Button layoutX="134.0" layoutY="193.0" mnemonicParsing="false" opacity="0.64" prefHeight="48.0" prefWidth="331.0" style="-fx-background-color: #24001D; -fx-background-radius: 20; -fx-border-radius: 20;" onAction="#handleCredits" fx:id="creditsID" text="CREDITS" textFill="#bfa6a6">
+      <Button fx:id="leaderboardID" layoutX="190.0" layoutY="185.0" mnemonicParsing="false" onAction="#handleLeaderboard" opacity="0.7" prefHeight="31.0" prefWidth="221.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #24001D;" text="LEADERBOARD" textFill="#b59f9f">
          <font>
             <Font size="21.0" />
          </font>
       </Button>
-      <Button layoutX="134.0" layoutY="117.0" mnemonicParsing="false" opacity="0.83" prefHeight="48.0" prefWidth="331.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #24001D;" onAction="#handleStart" fx:id="startID" text="START GAME" textFill="#b59f9f">
+      <Button fx:id="creditsID" layoutX="189.0" layoutY="241.0" mnemonicParsing="false" onAction="#handleCredits" opacity="0.64" prefHeight="41.0" prefWidth="221.0" style="-fx-background-color: #24001D; -fx-background-radius: 20; -fx-border-radius: 20;" text="CREDITS" textFill="#bfa6a6">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Button>
+      <Button fx:id="startID" layoutX="189.0" layoutY="129.0" mnemonicParsing="false" onAction="#handleStart" opacity="0.83" prefHeight="31.0" prefWidth="221.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #24001D;" text="START GAME" textFill="#b59f9f">
          <font>
             <Font size="21.0" />
          </font>
@@ -55,4 +59,3 @@
       </ImageView>
    </children>
 </Pane>
-
