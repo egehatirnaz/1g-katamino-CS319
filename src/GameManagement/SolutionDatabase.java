@@ -94,12 +94,26 @@ public class SolutionDatabase {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
+		
 		try {
-			c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Katamino",
+			c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/",
 			           "postgres", password);
+			String controlDatabaseCode = "SELECT COUNT(*) FROM pg_catalog.pg_database WHERE datname = 'Katamino'";
+			ps = c.prepareStatement(controlDatabaseCode);
+			rs = ps.executeQuery();
+			while(rs.next())
+			{
+				if(rs.getInt(1) == 0)
+				{
+					String createDatabaseCode = "CREATE DATABASE \"Katamino\"";
+					ps = c.prepareStatement(createDatabaseCode);
+					rs = ps.executeQuery();
+				}
+				c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Katamino",
+				           "postgres", password);
+			}
 		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+			}
 	}
 	
 	void closeDatabase()
