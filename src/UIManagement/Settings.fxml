@@ -19,7 +19,7 @@
       </Pane>
       <Pane layoutY="71.0" prefHeight="259.0" prefWidth="651.0" style="-fx-background-color: #CE2D10; -fx-background-radius: 20;">
          <children>
-            <TextField layoutX="92.0" layoutY="32.0" opacity="0.39" prefHeight="51.0" prefWidth="473.0" style="-fx-background-color: #952813; -fx-border-color: #FAAA00; -fx-background-insets: 0; -fx-background-radius: 20; -fx-border-radius: 20;" text="Enter your Nickname">
+            <TextField layoutX="92.0" layoutY="32.0" opacity="0.39" prefHeight="51.0" prefWidth="473.0" style="-fx-background-color: #952813; -fx-border-color: #FAAA00; -fx-background-insets: 0; -fx-background-radius: 20; -fx-border-radius: 20;" text="Enter your Nickname" fx:id="nicknameID">
                <font>
                   <Font name="Sinhala Sangam MN" size="21.0" />
                </font>
