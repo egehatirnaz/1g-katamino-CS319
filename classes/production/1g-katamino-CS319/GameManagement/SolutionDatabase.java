@@ -109,12 +109,14 @@ public class SolutionDatabase {
 					ps = c.prepareStatement(createDatabaseCode);
 					rs = ps.executeQuery();
 				}
-				c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Katamino",
-				           "postgres", password);
 			}
+			closeDatabase();
+			c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Katamino",
+			           "postgres", password);
 		} catch (SQLException e) {
 			}
 	}
+	
 	
 	void closeDatabase()
 	{
