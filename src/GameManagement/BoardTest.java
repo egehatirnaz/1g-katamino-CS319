@@ -192,19 +192,4 @@ public class BoardTest extends Application {
         launch(args);
     }
 
-    public void setBlocks()
-    {
-        Square s = new Square( 100.0, 100.0, 100, 100 );
-        int directions[][] = { {1,0,0,0}, {1,0,0,1}, {2,0,0,1}, {3,0,0,1} };
-        String loc = "src/GameManagement/media/aBlock.png";
-        Color c = Color.BLUE;
-        System.out.println( c );
-        Vertex v = new Vertex(s,directions,c,loc);
-
-        VertexSaveAsImage save = new VertexSaveAsImage();
-
-        save.setRequirements( v, loc);
-        save.start(new Stage());
-
-    }
 }

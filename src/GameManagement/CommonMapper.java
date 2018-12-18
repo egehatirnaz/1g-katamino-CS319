@@ -21,7 +21,7 @@ abstract class CommonMapper extends GameMapper {
     @Override
     protected void setGame( int currentLevel){
         System.out.println( "currentLevel: " + currentLevel );
-        super.setSquares( BOARDWIDTH, BOARDHEIGHT, currentLevel );
+        super.setSquares( BOARDWIDTH, BOARDHEIGHT );
         setInitialImageList();
         setStickView( currentLevel );
         super.setupEntity(getInitialImageList());

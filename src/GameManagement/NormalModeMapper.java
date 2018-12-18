@@ -28,10 +28,10 @@ public class NormalModeMapper extends CommonMapper {
         database'den currentlevella ilgili dosya yeri veya block sayısı gelmeli,
 
          */
-        String str = "src/GameManagement/media/green.png";
+        String str = "src/GameManagement/media/n1.png";
         Image green = new Image( Paths.get(str).toUri().toString());
-        Image blue = new Image( Paths.get( "src/GameManagement/media/aBlock.png" ).toUri().toString() );
-        Image yellow = new Image( Paths.get( "src/GameManagement/media/yellow.png" ).toUri().toString() );
+        Image blue = new Image( Paths.get( "src/GameManagement/media/n2.png" ).toUri().toString() );
+        Image yellow = new Image( Paths.get( "src/GameManagement/media/n3.png" ).toUri().toString() );
         ImageView img1 = new ImageView( green );
         ImageView img2 = new ImageView( blue );
         ImageView img3 = new ImageView( yellow );

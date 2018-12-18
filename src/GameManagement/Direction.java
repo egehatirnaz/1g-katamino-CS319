@@ -17,7 +17,9 @@ public class Direction {
 		setDistance( right, down, left, up);
 	}
 
-	public Direction(){}
+	public Direction(){
+		distance = new int[4];
+	}
 
 	public int[] getDistance()
 	{

@@ -85,7 +85,7 @@ public class VertexSaveAsImage extends Application {
             vbox.getChildren().add(adjacencyList.get(i).getRect());
         }
 
-        Scene scene = new Scene(vbox, 500, 400);
+        Scene scene = new Scene(vbox, 1, 1);
         //scene.setFill(Color.AQUA);
         //primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setScene(scene);

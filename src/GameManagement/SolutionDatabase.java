@@ -1,3 +1,4 @@
+package GameManagement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -33,7 +34,7 @@ public class SolutionDatabase {
 			ps = c.prepareStatement(creationCode);
 			ps.execute();		
 	
-			if(getBlockNames().size() == 0 )
+			/*if(getBlockNames().size() == 0 )
 			{
 			//createConnection();
 			String copyCode = " COPY blocks " + 
@@ -41,7 +42,7 @@ public class SolutionDatabase {
 			ps = c.prepareStatement(copyCode);
 			ps.execute();				
 			} 
-			
+			*/
 		}catch (SQLException e) {
 				e.printStackTrace();
 		}

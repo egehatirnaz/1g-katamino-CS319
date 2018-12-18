@@ -42,7 +42,7 @@ public abstract class GameMapper {
 
     abstract void setGame( int currentLevel );
 
-    void setSquares(int width, int height, int currentLevel){
+    void setSquares(int width, int height){
         System.out.println( "setSquares cur level : "  + currentLevel );
         currentLevel += 2;
         squares = new Square[width][height];
@@ -63,6 +63,17 @@ public abstract class GameMapper {
         }
     }
 
+    public double getSQUARESIZE(){
+        return SQUARESIZE;
+    }
+
+    public double getBOARDCOORDX() {
+        return BOARDCOORDX;
+    }
+
+    public double getBOARDCOORDY() {
+        return BOARDCOORDY;
+    }
 
     abstract  ImageView getStickView();
     abstract  ArrayList<ImageView> getInitialImageList();

@@ -24,13 +24,12 @@ public class Vertex {
     //properties
     private Square vertex;
     private ArrayList<Square> adjacencyList;
-    private int[][] directions; // R , D , L , U
-    private final int DIRECTIONLENGTH = 4;
+    private Direction[] directions; // R , D , L , U
     String savingLocation;
     Color color;
-    // private final double SQUAREHEIGHT = 100;
+
     //constructor
-    public Vertex( Square mainSquare, int[][] directions, Color color, String savingLocation )
+    public Vertex( Square mainSquare, Direction[] directions, Color color, String savingLocation )
     {
         vertex = mainSquare;
         this.directions = directions;
@@ -55,9 +54,10 @@ public class Vertex {
             Square piece = new Square( newX, newY, height, height);
             piece.getRect().setStroke( Color.AQUA);
             piece.getRect().setFill( color );
-            for( int pieceDirection = 0; pieceDirection < directions[onePiece].length; pieceDirection++ )
+            int[] findDirection = directions[onePiece].getDistance();
+            for( int pieceDirection = 0; pieceDirection < findDirection.length; pieceDirection++ )
             {
-                int distance = directions[onePiece][pieceDirection];
+                int distance = findDirection[pieceDirection];
                 if(distance > 0){
                     if( pieceDirection == 0 )
                         piece.setXCoordinate(newX + distance*height );
@@ -83,7 +83,7 @@ public class Vertex {
     {
         return vertex;
     }
-    
+    /*
     public void rotateLeft()
     {
         for( int i = 0; i < DIRECTIONLENGTH; i++ )
@@ -105,7 +105,7 @@ public class Vertex {
         adjacencyList.clear();
         createAdjacents();
     }
-    
+
     private int[] shiftLeft( int[] array )
     {
         int[] result = new int[ array.length ];
@@ -117,7 +117,7 @@ public class Vertex {
         
         return result;
     }
-    
+
     public int[] shiftRight( int[] array )
     {
         int[] result = new int[ array.length ];
@@ -133,5 +133,5 @@ public class Vertex {
     {
         adjacencyList.clear();
         createAdjacents();
-    }
+    }*/
 }
