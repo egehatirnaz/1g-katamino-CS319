@@ -21,25 +21,19 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
+import java.util.concurrent.TimeUnit;
 import java.io.IOException;
 import java.nio.file.Paths;
 
 public class UI_Object extends Application {
-    @FXML
     Stage window;
-    Scene scene1, scene2;
+    Scene scene1, scene2, scene4;
     Scene scene;
-    Parent scene3;
-    private MediaPlayer media;
     private double x,y;
 
     @Override
     public void start(Stage stage) throws Exception{
         window = stage;
-        media = new MediaPlayer(new Media(Paths.get("src/GameManagement/media/title.mp3").toUri().toString()));
-        media.play();
-
         Parent root;
         root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
@@ -47,7 +41,6 @@ public class UI_Object extends Application {
         VBox layout1 = new VBox(20);
         layout1.getChildren().setAll((Parent)loader.load());
         scene1 = new Scene(layout1, 600, 400);
-
 
         VBox layout2 = new VBox(20);
         FXMLLoader loader2 = new FXMLLoader(getClass().getResource("NormalMode.fxml"));
@@ -58,9 +51,6 @@ public class UI_Object extends Application {
             x = event.getSceneX();
             y = event.getSceneY();
         });
-
-
-
         scene1.setOnMouseDragged(event -> {
             window.setX(event.getScreenX() - x);
             window.setY(event.getScreenY() - y);
@@ -69,21 +59,10 @@ public class UI_Object extends Application {
         window.initStyle(StageStyle.UNDECORATED);
         window.setTitle("Katamino");
         window.show();
-
     }
 
     public static void main(String[] args) {
         launch(args);
-    }
-
-    public void play(){
-        //VBox layout2 = new VBox(20);
-        //FXMLLoader loader2 = new FXMLLoader(getClass().getResource("NormalMode.fxml"));
-        BoardTest bT = new BoardTest();
-        bT.start(new Stage());
-        window.setScene(bT.returnScene());
-        //layout2.getChildren().setAll((VBox)loader2.load());
-        //scene2 = new Scene(layout2, 640, 425);
     }
 
 }
