@@ -110,4 +110,7 @@ public class MainMenuController {
         System.out.println("quit pressed");
         System.exit(0);
     }
+    
+    public void handleHowToPlay(ActionEvent event) {
+    }
 }
