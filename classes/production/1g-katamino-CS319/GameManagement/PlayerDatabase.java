@@ -186,7 +186,7 @@ public class PlayerDatabase {
 		for(int i = 0; i < nicknames.size(); i++)
 		{		
 			String name = nicknames.get(i);
-			Time time = new Time( times.get(i) );
+			int time = times.get(i);
 			//System.out.println(time.getTime());
 			Player newOne = new Player(name, time);
 			sortedPlayers.add(newOne);
