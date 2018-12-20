@@ -59,6 +59,8 @@ public class BoardTest extends Application {
 
         final ArrayList<Double> fitHeightList = gm.getOriginalHeightScale();
         final ArrayList<Double> fitWidthList = gm.getOriginalWidthScale();
+        final ArrayList<Double> initialListX = gm.getInitialPositionX();
+        final ArrayList<Double> initialListY = gm.getInitialPositionY();
 
         Square[][] boardSquares = gm.getSquares();
 
@@ -76,13 +78,14 @@ public class BoardTest extends Application {
         Scene scene = new Scene(root, 1000, 1000);
 
 
-        //System.out.println( "ImageSize: "  + imageList.size() );
+        System.out.println( "ImageSize: "  + imageList.size() );
         for( int i = 0; i < imageList.size(); i++ )
         {
             imageList.get(i).setCursor(Cursor.HAND);
-           // System.out.println( "FitSize: " + fitHeightList.size() );
+            System.out.println( "FitSize: " + fitHeightList.size() );
             double fitHeight = fitHeightList.get(i);
             double fitWidth = fitWidthList.get(i);
+
             imageList.get(i).setOnMousePressed( (t) -> {
                         originX = t.getSceneX();
                         originY = t.getSceneY();
@@ -95,12 +98,17 @@ public class BoardTest extends Application {
                         //System.out.println( "y1 : "  + anImage.getY() );
                         anImage.toFront();
                         // rotate logic
+
                         if(t.getClickCount()%2==0) {
+                            double orX = anImage.getX();
+                            double orY = anImage.getY();
                             anImage.setFitWidth(fitWidth);
                             anImage.setFitHeight(fitHeight);
+
                             SnapshotParameters param = new SnapshotParameters();
                             param.setFill(Color.TRANSPARENT);
-                            param.setTransform(new Rotate(90,anImage.getImage().getHeight()/2,anImage.getImage().getWidth()/2));
+                            param.setTransform(new Rotate(90,anImage.getImage().getHeight(),anImage.getImage().getWidth()));
+
                             anImage.setImage(anImage.snapshot(param,null));
                             anImage.setFitWidth(100);
                             anImage.setFitHeight(100);
@@ -134,23 +142,134 @@ public class BoardTest extends Application {
 
             );
             imageList.get(i).setOnMouseReleased((t)-> {
-                for( int k = 0; k < gm.getCurrentLevel() + 2; k++ ) {
+                int count = 0;
+                int count2 = 0;
+                //boolean isEmpty = true;
+                ImageView anImage = (ImageView)(t.getSource());
+
+                double xLoc = originX , yLoc = originY;
+                for( int k = 0; k < startLevel ; k++ ) {
                     for (int j = 0; j < boardSquares[k].length; j++) {
                         Circle c = new Circle();
-                        c.setCenterY((250) + (j) * 100);
-                        c.setCenterX((250) + (k) * 100);
+                        c.setCenterY((150) + (j) * 100);
+                        c.setCenterX((300) + (k) * 100);
                         c.setRadius(3);
                         c.setFill(Color.RED);
                         boardSquares[k][j].setFilled(false);
                         root.getChildren().add(c);
+
                         for( int noOfImage = 0; noOfImage < imageList.size(); noOfImage++ ) {
                             if (root.getChildren().get(root.getChildren().indexOf(imageList.get(noOfImage))).contains((300) + (k) * 100, (150) + (j) * 100)) {
                                 c.setFill(Color.GREEN);
-                                boardSquares[k][j].setFilled(true);
+                                if(boardSquares[k][j].getStateOfSquare()!= true) {
+                                    boardSquares[k][j].setFilled(true);
+                                    count++;
+                                }
+                                else
+                                    count2++;
                             }
                         }
+
+
+                    }
+
+                }
+
+                System.out.println(gm.getSQUARESIZE());
+
+                if(count % 5 == 0 && count != 0){
+                    //System.out.println(count);
+                    System.out.println("True");
+                    System.out.println(anImage.getX());
+                    System.out.println(anImage.getY());
+                    //anImage.setPickOnBounds(true);
+                    //System.out.println(anImage.getX());
+
+                    double xlocation=0,ylocation=0;
+                    System.out.println("X (ilk) lokasyonu " + anImage.getImage().getWidth());
+                    System.out.println("Y (ilk) lokasyonu " + anImage.getImage().getHeight());
+                    System.out.println(gm.getCurrentLevel());
+                    System.out.println(boardSquares[0].length);
+
+                    for(double b = (anImage.getY()+anImage.getImage().getHeight());b >anImage.getY();b-- ){
+                        for(double a = (anImage.getX()+ anImage.getImage().getWidth());a>anImage.getX();a--){
+                            if(root.getChildren().get(root.getChildren().indexOf(anImage)).contains(a, b)){
+                                xlocation = a;
+                                ylocation = b;
+                            }
+
+                        }
+                    }
+                    System.out.println("X lokasyonu " + xlocation);
+                    System.out.println("Y lokasyonu " + ylocation);
+
+                    double maxheight=0;
+                    double maxwidth=0;
+
+
+                    for(double a = xlocation ; a <= anImage.getImage().getWidth() ; a++){
+                        if(root.getChildren().get(root.getChildren().indexOf(anImage)).contains(a, ylocation))
+                            maxwidth = a;
+                    }
+
+                    for(double a = ylocation ; a <= anImage.getImage().getHeight() ; a++){
+                        if(root.getChildren().get(root.getChildren().indexOf(anImage)).contains(xlocation, a))
+                            maxheight = a;
+                    }
+                    System.out.println("Max Height" + maxheight + " Max Width" + maxwidth);
+                    System.out.println("Origin 1- "+ anImage.getX() + " 2- " + anImage.getY() );
+                    System.out.println("loc 1- "+ xlocation + " 2- " + ylocation );
+                    if(xlocation==225)
+                        xlocation++;
+                    if(ylocation==-75)
+                        ylocation++;
+                    int x = ((int)xlocation - 225) /100 ;
+                    int y = ((int)ylocation - 75) / 100;
+
+                    System.out.println(" 1- "+ x + " 2- " + y );
+
+                    if(maxwidth  == gm.getCurrentLevel())
+                        x--;
+                    if(maxheight  == boardSquares[0].length)
+                        y--;
+
+                    if( x>=0 && x < gm.getCurrentLevel()  && y >= 0 && y < boardSquares[0].length  && anImage.preserveRatioProperty().getValue() == false && count2==0) {
+                        if (boardSquares[x][y].getStateOfSquare()) {
+                            System.out.println("Yok Artık");
+
+
+                            double stickX = 250+x*100 ;
+                            double stickY = 100+y*100 ;
+                            anImage.setX(stickX + anImage.getX() - xlocation);
+                            anImage.setY(stickY + anImage.getY() - ylocation);
+                        }
+                        else {
+                            System.out.println("False1");
+                            anImage.setX(gm.getInitialPositionX().get(imageList.indexOf(anImage)));
+                            anImage.setY(gm.getInitialPositionY().get(imageList.indexOf(anImage)));
+                            anImage.setPreserveRatio(true);
+                            anImage.setFitWidth(100);
+                            anImage.setFitHeight(100);
+                        }
+                    }
+                    else {
+                        System.out.println("False2");
+                        anImage.setX(gm.getInitialPositionX().get(imageList.indexOf(anImage)));
+                        anImage.setY(gm.getInitialPositionY().get(imageList.indexOf(anImage)));
+                        anImage.setPreserveRatio(true);
+                        anImage.setFitWidth(100);
+                        anImage.setFitHeight(100);
                     }
                 }
+                else{
+                    System.out.println("False3");
+                    anImage.setX(gm.getInitialPositionX().get(imageList.indexOf(anImage)));
+                    anImage.setY(gm.getInitialPositionY().get(imageList.indexOf(anImage)));
+                    anImage.setPreserveRatio(true);
+                    anImage.setFitWidth(100);
+                    anImage.setFitHeight(100);
+                }
+
                 if ( gm.isLevelFinished(startLevel)){
                     try {
                         Thread.sleep( 1000 );
