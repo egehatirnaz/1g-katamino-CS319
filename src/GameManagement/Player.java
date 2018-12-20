@@ -1,44 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package GameManagement;
-
-/**
- *
- * @author firat yildiz, burak korkmaz
- */
-
 import java.lang.*;
-import java.sql.Time;
 
-class Player {/*
+class Player {
     private String nickName;
-    private int playerID;
-    private Time time;
+    private int time;
 
-    private int maxLevelClassic; // Holds the maximum level for different types of level
-    private int maxLevelChallange; // Holds the maximum level for different types of level
-    private int maxLevelDynamic; // Holds the maximum level for different types of level
 
     public Player(String nickName, int time){
         this.nickName = nickName;
         //this.playerID = playerID;
-        this.time = new Time(time);
-
-        maxLevelClassic = 0;
-        maxLevelChallange = 0;
-        maxLevelDynamic = 0;
-    }
-    
-    public Player(String nickName, Time time){
-        this.nickName = nickName;
         this.time = time;
-
-        maxLevelClassic = 0;
-        maxLevelChallange = 0;
-        maxLevelDynamic = 0;
     }
 
     public String getNickName(){
@@ -49,37 +19,15 @@ class Player {/*
         this.nickName = nickName;
     }
 
-    public Time getTime(){
+    public int getTime(){
         return time;
     }
+    
+    public String toString() {
+    	return getNickName() + "  " + String.valueOf(time);
+    }
 
-    public void setTime(Time time) {
+    public void setTime(int time) {
         this.time = time;
     }
-
-    public int getPlayerID() {
-        return playerID;
-    }
-
-    public void updateLevel(String level){
-        if(level.equals("Classic"))
-            maxLevelClassic++;
-        if(level.equals("Challange"))
-            maxLevelChallange++;
-        if(level.equals("Dynamic"))
-            maxLevelDynamic++;
-
-    }
-
-    public int getMaxLevelChallange() {
-        return maxLevelChallange;
-    }
-
-    public int getMaxLevelClassic() {
-        return maxLevelClassic;
-    }
-
-    public int getMaxLevelDynamic() {
-        return maxLevelDynamic;
-    }*/
 }
