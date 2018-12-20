@@ -30,6 +30,7 @@ public class UI_Object extends Application {
     Scene scene1, scene2, scene4;
     Scene scene;
     private double x,y;
+    private MediaPlayer media = new MediaPlayer(new Media(Paths.get("src/GameManagement/media/title.mp3").toUri().toString()));;
 
     @Override
     public void start(Stage stage) throws Exception{
@@ -65,4 +66,7 @@ public class UI_Object extends Application {
         launch(args);
     }
 
+    public MediaPlayer returnMediaPlayer(){
+        return media;
+    }
 }
