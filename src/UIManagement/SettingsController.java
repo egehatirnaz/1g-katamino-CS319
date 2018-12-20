@@ -88,8 +88,8 @@ public class SettingsController {
             media.setVolume(0);
         }
     }
-
-    public void handleSignIn(ActionEvent event) {
+    @FXML
+    public void handleSignIn(MouseEvent event) {
     }
 
     @FXML

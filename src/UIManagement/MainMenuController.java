@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -44,6 +45,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 
 public class MainMenuController {
     @FXML
@@ -52,6 +54,7 @@ public class MainMenuController {
 
     @FXML
     Stage stage;
+    UI_Object ui_object;
 
     @FXML protected void handleCredits(ActionEvent event) throws IOException{
         stage = (Stage)((Button) event.getSource()).getScene().getWindow();
@@ -110,7 +113,51 @@ public class MainMenuController {
         System.out.println("quit pressed");
         System.exit(0);
     }
-    
-    public void handleHowToPlay(ActionEvent event) {
+
+    @FXML
+    public void handleHowToPlay(ActionEvent event) throws IOException{
+        stage = (Stage)((Button) event.getSource()).getScene().getWindow();
+        Parent root;
+        root = FXMLLoader.load(getClass().getResource("HowToPlay.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.UNDECORATED);
     }
+
+    @FXML
+    protected void changeLanguageEN(){
+        System.out.println("EN Selected - God save the queen!");
+        //lang.setEnglish();
+    }
+    @FXML
+    protected void changeLanguageTR(MouseEvent event) throws IOException{
+        stage = (Stage)((ImageView) event.getSource()).getScene().getWindow();
+        Parent root;
+        root = FXMLLoader.load(getClass().getResource("FXML/TUR/MainMenu.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML/TUR/MainMenu.fxml"));
+        VBox layout1 = new VBox(20);
+        layout1.getChildren().setAll((Parent)loader.load());
+        Scene scene1 = new Scene(layout1, 600, 400);
+        stage.setScene(scene1);
+    }
+    @FXML
+    protected void initialize(){
+        //Worst fucking idea, ever. But fuck me, it works.
+        if(ui_object == null) {
+            ui_object = new UI_Object();
+        }
+    }
+    @FXML
+    protected void toggleMusic(MouseEvent event) throws IOException{
+        stage = (Stage)((RadioButton) event.getSource()).getScene().getWindow();
+        RadioButton music = (RadioButton) stage.getScene().lookup("#music");
+        if(music.isSelected()){
+            ui_object.returnMediaPlayer().stop();
+            ui_object.returnMediaPlayer().play();
+        }
+        else{
+            ui_object.returnMediaPlayer().stop();
+        }
+    }
+
 }
