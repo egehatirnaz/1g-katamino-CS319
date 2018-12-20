@@ -41,6 +41,7 @@ public class SettingsController {
         scene = bT.returnScene();
         stage.setScene(scene);
         System.out.println("Helo");*/
+        /*
         Scene scene = (Scene)((Button) event.getSource()).getScene();
         TextField tf = (TextField) scene.lookup("#nicknameID");
         String username = "Unnamed Player";
@@ -51,7 +52,23 @@ public class SettingsController {
         //bT.setUsername(username); TODO:add this method to BoardTest
         bT.start(new Stage());
         stage.setScene(bT.returnScene());
-        stage.setResizable(true);
+        stage.setResizable(true);*/
+        stage = (Stage)((Button) event.getSource()).getScene().getWindow();
+        Scene scene = (Scene)((Button) event.getSource()).getScene();
+        TextField tf = (TextField) scene.lookup("#nicknameID");
+        String username = "İsimsiz Oyuncu";
+        if(tf.getText() != null && !tf.getText().isEmpty()){
+            username = tf.getText();
+        }
+        //TODO: Do what you want with the username input.
+
+        Parent root;
+        root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Modes.fxml"));
+        VBox layout1 = new VBox(20);
+        layout1.getChildren().setAll((Parent)loader.load());
+        Scene scene1 = new Scene(layout1, 600, 400);
+        stage.setScene(scene1);
 
     }
 

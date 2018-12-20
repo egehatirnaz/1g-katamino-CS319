@@ -33,9 +33,14 @@
             <Font name="Gurmukhi MN" size="25.0" />
          </font>
       </Button>
-      <Button layoutX="36.0" layoutY="318.0" mnemonicParsing="false" onAction="#handleBack" opacity="0.79" prefHeight="68.0" prefWidth="80.0" style="-fx-background-color: #640BD3; -fx-background-radius: 20;" text="Back" textFill="#e1dcdc">
+      <!--Button layoutX="36.0" layoutY="318.0" mnemonicParsing="false" onAction="#handleBack" opacity="0.79" prefHeight="68.0" prefWidth="80.0" style="-fx-background-color: #640BD3; -fx-background-radius: 20;" text="Back" textFill="#e1dcdc">
          <font>
             <Font name="Papyrus Condensed" size="19.0" />
+         </font>
+      </Button>-->
+      <Button fx:id="returnID" layoutX="194.0" layoutY="339.0" mnemonicParsing="false" onAction="#handleReturn" prefHeight="31.0" prefWidth="214.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #24001D;" text="RETURN TO MENU" textFill="#b59f9f">
+         <font>
+            <Font size="18.0" />
          </font>
       </Button>
    </children>
