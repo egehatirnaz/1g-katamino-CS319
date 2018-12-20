@@ -1,4 +1,3 @@
-package  GameManagement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -7,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.awt.Color;
 import java.io.*;
 
 public class BlocksDatabase {
@@ -33,6 +33,7 @@ public class BlocksDatabase {
 					"  fourthvertex integer[]," +
 					"  fifthvertex integer[]," +
 					"  sixthvertex integer[]," +
+					"  color character varying(10)," +
 					"  PRIMARY KEY (blockname) )";
 			ps = c.prepareStatement(creationCode);
 			ps.execute();		
@@ -86,6 +87,27 @@ public class BlocksDatabase {
 		
 		dir.setDistance(array);	
 		return dir;
+	}
+	
+	Color stringToColor(String color)
+	{
+		Color purple = new Color(102,0,153);
+		switch (color) {
+		case "blue": return Color.BLUE;
+		case "red": return Color.RED;
+		case "pink": return Color.PINK;
+		case "yellow": return Color.YELLOW;
+		case "green": return Color.GREEN;
+		case "purple": return purple;
+		case "gray": return Color.GRAY;
+		case "orange": return Color.ORANGE;
+		case "magenta": return Color.MAGENTA;
+		case "cyan": return Color.CYAN;
+		case "dark_gray": return Color.DARK_GRAY;
+		case "light_gray": return Color.LIGHT_GRAY;
+		default:
+			return null;
+		}
 	}
 	
 	
@@ -205,11 +227,11 @@ public class BlocksDatabase {
 		return true;
 	}
 	
-	void saveBlock(String blockName, Direction[] directions)
+	void saveBlock(String blockName, Direction[] directions, String color)
 	{
 		if(controlBlockName(blockName)) {
 		try {
-			String insertionCode = "INSERT INTO blocks (blockname,firstvertex,secondvertex,thirdvertex,fourthvertex,fifthvertex,sixthvertex)"
+			String insertionCode = "INSERT INTO blocks (blockname,firstvertex,secondvertex,thirdvertex,fourthvertex,fifthvertex,sixthvertex,color)"
 					+ " VALUES (" + rvr + blockName + rvr;
 			for(int i = 0; i < directions.length; i++)
 					insertionCode = insertionCode + "," + rvr + directionToString(directions[i]) + rvr;
@@ -217,7 +239,7 @@ public class BlocksDatabase {
 			for(int i = directions.length; i < 6; i++)
 				insertionCode = insertionCode + "," + rvr + "{}" + rvr;
 			
-			insertionCode = insertionCode + ")";
+			insertionCode = insertionCode + ", '" + color + "')";
 			System.out.print(insertionCode);	
 			ps = c.prepareStatement(insertionCode);
 			ps.execute();	
@@ -292,6 +314,22 @@ public class BlocksDatabase {
 			}
 					
         return directions;
+	}
+	
+	Color getColor(String blockName)
+	{
+		String color = "";
+		try {
+		String colorCode = "SELECT color FROM blocks WHERE blockname = '" + blockName + "'";
+		ps = c.prepareStatement(colorCode);
+		rs = ps.executeQuery();		
+		while(rs.next())
+		color = rs.getString("color");		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return stringToColor(color);	
 	}
 	
 	void deleteBlock(String blockName)
