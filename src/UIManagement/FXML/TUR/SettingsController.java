@@ -101,7 +101,7 @@ public class SettingsController {
     }
 
     @FXML
-    public void handleSignIn(ActionEvent event) {
+    public void handleSignIn(MouseEvent event) {
     }
 
 }
