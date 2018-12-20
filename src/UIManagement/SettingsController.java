@@ -88,7 +88,7 @@ public class SettingsController {
             media.setVolume(0);
         }
     }
-
+    @FXML
     public void handleSignIn(ActionEvent event) {
     }
 

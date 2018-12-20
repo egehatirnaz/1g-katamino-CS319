@@ -100,4 +100,8 @@ public class SettingsController {
         System.out.println("TR Selected - As bayrakları as!");
     }
 
+    @FXML
+    public void handleSignIn(ActionEvent event) {
+    }
+
 }

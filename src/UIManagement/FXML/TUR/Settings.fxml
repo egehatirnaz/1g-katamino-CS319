@@ -40,7 +40,7 @@
             <DropShadow />
          </effect>
       </Button>
-      <RadioButton layoutX="295.0" layoutY="362.0" mnemonicParsing="false" text="Giriş Yap" textFill="#adb2e1">
+      <RadioButton layoutX="295.0" layoutY="362.0" mnemonicParsing="false" onMouseClicked="#handleSignIn" text="Giriş Yap" textFill="#adb2e1">
          <font>
             <Font size="17.0" />
          </font>
