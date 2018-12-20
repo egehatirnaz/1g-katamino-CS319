@@ -7,6 +7,7 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -14,44 +15,55 @@ import java.util.ArrayList;
 
 public class BlockMaker extends Application {
 
-    SolutionDatabase database;
+    BlocksDatabase database;
 
 
     public BlockMaker(){
-         database = new SolutionDatabase("yusuf123");
+         database = new BlocksDatabase("yusuf123");
     }
 
     @Override
     public void start(Stage primaryStage) {
 
         Button btn = new Button();
-        btn.setText("Say 'Hello World'");
+        btn.setText("Make all blocks!!");
         btn.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
-                blockMaker();
+                blockMaker("n");
                 System.out.println("Blocks created!!");
             }
         });
 
-        Group root = new Group();
-        root.getChildren().add( btn );
-        Scene scene = new Scene(root, 1, 1);
+        Button dynamic = new Button();
+        dynamic.setText( "Dynamic Mode Blocks!" );
+        dynamic.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                blockMaker("d");
+                System.out.println( "Dynamic blocks are ready!" );
+            }
+        });
+
+        Pane root = new Pane();
+        //root.getChildren().add( btn );
+        root.getChildren().add( dynamic );
+        Scene scene = new Scene(root, 500, 500);
         primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);
         primaryStage.show();
 
     }
 
-    private void blockMaker()
+    private void blockMaker( String mode )
     {
         ArrayList<Direction> adjacents = new ArrayList<Direction>();
         String loc = "";
-        for( int i = 1 ; i <= 12; i++)
+        for( int i = 1 ; i <= 3; i++)
         {
             loc = "src/GameManagement/media/";
-            String blockName = "n" + i;
+            String blockName = mode + i;
             adjacents = database.getDirections( blockName );
             VertexSaveAsImage save = new VertexSaveAsImage();
             Square main = new Square( 100, 100,100,100);

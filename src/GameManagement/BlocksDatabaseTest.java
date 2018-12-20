@@ -1,3 +1,4 @@
+package  GameManagement;
 public class BlocksDatabaseTest {
 
 	public static void main(String[] args) {
