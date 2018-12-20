@@ -20,8 +20,8 @@ public class Lang {
     boolean isTurkish = false;
     public String[] strings;
 
-    Lang(LangType LT){
-        changeLocale(LT);
+    Lang(){
+        changeLocale(langtype.US);
     }
 
     public void setTurkish(){

@@ -8,6 +8,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
@@ -45,6 +48,14 @@ public class SettingsController {
         System.out.println("Helo");*/
         //Scene scene = (Scene)((Button) event.getSource()).getScene();
         stage = (Stage)((Button) event.getSource()).getScene().getWindow();
+        Scene scene = (Scene)((Button) event.getSource()).getScene();
+        TextField tf = (TextField) scene.lookup("#nicknameID");
+        String username = "Unnamed Player";
+        if(tf.getText() != null && !tf.getText().isEmpty()){
+            username = tf.getText();
+        }
+        //TODO: Do what you want with the username input.
+
         Parent root;
         root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Modes.fxml"));
@@ -79,5 +90,22 @@ public class SettingsController {
     }
 
     public void handleSignIn(ActionEvent event) {
+    }
+
+    @FXML
+    protected void changeLanguageEN(){
+        System.out.println("EN Selected - God save the queen!");
+        //lang.setEnglish();
+    }
+    @FXML
+    protected void changeLanguageTR(MouseEvent event) throws IOException{
+        stage = (Stage)((ImageView) event.getSource()).getScene().getWindow();
+        Parent root;
+        root = FXMLLoader.load(getClass().getResource("FXML/TUR/Settings.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML/TUR/Settings.fxml"));
+        VBox layout1 = new VBox(20);
+        layout1.getChildren().setAll((Parent)loader.load());
+        Scene scene1 = new Scene(layout1, 600, 400);
+        stage.setScene(scene1);
     }
 }

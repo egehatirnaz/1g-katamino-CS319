@@ -10,6 +10,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="444.0" prefWidth="651.0" style="-fx-background-color: #CE2D10;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIManagement.SettingsController">
    <children>
       <Pane layoutX="14.0" layoutY="14.0" prefHeight="64.0" prefWidth="627.0">
@@ -47,5 +50,22 @@
          </children>
       </Pane>
       <Separator layoutX="33.0" layoutY="375.0" opacity="0.4" prefHeight="3.0" prefWidth="566.0" />
+       <Text fill="#bfa6a6" layoutX="214.0" layoutY="349.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Language" />
+       <ImageView fx:id="langTR" fitHeight="29.0" fitWidth="45.0" layoutX="316.0" layoutY="331.0" onMouseClicked="#changeLanguageTR" pickOnBounds="true" preserveRatio="true">
+           <image>
+               <Image url="@res/TUR-flag.gif" />
+           </image>
+           <effect>
+               <InnerShadow />
+           </effect>
+       </ImageView>
+       <ImageView fx:id="langEN" fitHeight="51.0" fitWidth="60.0" layoutX="373.0" layoutY="320.0" onMouseClicked="#changeLanguageEN" pickOnBounds="true" preserveRatio="true">
+           <image>
+               <Image url="@res/UKUS-flag.png" />
+           </image>
+           <effect>
+               <InnerShadow />
+           </effect>
+       </ImageView>
    </children>
 </AnchorPane>
