@@ -39,11 +39,17 @@ public abstract class GameMapper {
     }
     
     // methods
-
+    // abstract methods
+    abstract  ImageView getStickView();
+    abstract  ArrayList<ImageView> getInitialImageList();
+    abstract boolean isLevelFinished( int currentLevel );
+    abstract void setInitialImageList();
+    abstract void setStickView( int currentLevel );
     abstract void setGame( int currentLevel );
 
+
     void setSquares(int width, int height){
-        System.out.println( "setSquares cur level : "  + currentLevel );
+        //System.out.println( "setSquares cur level : "  + currentLevel );
         currentLevel += 2;
         squares = new Square[width][height];
         for(int i = 0; i < squares.length; i++){
@@ -63,23 +69,17 @@ public abstract class GameMapper {
         }
     }
 
-    public double getSQUARESIZE(){
+    protected double getSQUARESIZE(){
         return SQUARESIZE;
     }
 
-    public double getBOARDCOORDX() {
+    protected double getBOARDCOORDX() {
         return BOARDCOORDX;
     }
 
-    public double getBOARDCOORDY() {
+    protected double getBOARDCOORDY() {
         return BOARDCOORDY;
     }
-
-    abstract  ImageView getStickView();
-    abstract  ArrayList<ImageView> getInitialImageList();
-    abstract boolean isLevelFinished( int currentLevel );
-    abstract void setInitialImageList();
-    abstract void setStickView( int currentLevel );
 
     public ImageView getAward()
     {
@@ -95,9 +95,8 @@ public abstract class GameMapper {
     }
 
 
-    void setupEntity(ArrayList<ImageView> imageList)
+    protected void setupEntity(ArrayList<ImageView> imageList)
     {
-        System.out.println( "Size: " + imageList.size() );
         for( int i = 0; i < imageList.size(); i++ )
         {
             imageList.get(i).setX(BOARDCOORDX + i * 3 * SQUARESIZE);
@@ -142,7 +141,6 @@ public abstract class GameMapper {
     }
     
 
-    
     public void updateLevel() {
         currentLevel++;
         setGame(currentLevel);

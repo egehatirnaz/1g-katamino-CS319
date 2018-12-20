@@ -15,9 +15,14 @@ abstract class CommonMapper extends GameMapper {
     private final int BOARDHEIGHT = 5;
     private ImageView stickView;
 
-    public CommonMapper(){
-    }
+    // constructor
+    public CommonMapper(){}
 
+    // abstract methods
+    abstract ArrayList<ImageView> getInitialImageList();
+    abstract void setInitialImageList();
+
+    // override methods
     @Override
     protected void setGame( int currentLevel){
         System.out.println( "currentLevel: " + currentLevel );
@@ -26,9 +31,6 @@ abstract class CommonMapper extends GameMapper {
         setStickView( currentLevel );
         super.setupEntity(getInitialImageList());
     }
-
-    abstract ArrayList<ImageView> getInitialImageList();
-    abstract void setInitialImageList();
 
     @Override
     public ImageView getStickView()
