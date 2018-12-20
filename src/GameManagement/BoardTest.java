@@ -47,14 +47,15 @@ public class BoardTest extends Application {
 
     private Scene window;
     double originX, originY;
-    int startLevel = 1;
+    int startLevel = 4;
     GameMapper gm = new NormalModeMapper();
     @Override
     public void start(Stage primaryStage) {
         //setBlocks();
         Group root = new Group();
-        System.out.println( "Stage im " + gm.getCurrentLevel() );
+       // System.out.println( "Stage im " + gm.getCurrentLevel() );
         ArrayList<ImageView> imageList =  gm.getInitialImageList();
+        System.out.println( "initial image list start method: " + gm.getInitialImageList().size() );
 
         final ArrayList<Double> fitHeightList = gm.getOriginalHeightScale();
         final ArrayList<Double> fitWidthList = gm.getOriginalWidthScale();
@@ -75,11 +76,11 @@ public class BoardTest extends Application {
         Scene scene = new Scene(root, 1000, 1000);
 
 
-        System.out.println( "ImageSize: "  + imageList.size() );
+        //System.out.println( "ImageSize: "  + imageList.size() );
         for( int i = 0; i < imageList.size(); i++ )
         {
             imageList.get(i).setCursor(Cursor.HAND);
-            System.out.println( "FitSize: " + fitHeightList.size() );
+           // System.out.println( "FitSize: " + fitHeightList.size() );
             double fitHeight = fitHeightList.get(i);
             double fitWidth = fitWidthList.get(i);
             imageList.get(i).setOnMousePressed( (t) -> {
@@ -95,14 +96,14 @@ public class BoardTest extends Application {
                         anImage.toFront();
                         // rotate logic
                         if(t.getClickCount()%2==0) {
-                            //anImage.setFitWidth(fitWidth);
-                            //anImage.setFitHeight(fitHeight);
+                            anImage.setFitWidth(fitWidth);
+                            anImage.setFitHeight(fitHeight);
                             SnapshotParameters param = new SnapshotParameters();
                             param.setFill(Color.TRANSPARENT);
                             param.setTransform(new Rotate(90,anImage.getImage().getHeight()/2,anImage.getImage().getWidth()/2));
                             anImage.setImage(anImage.snapshot(param,null));
-                           // anImage.setFitWidth(100);
-                           // anImage.setFitHeight(100);
+                            anImage.setFitWidth(100);
+                            anImage.setFitHeight(100);
                             //System.out.println("Rotation" + anImage.getX());
                             //System.out.println("Rotation" + anImage.getBoundsInParent());
                         }
@@ -151,9 +152,6 @@ public class BoardTest extends Application {
                     }
                 }
                 if ( gm.isLevelFinished(startLevel)){
-                    imageList.clear();
-                    fitHeightList.clear();
-                    fitWidthList.clear();
                     try {
                         Thread.sleep( 1000 );
                     } catch (InterruptedException e) {

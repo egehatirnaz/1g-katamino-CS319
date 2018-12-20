@@ -3,20 +3,51 @@ public class BlocksDatabaseTest {
 
 	public static void main(String[] args) {
 		BlocksDatabase database = new BlocksDatabase("yusuf123");
-		/*Direction[] n3 = new Direction[4];
+
+		Direction[] n1 = new Direction[4];
+		for( int i = 0; i < 4; i++)
+		{
+			n1[i] = new Direction();
+		}
+		int n1Directions1[] = {0,1,0,0};
+		int n1Directions2[] = {0,2,0,0};
+		int n1Directions3[] = {0,3,0,0};
+		int n1Directions4[] = {1,0,0,0};
+		n1[0].setDistance( n1Directions1);
+		n1[1].setDistance( n1Directions2);
+		n1[2].setDistance( n1Directions3);
+		n1[3].setDistance( n1Directions4);
+		database.saveBlock( "n1", n1 );
+
+		Direction[] n2 = new Direction[4];
+		for( int i = 0; i < 4; i++)
+		{
+			n2[i] = new Direction();
+		}
+		int n2Directions1[] = {1,0,0,0};
+		int n2Directions2[] = {1,0,0,1};
+		int n2Directions3[] = {2,0,0,1};
+		int n2Directions4[] = {2,0,0,2};
+		n2[0].setDistance( n2Directions1);
+		n2[1].setDistance( n2Directions2);
+		n2[2].setDistance( n2Directions3);
+		n2[3].setDistance( n2Directions4);
+		database.saveBlock( "n2", n2 );
+
+		Direction[] n3 = new Direction[4];
 		for ( int i = 0; i < 4; i++)
 		{
 			n3[i] = new Direction();
 		}
 
-		int n1Directions1[] = {0,1,0,0};
-		int n1Directions2[] = {1,0,0,0};
-		int n1Directions3[] = {2,0,0,0};
-		int n1Directions4[] = {2,1,0,0};
-		n3[0].setDistance( n1Directions1);
-		n3[1].setDistance( n1Directions2);
-		n3[2].setDistance( n1Directions3);
-		n3[3].setDistance( n1Directions4);
+		int n3Directions1[] = {0,1,0,0};
+		int n3Directions2[] = {1,0,0,0};
+		int n3Directions3[] = {2,0,0,0};
+		int n3Directions4[] = {2,1,0,0};
+		n3[0].setDistance( n3Directions1);
+		n3[1].setDistance( n3Directions2);
+		n3[2].setDistance( n3Directions3);
+		n3[3].setDistance( n3Directions4);
 		database.saveBlock( "n3", n3 );
 
 		Direction[] n4 = new Direction[4];
@@ -158,7 +189,7 @@ public class BlocksDatabaseTest {
 		n12[1].setDistance( n12Directions2 );
 		n12[2].setDistance( n12Directions3 );
 		n12[3].setDistance( n12Directions4 );
-		database.saveBlock( "n12", n12 );*/
+		database.saveBlock( "n12", n12 );
 
 
 		Direction[] directions = arraySetter();
@@ -169,7 +200,7 @@ public class BlocksDatabaseTest {
 		directions[1].setDistance(d12);
 		directions[2].setDistance(d13);
 
-		//	database.updateBlockInformation( "d1", directions);
+		database.saveBlock( "d1", directions);
 
 
 		directions = arraySetter();
@@ -177,7 +208,7 @@ public class BlocksDatabaseTest {
 		int[] d22 = {0,2,0,0};
 		directions[0].setDistance(d21);
 		directions[1].setDistance(d22);
-		//database.updateBlockInformation( "d2", directions);
+		database.saveBlock( "d2", directions);
 
 		directions = arraySetter();
 		int[] d31 = { 0, 1, 0, 0};

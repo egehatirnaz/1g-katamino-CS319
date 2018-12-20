@@ -13,7 +13,7 @@ package GameManagement;
 import java.lang.*;
 import java.sql.Time;
 
-class Player {
+class Player {/*
     private String nickName;
     private int playerID;
     private Time time;
@@ -22,19 +22,18 @@ class Player {
     private int maxLevelChallange; // Holds the maximum level for different types of level
     private int maxLevelDynamic; // Holds the maximum level for different types of level
 
-    public Player(String nickName, int playerID){
+    public Player(String nickName, int time){
         this.nickName = nickName;
-        this.playerID = playerID;
-        time = new Time(0,0,0);
+        //this.playerID = playerID;
+        this.time = new Time(time);
 
         maxLevelClassic = 0;
         maxLevelChallange = 0;
         maxLevelDynamic = 0;
     }
     
-    public Player(String nickName, int playerID, Time time){
+    public Player(String nickName, Time time){
         this.nickName = nickName;
-        this.playerID = playerID;
         this.time = time;
 
         maxLevelClassic = 0;
@@ -82,5 +81,5 @@ class Player {
 
     public int getMaxLevelDynamic() {
         return maxLevelDynamic;
-    }
+    }*/
 }

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 abstract class CommonMapper extends GameMapper {
 
-    private final double STICKCOORDX = 635.0;
+    private final double STICKCOORDX = 235.0;
     private final double STICKCOORDY = 30.0;
     private final double SQUARESIZE = 100.0;
     private final int BOARDWIDTH = 13;
@@ -25,7 +25,7 @@ abstract class CommonMapper extends GameMapper {
     // override methods
     @Override
     protected void setGame( int currentLevel){
-        System.out.println( "currentLevel: " + currentLevel );
+        System.out.println( "SETGAME currentLevel: " + currentLevel );
         super.setSquares( BOARDWIDTH, BOARDHEIGHT );
         setInitialImageList();
         setStickView( currentLevel );
@@ -44,7 +44,7 @@ abstract class CommonMapper extends GameMapper {
 
         Image stick = new Image(Paths.get("src/GameManagement/media/Stick.png").toUri().toString());
         stickView = new ImageView( stick );
-        stickView.setX(STICKCOORDX + ( (currentLevel - 2) * SQUARESIZE ) );
+        stickView.setX(STICKCOORDX + ( currentLevel * SQUARESIZE ) );
         stickView.setY(STICKCOORDY);
     }
 

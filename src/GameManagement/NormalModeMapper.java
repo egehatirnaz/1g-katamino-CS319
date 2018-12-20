@@ -9,7 +9,9 @@ import java.util.ArrayList;
 public class NormalModeMapper extends CommonMapper {
 
     private ArrayList<ImageView> imageList;
+    private SolutionDatabase solutionDatabase;
     public  NormalModeMapper(){
+        solutionDatabase = new SolutionDatabase("yusuf123");
         imageList = new ArrayList<>();
         setGame(getCurrentLevel());
     }
@@ -24,11 +26,20 @@ public class NormalModeMapper extends CommonMapper {
     @Override
     void setInitialImageList() {
         int currentLevel = getCurrentLevel();
-        /*
-        database'den currentlevella ilgili dosya yeri veya block sayısı gelmeli,
+        imageList.clear();
+        System.out.println( "setInitialImage: "+ currentLevel );
+        String str;
+        System.out.println( solutionDatabase );
+        ArrayList<String> solutionList = solutionDatabase.getSolution( "NormalMode", currentLevel, 1);
+        for( int i = 0; i < solutionList.size(); i++ )
+        {
+            str = "src/GameManagement/media/" + solutionList.get(i) + ".png";
+            Image block = new Image( Paths.get(str).toUri().toString());
+            ImageView blockView = new ImageView(block);
+            imageList.add(blockView);
+        }
 
-         */
-        String str = "src/GameManagement/media/n1.png";
+        /*
         Image green = new Image( Paths.get(str).toUri().toString());
         Image blue = new Image( Paths.get( "src/GameManagement/media/n2.png" ).toUri().toString() );
         Image yellow = new Image( Paths.get( "src/GameManagement/media/n3.png" ).toUri().toString() );
@@ -37,7 +48,7 @@ public class NormalModeMapper extends CommonMapper {
         ImageView img3 = new ImageView( yellow );
         imageList.add( img1 );
         imageList.add( img2 );
-        imageList.add( img3 );
+        imageList.add( img3 );*/
     }
 
 }

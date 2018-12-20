@@ -32,9 +32,11 @@ public abstract class GameMapper {
     private ImageView awardView;
     // constructor
     public GameMapper(){
-        this.currentLevel = 1;
+        this.currentLevel = 4;
         originalHeightScale = new ArrayList<>();
         originalWidthScale = new ArrayList<>();
+        initialPositionX = new ArrayList<>();
+        initialPositionY = new ArrayList<>();
         setAward();
     }
     
@@ -50,7 +52,7 @@ public abstract class GameMapper {
 
     void setSquares(int width, int height){
         //System.out.println( "setSquares cur level : "  + currentLevel );
-        currentLevel += 2;
+        //currentLevel = 2;
         squares = new Square[width][height];
         for(int i = 0; i < squares.length; i++){
             double xCoor = i * SQUARESIZE + BOARDCOORDX;
