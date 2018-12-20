@@ -24,8 +24,8 @@ public abstract class GameMapper {
     private int currentLevel;
     private ArrayList<Double>       originalHeightScale;
     private ArrayList<Double>       originalWidthScale;
-    //private ArrayList<Double>       initialHeightScale;
-    //private ArrayList<Double>       initialWidthScale;
+    private ArrayList<Double>       initialPositionX;
+    private ArrayList<Double>       initialPositionY;
     private final double SQUARESIZE = 100.0;
     private final double BOARDCOORDX = 250.0;
     private final double BOARDCOORDY = 100.0;
@@ -85,6 +85,7 @@ public abstract class GameMapper {
     {
         return  awardView;
     }
+
     public void setAward()
     {
         Image award = new Image(Paths.get("src/GameManagement/media/award.png").toUri().toString());
@@ -100,7 +101,9 @@ public abstract class GameMapper {
         for( int i = 0; i < imageList.size(); i++ )
         {
             imageList.get(i).setX(BOARDCOORDX + i * 3 * SQUARESIZE);
+            initialPositionX.add( imageList.get(i).getX() );
             imageList.get(i).setY( 5 * SQUARESIZE + BOARDCOORDY + 100 );
+            initialPositionY.add( imageList.get(i).getY() );
             originalHeightScale.add( imageList.get(i).getFitHeight() );
             originalWidthScale.add( imageList.get(i).getFitWidth() );
             imageList.get(i).setFitHeight(100);
@@ -108,6 +111,14 @@ public abstract class GameMapper {
             imageList.get(i).setPreserveRatio(true);
         }
 
+    }
+
+    public ArrayList<Double> getInitialPositionX() {
+        return initialPositionX;
+    }
+
+    public ArrayList<Double> getInitialPositionY() {
+        return initialPositionY;
     }
 
     public ArrayList<Double> getOriginalHeightScale()
