@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #560057;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIManagement.FXML.TUR.MainMenuController">
+   <children>
+      <Button fx:id="quitID" layoutX="194.0" layoutY="265.0" mnemonicParsing="false" onAction="#handleExit" opacity="0.48" prefHeight="32.0" prefWidth="221.0" style="-fx-background-color: #24001D; -fx-background-radius: 20; -fx-border-radius: 20;" text="OYUNDAN ÇIK" textFill="#b29898">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Button>
+      <Button fx:id="creditsID" layoutX="194.0" layoutY="198.0" mnemonicParsing="false" onAction="#handleCredits" opacity="0.64" prefHeight="41.0" prefWidth="221.0" style="-fx-background-color: #24001D; -fx-background-radius: 20; -fx-border-radius: 20;" text="YAPIMCILAR" textFill="#bfa6a6">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Button>
+      <Button fx:id="startID" layoutX="194.0" layoutY="128.0" mnemonicParsing="false" onAction="#handleStart" opacity="0.83" prefHeight="31.0" prefWidth="221.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #24001D;" text="OYUNU BAŞLAT" textFill="#b59f9f">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Button>
+      <Separator layoutX="87.0" layoutY="351.0" opacity="0.38" prefHeight="3.0" prefWidth="435.0" />
+      <Separator layoutX="76.0" layoutY="84.0" opacity="0.38" prefHeight="3.0" prefWidth="435.0" />
+      <Text layoutX="178.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="KATAMINO">
+         <font>
+            <Font name="Zapfino" size="26.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="88.0" fitWidth="90.0" layoutX="14.0" layoutY="97.0">
+         <image>
+            <Image url="@/UIManagement/res/sushi.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="102.0" fitWidth="90.0" layoutX="486.0" layoutY="90.0">
+         <image>
+            <Image url="@/UIManagement/res/rice.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="102.0" fitWidth="90.0" layoutX="14.0" layoutY="218.0">
+         <image>
+            <Image url="@/UIManagement/res/sumo-fighter.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="88.0" fitWidth="90.0" layoutX="486.0" layoutY="241.0">
+         <image>
+            <Image url="@/UIManagement/res/japanese-shuriken.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>
