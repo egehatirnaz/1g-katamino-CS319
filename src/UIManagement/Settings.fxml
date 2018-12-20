@@ -2,70 +2,40 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
-<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="444.0" prefWidth="651.0" style="-fx-background-color: #CE2D10;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIManagement.SettingsController">
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="444.0" prefWidth="651.0" style="-fx-background-color: #0072B3;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIManagement.SettingsController">
    <children>
-      <Pane layoutX="14.0" layoutY="14.0" prefHeight="64.0" prefWidth="627.0">
-         <children>
-            <HBox layoutX="-14.0" layoutY="-14.0" prefHeight="122.0" prefWidth="645.0" />
-         </children>
-      </Pane>
-      <Pane layoutY="71.0" prefHeight="259.0" prefWidth="651.0" style="-fx-background-color: #CE2D10; -fx-background-radius: 20;">
-         <children>
-            <TextField layoutX="92.0" layoutY="32.0" opacity="0.39" prefHeight="51.0" prefWidth="473.0" style="-fx-background-color: #952813; -fx-border-color: #FAAA00; -fx-background-insets: 0; -fx-background-radius: 20; -fx-border-radius: 20;" text="Enter your Nickname">
-               <font>
-                  <Font name="Sinhala Sangam MN" size="21.0" />
-               </font>
-            </TextField>
-            <Button fx:id="save" layoutX="156.0" layoutY="104.0" mnemonicParsing="false" onAction="#handleSaveClick" opacity="0.73" prefHeight="51.0" prefWidth="141.0" style="-fx-background-color: #FF9D00; -fx-background-radius: 20;" text="Save" textFill="#ddcaca">
-               <font>
-                  <Font name="Wingdings 2" size="17.0" />
-               </font>
-            </Button>
-            <Button fx:id="cancel" layoutX="328.0" layoutY="104.0" mnemonicParsing="false" onAction="#handleCancelClick" opacity="0.73" prefHeight="51.0" prefWidth="141.0" style="-fx-background-color: #62D389; -fx-background-radius: 20;" text="Cancel" textFill="#ddcaca">
-               <font>
-                  <Font name="Wingdings 2" size="17.0" />
-               </font>
-            </Button>
-            <Text fill="#bfa6a6" layoutX="227.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign In " />
-            <Text fill="#bfaeae" layoutX="227.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Music" />
-            <RadioButton fx:id="signIn" layoutX="318.0" layoutY="197.0" mnemonicParsing="false" onAction="#handleSignIn" />
-            <RadioButton fx:id="music" layoutX="318.0" layoutY="228.0" mnemonicParsing="false" onAction="#handleMusic" />
-            <Separator layoutX="32.0" layoutY="21.0" opacity="0.4" prefHeight="3.0" prefWidth="585.0" />
-            <Text fill="#685252" layoutX="250.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SETTINGS">
-               <font>
-                  <Font size="36.0" />
-               </font>
-            </Text>
-         </children>
-      </Pane>
-      <Separator layoutX="33.0" layoutY="375.0" opacity="0.4" prefHeight="3.0" prefWidth="566.0" />
-       <Text fill="#bfa6a6" layoutX="214.0" layoutY="349.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Language" />
-       <ImageView fx:id="langTR" fitHeight="29.0" fitWidth="45.0" layoutX="316.0" layoutY="331.0" onMouseClicked="#changeLanguageTR" pickOnBounds="true" preserveRatio="true">
-           <image>
-               <Image url="@res/TUR-flag.gif" />
-           </image>
-           <effect>
-               <InnerShadow />
-           </effect>
-       </ImageView>
-       <ImageView fx:id="langEN" fitHeight="51.0" fitWidth="60.0" layoutX="373.0" layoutY="320.0" onMouseClicked="#changeLanguageEN" pickOnBounds="true" preserveRatio="true">
-           <image>
-               <Image url="@res/UKUS-flag.png" />
-           </image>
-           <effect>
-               <InnerShadow />
-           </effect>
-       </ImageView>
+      <Pane layoutX="14.0" layoutY="14.0" prefHeight="64.0" prefWidth="627.0" />
+      <ImageView fitHeight="515.0" fitWidth="828.0" layoutX="-104.0" layoutY="-11.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@/UIManagement/res/Tetris.jpg" />
+      </image>
+      </ImageView>
+      <TextField layoutX="128.0" layoutY="125.0" opacity="0.78" prefHeight="51.0" prefWidth="420.0" promptText="Enter Your Nickname" style="-fx-background-radius: 20;" text="Enter Your Nickname">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </TextField>
+      <Button fx:id="save" layoutX="179.0" layoutY="239.0" mnemonicParsing="false" onAction="#handleSaveClick" prefHeight="64.0" prefWidth="124.0" style="-fx-background-color: #FF9D00; -fx-background-radius: 20;" text="Save" textFill="#5b6b86">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Button>
+      <Button fx:id="cancel" layoutX="376.0" layoutY="239.0" mnemonicParsing="false" onAction="#handleCancelClick" prefHeight="64.0" prefWidth="124.0" style="-fx-background-color: #62D389; -fx-background-radius: 20;" text="Cancel" textFill="#5b6b86">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Button>
+      <RadioButton layoutX="295.0" layoutY="362.0" mnemonicParsing="false" text="Sign in" textFill="#adb2e1">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </RadioButton>
    </children>
 </AnchorPane>
