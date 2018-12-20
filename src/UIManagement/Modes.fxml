@@ -1,32 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #0075cf#0075cf;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIManagement.ModesController">
    <children>
-      <Button layoutX="136.0" layoutY="134.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="340.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #620659#620659;" onAction="#handleChallenge" text="Challenge Mode" textFill="#e6f20d">
+      <Button layoutX="46.0" layoutY="-169.0" mnemonicParsing="false" onAction="#handleChallenge" prefHeight="51.0" prefWidth="340.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #620659#620659;" text="Challenge Mode" textFill="#e6f20d">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="136.0" layoutY="214.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="340.0" style="-fx-background-radius: 20; -fx-background-color: #620659#620659;" onAction="#handleNormal" text="Normal Mode" textFill="#ecf800">
+      <ImageView fitHeight="554.0" fitWidth="893.0" layoutX="-146.0" layoutY="-58.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/UIManagement/res/Tetris.jpg" />
+         </image>
+      </ImageView>
+      <Button layoutX="46.0" layoutY="92.0" mnemonicParsing="false" onAction="#handleNormal" opacity="0.81" prefHeight="68.0" prefWidth="206.0" style="-fx-background-radius: 20; -fx-background-color: #005A3C;" text="Normal Mode" textFill="#dad0d0">
          <font>
-            <Font size="20.0" />
+            <Font name="Gurmukhi MN" size="25.0" />
          </font>
       </Button>
-      <Button layoutX="136.0" layoutY="298.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="340.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #620659#620659;" onAction="#handleDynamic" text="Dynamic Mode" textFill="#e2f201">
+      <Button layoutX="342.0" layoutY="92.0" mnemonicParsing="false" onAction="#handleChallenge" opacity="0.88" prefHeight="68.0" prefWidth="228.0" style="-fx-background-radius: 20; -fx-background-color: #005A3C;" text="Challenge Mode" textFill="#cdc3c3">
          <font>
-            <Font size="20.0" />
+            <Font name="Gurmukhi MN" size="25.0" />
          </font>
       </Button>
-      <Text fill="#deff00" layoutX="229.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MODES" wrappingWidth="170.744140625">
+      <Button layoutX="193.0" layoutY="193.0" mnemonicParsing="false" onAction="#handleDynamic" opacity="0.89" prefHeight="68.0" prefWidth="228.0" style="-fx-background-radius: 20; -fx-background-color: #005A3C;" text="Dynamic Mode" textFill="#cdc3c3">
          <font>
-            <Font size="43.0" />
+            <Font name="Gurmukhi MN" size="25.0" />
          </font>
-      </Text>
+      </Button>
+      <Button layoutX="36.0" layoutY="318.0" mnemonicParsing="false" onAction="#handleBack" opacity="0.79" prefHeight="68.0" prefWidth="80.0" style="-fx-background-color: #640BD3; -fx-background-radius: 20;" text="Back" textFill="#e1dcdc">
+         <font>
+            <Font name="Papyrus Condensed" size="19.0" />
+         </font>
+      </Button>
    </children>
 </Pane>
