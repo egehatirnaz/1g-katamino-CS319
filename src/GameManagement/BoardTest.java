@@ -32,27 +32,56 @@ import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.nio.file.Paths;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import javafx.geometry.*;
+import javafx.scene.Node;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Font;
+
+import java.util.Collection;
+import java.util.concurrent.TimeUnit;
+import java.text.DecimalFormat;
+import javafx.application.Application;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /**
  *
- * @author mert epsileli - burak korkmaz - yusuf samsum
+ * @author mert epsileli - burak korkmaz - yusuf samsum - frtyldz
  */
 public class BoardTest extends Application {
 
     private Scene window;
     double originX, originY;
     int startLevel = 4;
-    GameMapper gm = new NormalModeMapper();
+
+    //Text tLab = new Text(10,20,"Time: ");
+    //Text timeLL = new Text(100,20," Hey");
+    //static int i = 0;
+    //private long time;
+
+    private VBox vbox = new VBox();
+    private DigitalClock clock = new DigitalClock();
+    private boolean running = false;
+    TimeKeeper t1 = new TimeKeeper();
+
     @Override
     public void start(Stage primaryStage) {
         //setBlocks();
+        vbox.getChildren().addAll(clock);
+        /*tLab.setFont(Font.font ("Verdana", 20));
+        tLab.setFill(Color.RED);
+        timeLL.setFont(Font.font ("Verdana", 20));*/
         Group root = new Group();
+        GameMapper gm = new NormalModeMapper();
        // System.out.println( "Stage im " + gm.getCurrentLevel() );
         ArrayList<ImageView> imageList =  gm.getInitialImageList();
         System.out.println( "initial image list start method: " + gm.getInitialImageList().size() );
@@ -71,10 +100,8 @@ public class BoardTest extends Application {
                 // System.out.println(root.getChildren().get(i).computeAreaInScreen());
             }
         }
-
-
+        root.getChildren().add(vbox);
         Scene scene = new Scene(root, 1000, 1000);
-
 
         //System.out.println( "ImageSize: "  + imageList.size() );
         for( int i = 0; i < imageList.size(); i++ )
@@ -153,16 +180,16 @@ public class BoardTest extends Application {
                 }
                 if ( gm.isLevelFinished(startLevel)){
                     try {
+                        t1.stopTimer(t1.getTime());
                         Thread.sleep( 1000 );
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                     startLevel++;
-                    this.start( primaryStage );
+                    start( primaryStage );
                 }
                 /*if(){
                     System.out.println("Game is over");
-
                     for( int noOfBlock = 0; noOfBlock < imageList.size(); noOfBlock++)
                         imageList.get(noOfBlock).setDisable( true );
                 }*/
@@ -172,11 +199,57 @@ public class BoardTest extends Application {
         for( int i = 0; i < imageList.size(); i++)
             root.getChildren().add( imageList.get(i));
 
+        //t1.startTimer(00);
+        //t1.run(timeLL);
+        //t1.stopTimer(t1.getTime());
+        /*Thread clock = new Thread();
+        System.out.println(clock.start());
         root.getChildren().add(gm.getStickView());
+        root.getChildren().add(10, tLab);
+        root.getChildren().add(10, timeLL);*/
         primaryStage.setTitle("Katamino");
         primaryStage.setScene(scene);
         primaryStage.show();
         window = scene;
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent arg0) {
+                running = false;
+                primaryStage.close();
+            }
+
+        });
+        runClock();
+        //t1.run(timeLL);
+    }
+
+    private void runClock() {
+        running = true;
+        new Thread(() -> {
+            long last = System.nanoTime();
+            double delta = 0;
+            double ns = 1000000000.0 / 1;
+            int count = 0;
+            int number = 0;
+            boolean check = false;
+
+            while (running) {
+                long now = System.nanoTime();
+                delta += (now - last) / ns;
+                last = now;
+
+                while (delta >= 1) {
+                    count = (count + 1) % 60;
+                    if((count % 60 == 0) && (check)){
+                        number ++;
+                    }
+                    check = true;
+                    DecimalFormat df = new DecimalFormat("000");
+                    clock.refreshDigits(df.format(count));
+                    clock.refreshMinute(number);
+                    delta--;
+                }
+            }
+        }).start();
     }
 
     public Scene returnScene() {

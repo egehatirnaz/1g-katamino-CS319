@@ -19,7 +19,7 @@ public class BlockMaker extends Application {
 
 
     public BlockMaker(){
-         database = new BlocksDatabase("yusuf123");
+         database = new BlocksDatabase("8222");
     }
 
     @Override
@@ -47,8 +47,8 @@ public class BlockMaker extends Application {
         });
 
         Pane root = new Pane();
-        //root.getChildren().add( btn );
-        root.getChildren().add( dynamic );
+        root.getChildren().add( btn );
+        //root.getChildren().add( dynamic );
         Scene scene = new Scene(root, 500, 500);
         primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);
@@ -60,7 +60,7 @@ public class BlockMaker extends Application {
     {
         ArrayList<Direction> adjacents = new ArrayList<Direction>();
         String loc = "";
-        for( int i = 1 ; i <= 3; i++)
+        for( int i = 1 ; i <= 12; i++)
         {
             loc = "src/GameManagement/media/";
             String blockName = mode + i;
