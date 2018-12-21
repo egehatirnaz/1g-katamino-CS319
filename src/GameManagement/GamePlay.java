@@ -50,14 +50,15 @@ public class GamePlay extends Application {
         {
             gameMapper = new ChallangeModeMapper( password );
         }
-        else
+        else if( gameMode.equals( "DynamicMode" ) )
         {
             gameMapper = new DynamicModeMapper( password );
         }
         // boxes and scenes
+        /*
         root = new Group();
         scene = new Scene(root, 1000, 1000);
-        vbox = new VBox();
+        vbox = new VBox();*/
 
         // array initializations
         fitHeightList = new ArrayList<>();
@@ -79,7 +80,7 @@ public class GamePlay extends Application {
     public void start(Stage primaryStage) {
         // first initialization for showing
         root = new Group();
-        scene = new Scene(root, 1000, 1000);
+        scene = new Scene(root, primaryStage.getWidth(),primaryStage.getHeight());
         vbox = new VBox();
 
         // assignments
@@ -164,28 +165,13 @@ public class GamePlay extends Application {
                                     count2++;
                             }
                         }
-
-
                     }
-
                 }
 
                 System.out.println(gameMapper.getSQUARESIZE());
 
                 if(count % 5 == 0 && count != 0){
-                    //System.out.println(count);
-                    System.out.println("True");
-                    System.out.println(blockPiece.getX());
-                    System.out.println(blockPiece.getY());
-                    //blockPiece.setPickOnBounds(true);
-                    //System.out.println(blockPiece.getX());
-
                     double xlocation=0,ylocation=0;
-                    System.out.println("X (ilk) lokasyonu " + blockPiece.getImage().getWidth());
-                    System.out.println("Y (ilk) lokasyonu " + blockPiece.getImage().getHeight());
-                    System.out.println(gameMapper.getCurrentLevel());
-                    System.out.println(boardSquares[0].length);
-
                     for(double b = (blockPiece.getY()+blockPiece.getImage().getHeight());b >blockPiece.getY();b-- ){
                         for(double a = (blockPiece.getX()+ blockPiece.getImage().getWidth());a>blockPiece.getX();a--){
                             if(root.getChildren().get(root.getChildren().indexOf(blockPiece)).contains(a, b)){
@@ -195,12 +181,8 @@ public class GamePlay extends Application {
 
                         }
                     }
-                    System.out.println("X lokasyonu " + xlocation);
-                    System.out.println("Y lokasyonu " + ylocation);
-
                     double maxheight=0;
                     double maxwidth=0;
-
 
                     for(double a = xlocation ; a <= blockPiece.getImage().getWidth() ; a++){
                         if(root.getChildren().get(root.getChildren().indexOf(blockPiece)).contains(a, ylocation))
@@ -211,17 +193,13 @@ public class GamePlay extends Application {
                         if(root.getChildren().get(root.getChildren().indexOf(blockPiece)).contains(xlocation, a))
                             maxheight = a;
                     }
-                    System.out.println("Max Height" + maxheight + " Max Width" + maxwidth);
-                    System.out.println("Origin 1- "+ blockPiece.getX() + " 2- " + blockPiece.getY() );
-                    System.out.println("loc 1- "+ xlocation + " 2- " + ylocation );
+
                     if(xlocation==225)
                         xlocation++;
                     if(ylocation==-75)
                         ylocation++;
                     int x = ((int)xlocation - 225) /100 ;
                     int y = ((int)ylocation - 75) / 100;
-
-                    System.out.println(" 1- "+ x + " 2- " + y );
 
                     if(maxwidth  == gameMapper.getCurrentLevel())
                         x--;
@@ -230,57 +208,33 @@ public class GamePlay extends Application {
 
                     if( x>=0 && x < gameMapper.getCurrentLevel()  && y >= 0 && y < boardSquares[0].length  && blockPiece.preserveRatioProperty().getValue() == false && count2==0) {
                         if (boardSquares[x][y].getStateOfSquare()) {
-                            System.out.println("Yok Artık");
-
-
                             double stickX = 250+x*100 ;
                             double stickY = 100+y*100 ;
                             blockPiece.setX(stickX + blockPiece.getX() - xlocation);
                             blockPiece.setY(stickY + blockPiece.getY() - ylocation);
                         }
-                        else {
-                            System.out.println("False1");
-                            blockPiece.setX(gameMapper.getInitialPositionX().get(blockList.indexOf(blockPiece)));
-                            blockPiece.setY(gameMapper.getInitialPositionY().get(blockList.indexOf(blockPiece)));
-                            blockPiece.setPreserveRatio(true);
-                            blockPiece.setFitWidth(100);
-                            blockPiece.setFitHeight(100);
-                        }
+                        else
+                            returnToInitialPlace(blockPiece);
+
                     }
-                    else {
-                        System.out.println("False2");
-                        blockPiece.setX(gameMapper.getInitialPositionX().get(blockList.indexOf(blockPiece)));
-                        blockPiece.setY(gameMapper.getInitialPositionY().get(blockList.indexOf(blockPiece)));
-                        blockPiece.setPreserveRatio(true);
-                        blockPiece.setFitWidth(100);
-                        blockPiece.setFitHeight(100);
-                    }
+                    else
+                        returnToInitialPlace(blockPiece);
+
                 }
-                else{
-                    System.out.println("False3");
-                    blockPiece.setX(gameMapper.getInitialPositionX().get(blockList.indexOf(blockPiece)));
-                    blockPiece.setY(gameMapper.getInitialPositionY().get(blockList.indexOf(blockPiece)));
-                    blockPiece.setPreserveRatio(true);
-                    blockPiece.setFitWidth(100);
-                    blockPiece.setFitHeight(100);
-                }
+                else
+                    returnToInitialPlace(blockPiece);
+
 
                 if ( gameMapper.isLevelFinished(startLevel)){
-                   /* try {
+                    try {
                         t1.stopTimer(t1.getTime());
                         Thread.sleep( 1000 );
                     } catch (InterruptedException e) {
                         e.printStackTrace();
-                    }*/
+                    }
                     startLevel++;
                     start( primaryStage );
                 }
-                /*if(){
-                    System.out.println("Game is over");
-
-                    for( int noOfBlock = 0; noOfBlock < blockList.size(); noOfBlock++)
-                        blockList.get(noOfBlock).setDisable( true );
-                }*/
             });
         }
 
@@ -306,6 +260,7 @@ public class GamePlay extends Application {
             /*********************************/
             primaryStage.setTitle("Katamino");
             primaryStage.setScene(scene);
+            primaryStage.setFullScreen(true);
             primaryStage.show();
             window = scene;
     }
@@ -340,14 +295,17 @@ public class GamePlay extends Application {
         }).start();
     }
 
+    private void returnToInitialPlace( ImageView blockPiece )
+    {
+        blockPiece.setX(gameMapper.getInitialPositionX().get(blockList.indexOf(blockPiece)));
+        blockPiece.setY(gameMapper.getInitialPositionY().get(blockList.indexOf(blockPiece)));
+        blockPiece.setPreserveRatio(true);
+        blockPiece.setFitWidth(100);
+        blockPiece.setFitHeight(100);
+    }
+
     public Scene returnScene() {
         return window;
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        launch(args);
-    }
 }

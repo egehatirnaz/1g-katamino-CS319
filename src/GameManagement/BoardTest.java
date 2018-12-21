@@ -15,6 +15,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.*;
 import javafx.scene.Cursor;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -67,8 +69,9 @@ public class BoardTest extends Application {
     Text timeLL = new Text(100,20," Hey");
     //static int i = 0;
     private long time;
+    ArrayList<ImageView> imageList;
 
-    private VBox vbox = new VBox();
+
     private DigitalClock clock = new DigitalClock();
     private boolean running = false;
     TimeKeeper t1 = new TimeKeeper();
@@ -78,14 +81,14 @@ public class BoardTest extends Application {
     public void start(Stage primaryStage) {
         Group root = new Group();
         Scene scene = new Scene(root, 1000, 1000);
-
+        VBox vbox = new VBox();
         //setBlocks();
         vbox.getChildren().addAll(clock);
-        tLab.setFont(Font.font ("Verdana", 20));
+       /* tLab.setFont(Font.font ("Verdana", 20));
         tLab.setFill(Color.RED);
-        timeLL.setFont(Font.font ("Verdana", 20));
+        timeLL.setFont(Font.font ("Verdana", 20));*/
        // System.out.println( "Stage im " + gm.getCurrentLevel() );
-        ArrayList<ImageView> imageList =  gm.getInitialImageList();
+        imageList =  gm.getInitialImageList();
         System.out.println( "initial image list start method: " + gm.getInitialImageList().size() );
 
         final ArrayList<Double> fitHeightList = gm.getOriginalHeightScale();
@@ -127,8 +130,7 @@ public class BoardTest extends Application {
                         //System.out.println( "y1 : "  + anImage.getY() );
                         anImage.toFront();
                         // rotate logic
-
-                        if(t.getClickCount()%2==0) {
+                        if( (t.getButton() == MouseButton.PRIMARY) && (t.getClickCount()%2==0 ) ) {
                             double orX = anImage.getX();
                             double orY = anImage.getY();
                             anImage.setFitWidth(fitWidth);
@@ -137,12 +139,27 @@ public class BoardTest extends Application {
                             SnapshotParameters param = new SnapshotParameters();
                             param.setFill(Color.TRANSPARENT);
                             param.setTransform(new Rotate(90,anImage.getImage().getHeight(),anImage.getImage().getWidth()));
-
+                            //anImage.setScaleY(-1);
                             anImage.setImage(anImage.snapshot(param,null));
                             anImage.setFitWidth(100);
                             anImage.setFitHeight(100);
                             //System.out.println("Rotation" + anImage.getX());
                             //System.out.println("Rotation" + anImage.getBoundsInParent());
+                        }
+                        else if(  t.getButton() == MouseButton.SECONDARY  )
+                        {
+                            double orX = anImage.getX();
+                            double orY = anImage.getY();
+                            anImage.setFitWidth(fitWidth);
+                            anImage.setFitHeight(fitHeight);
+
+                            SnapshotParameters param = new SnapshotParameters();
+                            param.setFill(Color.TRANSPARENT);
+                            //param.setTransform(new Rotate(90,anImage.getImage().getHeight(),anImage.getImage().getWidth()));
+                            param.setTransform(new Scale( 1,-1));
+                            anImage.setImage(anImage.snapshot(param,null));
+                            anImage.setFitWidth(100);
+                            anImage.setFitHeight(100);
                         }
                     }
             );
@@ -273,30 +290,15 @@ public class BoardTest extends Application {
                             anImage.setY(stickY + anImage.getY() - ylocation);
                         }
                         else {
-                            System.out.println("False1");
-                            anImage.setX(gm.getInitialPositionX().get(imageList.indexOf(anImage)));
-                            anImage.setY(gm.getInitialPositionY().get(imageList.indexOf(anImage)));
-                            anImage.setPreserveRatio(true);
-                            anImage.setFitWidth(100);
-                            anImage.setFitHeight(100);
+                            returnToInitialPlace(anImage);
                         }
                     }
                     else {
-                        System.out.println("False2");
-                        anImage.setX(gm.getInitialPositionX().get(imageList.indexOf(anImage)));
-                        anImage.setY(gm.getInitialPositionY().get(imageList.indexOf(anImage)));
-                        anImage.setPreserveRatio(true);
-                        anImage.setFitWidth(100);
-                        anImage.setFitHeight(100);
+                        returnToInitialPlace(anImage);
                     }
                 }
                 else{
-                    System.out.println("False3");
-                    anImage.setX(gm.getInitialPositionX().get(imageList.indexOf(anImage)));
-                    anImage.setY(gm.getInitialPositionY().get(imageList.indexOf(anImage)));
-                    anImage.setPreserveRatio(true);
-                    anImage.setFitWidth(100);
-                    anImage.setFitHeight(100);
+                    returnToInitialPlace(anImage);
                 }
 
                 if ( gm.isLevelFinished(startLevel)){
@@ -333,13 +335,13 @@ public class BoardTest extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
         window = scene;
-        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+        /*primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             public void handle(WindowEvent arg0) {
                 running = false;
                 primaryStage.close();
             }
 
-        });
+        });*/
         runClock();
         t1.run(timeLL);
     }
@@ -372,6 +374,15 @@ public class BoardTest extends Application {
                 }
             }
         }).start();
+    }
+
+    private void returnToInitialPlace( ImageView blockPiece )
+    {
+        blockPiece.setX(gm.getInitialPositionX().get(imageList.indexOf(blockPiece)));
+        blockPiece.setY(gm.getInitialPositionY().get(imageList.indexOf(blockPiece)));
+        blockPiece.setPreserveRatio(true);
+        blockPiece.setFitWidth(100);
+        blockPiece.setFitHeight(100);
     }
 
     public Scene returnScene() {
