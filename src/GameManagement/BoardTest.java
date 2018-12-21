@@ -81,7 +81,7 @@ public class BoardTest extends Application {
         tLab.setFill(Color.RED);
         timeLL.setFont(Font.font ("Verdana", 20));*/
         Group root = new Group();
-        GameMapper gm = new NormalModeMapper();
+        GameMapper gm = new NormalModeMapper("8222");
        // System.out.println( "Stage im " + gm.getCurrentLevel() );
         ArrayList<ImageView> imageList =  gm.getInitialImageList();
         System.out.println( "initial image list start method: " + gm.getInitialImageList().size() );
