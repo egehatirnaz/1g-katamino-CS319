@@ -51,16 +51,13 @@ public class GamePlay extends Application {
         else if( gameMode.equals("ChallangeMode") )
         {
             gameMapper = new ChallangeModeMapper( password );
+            startLevel = 4;
         }
         else if( gameMode.equals( "DynamicMode" ) )
         {
             gameMapper = new DynamicModeMapper( password );
+            startLevel = 1;
         }
-        // boxes and scenes
-        /*
-        root = new Group();
-        scene = new Scene(root, 1000, 1000);
-        vbox = new VBox();*/
 
         // array initializations
         fitHeightList = new ArrayList<>();
@@ -99,7 +96,7 @@ public class GamePlay extends Application {
             double fitHeight = fitHeightList.get(i);
             double fitWidth = fitWidthList.get(i);
 
-            /*************When mouse is pressed********************/
+            /************* When mouse is pressed ********************/
             blockList.get(i).setOnMousePressed((t) -> {
                         // calculation of origin position of image with respect to scene
                         originX = t.getSceneX();
@@ -259,7 +256,10 @@ public class GamePlay extends Application {
 
             vbox.getChildren().addAll(clock);
 
-            root.getChildren().add(gameMapper.getStickView());
+            if( gameMapper.getStickView() != null )
+            {
+                root.getChildren().add(gameMapper.getStickView());
+            }
             root.getChildren().add(vbox);
 
             // time keeper

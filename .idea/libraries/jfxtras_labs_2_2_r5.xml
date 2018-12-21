@@ -2,6 +2,7 @@
   <library name="jfxtras-labs-2.2-r5">
     <CLASSES>
       <root url="jar://$USER_HOME$/Desktop/jfxtras-labs-2.2-r5.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/postgresql-42.2.5.jre6.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
