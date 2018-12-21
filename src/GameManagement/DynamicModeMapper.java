@@ -9,11 +9,17 @@ import java.util.ArrayList;
 
 public class DynamicModeMapper extends GameMapper {
 
-    private String password;
+    private ArrayList<ImageView> imageList;
+    private SolutionDatabase solutionDatabase;
+    private int width;
+    private int height;
+
 
     public DynamicModeMapper( String password )
     {
-        this.password = password;
+        solutionDatabase = new SolutionDatabase(password);
+        imageList = new ArrayList<>();
+        setGame(getCurrentLevel());
     }
 
     @Override
@@ -33,6 +39,8 @@ public class DynamicModeMapper extends GameMapper {
 
     @Override
     void setSquares(int width, int height){
+        this.width = width;
+        this.height = height;
         Square[][] squares = super.getSquares();
         squares = new Square[width][height];
         for(int i = 0; i < squares.length; i++){
@@ -54,12 +62,20 @@ public class DynamicModeMapper extends GameMapper {
 
     @Override
     ArrayList<ImageView> getInitialImageList() {
-        return null;
+        return imageList;
     }
 
     @Override
     boolean isLevelFinished(int currentLevel) {
-        return false;
+        Square[][] squares = super.getSquares();
+        for(int i = 0; i < width; i++){
+            for(int j = 0; j < height; j++) {
+                if(squares[i][j].getStateOfSquare()==false)
+                    return false;
+            }
+        }
+        super.updateLevel();
+        return true;
     }
 
     @Override
@@ -67,10 +83,8 @@ public class DynamicModeMapper extends GameMapper {
 
         int currentLevel = getCurrentLevel();
         imageList.clear();
-        System.out.println( "setInitialImage: "+ currentLevel );
         String str;
-        System.out.println( solutionDatabase );
-        ArrayList<String> solutionList = solutionDatabase.getSolution( "NormalMode", currentLevel, 1);
+        ArrayList<String> solutionList = solutionDatabase.getSolution( "DynamicMode", currentLevel, 1);
         for( int i = 0; i < solutionList.size(); i++ )
         {
             str = "src/GameManagement/media/" + solutionList.get(i) + ".png";

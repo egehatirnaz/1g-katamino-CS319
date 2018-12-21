@@ -1,4 +1,3 @@
-package GameManagement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,10 +10,10 @@ public class PlayerDatabase {
 	
 	//VARIABLES
 	private String password;
-	String rvr = "\'";
-	Connection c;
-	PreparedStatement ps;
-	ResultSet rs;
+	private String rvr = "\'";
+	private Connection c;
+	private PreparedStatement ps;
+	private ResultSet rs;
 		
 		
 	//CONSTRUCTOR
@@ -29,14 +28,6 @@ public class PlayerDatabase {
 						"  PRIMARY KEY (nickname) )";
 			ps = c.prepareStatement(creationCode);
 			ps.execute();		
-		
-			/*if(getBlockNames().size() == 0 )
-			{
-			String copyCode = " COPY blocks " + 
-					"FROM 'D:\\Users\\Mert\\eclipse-workspace\\Katamino\\blocksDatabase' DELIMITER ',' CSV HEADER;";
-			ps = c.prepareStatement(copyCode);
-			ps.execute();				
-			} */
 				
 		}catch (SQLException e) {
 				e.printStackTrace();
@@ -46,7 +37,7 @@ public class PlayerDatabase {
 	
 	//HELPER
 	//DATABASE METHODS
-	void createConnection()
+	public void createConnection()
 	{
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -76,7 +67,7 @@ public class PlayerDatabase {
 			}
 	}
 	
-	void closeDatabase()
+	public void closeDatabase()
 	{
 		try {
 			ps.close();
@@ -86,7 +77,7 @@ public class PlayerDatabase {
 		}
 	}
 	
-	void deleteDatabase()
+	public void deleteDatabase()
 	{	
 		try {
 			String deletionCode = "DROP TABLE [ IF EXISTS ] players";
@@ -98,7 +89,7 @@ public class PlayerDatabase {
 			}
 	}
 	
-	void clearDatabase()
+	public void clearDatabase()
 	{	
 		try {
 			String clearCode = "DELETE FROM players";
@@ -110,24 +101,28 @@ public class PlayerDatabase {
 			}
 	}
 	
-	void addPlayer (String nickName, int time)
+	public void addPlayer (String nickName, int time)
 	{
+		if( controlNickName(nickName)) {
 		try {
 			String insertionCode = "INSERT INTO players (nickname, time)"
-					+ " VALUES (" + rvr + nickName + rvr + ","  + rvr + String.valueOf(time) + rvr + ")";
+					+ " VALUES (" + rvr + nickName.toLowerCase() + rvr + ","  + rvr + String.valueOf(time) + rvr + ")";
 			
 			ps = c.prepareStatement(insertionCode);
 			ps.execute();	
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+		}
+		else
+			System.out.println("There is a player with this name.");
 	}
 	
-	void updatePlayerTime(String nickName , int time)
+	public void updatePlayerTime(String nickName , int time)
 	{
-		String updateCode = "UPDATE players SET time = " + rvr + String.valueOf(time) + rvr + "WHERE nickname = '" + nickName + "';";
+		String updateCode = "UPDATE players SET time = " + rvr + String.valueOf(time) + rvr + " WHERE nickname = '" + 
+							nickName.toLowerCase() + "';";
 		
-		System.out.println(updateCode);
 		if(!controlNickName(nickName)) {
 		try {
 			ps = c.prepareStatement(updateCode);
@@ -139,15 +134,15 @@ public class PlayerDatabase {
 	}
 	
 	//Return false if there is a player with this nickname.
-	boolean controlNickName(String nickName)
+	public boolean controlNickName(String nickName)
 	{
 		for(int a = 0; a < getNickNames().size(); a++)
-			if (getNickNames().get(a).equals(nickName))
+			if (getNickNames().get(a).equals(nickName.toLowerCase()))
 				return false;
 		return true;
 	}
 	
-	ArrayList<String> getNickNames()
+	public ArrayList<String> getNickNames()
 	{
 		ArrayList<String> nickNames = new ArrayList<String>();
 		try {
@@ -155,7 +150,7 @@ public class PlayerDatabase {
 			ps = c.prepareStatement(nicknameCode);
 			rs = ps.executeQuery();		
 		while(rs.next())
-		nickNames.add(rs.getString("nickname"));		
+			nickNames.add(rs.getString("nickname"));		
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -163,7 +158,7 @@ public class PlayerDatabase {
 		return nickNames;	
 	}
 		
-	ArrayList<Player> getSortedPlayers()
+	public ArrayList<Player> getSortedPlayers()
 	{
 		String sortedPlayersCode = "SELECT nickname, time FROM players ORDER BY time";
 		ArrayList<Player> sortedPlayers = new ArrayList<Player>();
@@ -181,18 +176,39 @@ public class PlayerDatabase {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		
-		//System.out.println(nicknames.toString());
-		//System.out.println(times.toString());
+
 		for(int i = 0; i < nicknames.size(); i++)
 		{		
 			String name = nicknames.get(i);
 			int time = times.get(i);
-			//System.out.println(time.getTime());
 			Player newOne = new Player(name, time);
 			sortedPlayers.add(newOne);
 		}
 		return sortedPlayers;
+	}
+	
+	public String getLastNickname()
+	{
+		ArrayList<String> nickNames = getNickNames();
+		return nickNames.get(nickNames.size()-1);
+	}
+	
+	public int getTime(String nickName)
+	{
+		int time = 0;
+		if( !controlNickName(nickName) ) {
+		try {
+			String timeCode = "SELECT time FROM players WHERE nickname = '" + nickName.toLowerCase() + "';";
+			ps = c.prepareStatement(timeCode);
+			rs = ps.executeQuery();		
+		while(rs.next())
+			time = rs.getInt(time);	
+		} catch (SQLException e) {
+			e.printStackTrace();
+			}
+		}
+		
+		return time;	
 	}
 
 }

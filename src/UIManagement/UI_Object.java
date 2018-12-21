@@ -21,6 +21,8 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.Window;
+
 import java.util.concurrent.TimeUnit;
 import java.io.IOException;
 import java.nio.file.Paths;
