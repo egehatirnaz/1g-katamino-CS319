@@ -2,38 +2,19 @@ package GameManagement;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
-import javafx.scene.text.Text;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.transform.Rotate;
-import javafx.scene.transform.Scale;
-import javafx.stage.Stage;
-import javax.swing.*;
-import java.awt.image.BufferedImage;
-import java.nio.file.Paths;
-import java.time.Duration;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import javafx.geometry.*;
-import javafx.scene.Node;
-import javafx.scene.control.TextField;
-import javafx.scene.text.Font;
-import java.util.concurrent.TimeUnit;
 
 public class NormalModeMapper extends CommonMapper {
 
     private ArrayList<ImageView> imageList;
     private SolutionDatabase solutionDatabase;
-    public  NormalModeMapper(){
-        solutionDatabase = new SolutionDatabase("8222");
+    public  NormalModeMapper(String password){
+        solutionDatabase = new SolutionDatabase(password);
         imageList = new ArrayList<>();
         setGame(getCurrentLevel());
     }
-
-
 
     @Override
     ArrayList<ImageView> getInitialImageList() {
@@ -66,12 +47,6 @@ public class NormalModeMapper extends CommonMapper {
         imageList.add( img1 );
         imageList.add( img2 );
         imageList.add( img3 );*/
-    }
-
-    void startTime(TimeKeeper t, Text updateT){
-        //this.isLevelFinished(getCurrentLevel());
-        t.startTimer(00);
-        t.run(updateT);
     }
 
 }

@@ -1,8 +1,9 @@
-package  GameManagement;
+package GameManagement;
+
 public class BlocksDatabaseTest {
 
 	public static void main(String[] args) {
-		BlocksDatabase database = new BlocksDatabase("8222");
+		BlocksDatabase database = new BlocksDatabase("13111997");
 
 		Direction[] n1 = new Direction[4];
 		for( int i = 0; i < 4; i++)
@@ -17,7 +18,7 @@ public class BlocksDatabaseTest {
 		n1[1].setDistance( n1Directions2);
 		n1[2].setDistance( n1Directions3);
 		n1[3].setDistance( n1Directions4);
-		database.saveBlock( "n1", n1 );
+		database.saveBlock( "n1", n1 , "blue");
 
 		Direction[] n2 = new Direction[4];
 		for( int i = 0; i < 4; i++)
@@ -32,7 +33,7 @@ public class BlocksDatabaseTest {
 		n2[1].setDistance( n2Directions2);
 		n2[2].setDistance( n2Directions3);
 		n2[3].setDistance( n2Directions4);
-		database.saveBlock( "n2", n2 );
+		database.saveBlock( "n2", n2 , "red");
 
 		Direction[] n3 = new Direction[4];
 		for ( int i = 0; i < 4; i++)
@@ -48,7 +49,7 @@ public class BlocksDatabaseTest {
 		n3[1].setDistance( n3Directions2);
 		n3[2].setDistance( n3Directions3);
 		n3[3].setDistance( n3Directions4);
-		database.saveBlock( "n3", n3 );
+		database.saveBlock( "n3", n3 , "pink");
 
 		Direction[] n4 = new Direction[4];
 		for ( int i = 0; i < 4; i++)
@@ -64,7 +65,7 @@ public class BlocksDatabaseTest {
 		n4[1].setDistance( n4Directions2);
 		n4[2].setDistance( n4Directions3);
 		n4[3].setDistance( n4Directions4);
-		database.saveBlock( "n4", n4 );
+		database.saveBlock( "n4", n4 , "yellow");
 
 
 		Direction[] n5 = new Direction[4];
@@ -80,7 +81,7 @@ public class BlocksDatabaseTest {
 		n5[1].setDistance( n5Directions2 );
 		n5[2].setDistance( n5Directions3 );
 		n5[3].setDistance( n5Directions4 );
-		database.saveBlock( "n5", n5 );
+		database.saveBlock( "n5", n5 ,"green");
 
 		Direction[] n6 = new Direction[4];
 		for ( int i = 0; i < 4; i++)
@@ -95,7 +96,7 @@ public class BlocksDatabaseTest {
 		n6[1].setDistance( n6Directions2 );
 		n6[2].setDistance( n6Directions3 );
 		n6[3].setDistance( n6Directions4 );
-		database.saveBlock( "n6", n6 );
+		database.saveBlock( "n6", n6 , "purple");
 
 
 		Direction[] n7 = new Direction[4];
@@ -111,7 +112,7 @@ public class BlocksDatabaseTest {
 		n7[1].setDistance( n7Directions2 );
 		n7[2].setDistance( n7Directions3 );
 		n7[3].setDistance( n7Directions4 );
-		database.saveBlock( "n7", n7 );
+		database.saveBlock( "n7", n7 , "gray");
 
 		Direction[] n8 = new Direction[4];
 		for ( int i = 0; i < 4; i++)
@@ -126,7 +127,7 @@ public class BlocksDatabaseTest {
 		n8[1].setDistance( n8Directions2 );
 		n8[2].setDistance( n8Directions3 );
 		n8[3].setDistance( n8Directions4 );
-		database.saveBlock( "n8", n8 );
+		database.saveBlock( "n8", n8 , "orange");
 
 		Direction[] n9 = new Direction[4];
 		for ( int i = 0; i < 4; i++)
@@ -141,7 +142,7 @@ public class BlocksDatabaseTest {
 		n9[1].setDistance( n9Directions2 );
 		n9[2].setDistance( n9Directions3 );
 		n9[3].setDistance( n9Directions4 );
-		database.saveBlock( "n9", n9 );
+		database.saveBlock( "n9", n9 , "magenta");
 
 		Direction[] n10 = new Direction[4];
 		for ( int i = 0; i < 4; i++)
@@ -156,7 +157,7 @@ public class BlocksDatabaseTest {
 		n10[1].setDistance( n10Directions2 );
 		n10[2].setDistance( n10Directions3 );
 		n10[3].setDistance( n10Directions4 );
-		database.saveBlock( "n10", n10 );
+		database.saveBlock( "n10", n10, "cyan" );
 
 
 
@@ -173,7 +174,7 @@ public class BlocksDatabaseTest {
 		n11[1].setDistance( n11Directions2 );
 		n11[2].setDistance( n11Directions3 );
 		n11[3].setDistance( n11Directions4 );
-		database.saveBlock( "n11", n11 );
+		database.saveBlock( "n11", n11, "dark_gray" );
 
 
 		Direction[] n12 = new Direction[4];
@@ -189,7 +190,7 @@ public class BlocksDatabaseTest {
 		n12[1].setDistance( n12Directions2 );
 		n12[2].setDistance( n12Directions3 );
 		n12[3].setDistance( n12Directions4 );
-		database.saveBlock( "n12", n12 );
+		database.saveBlock( "n12", n12, "light_gray");
 
 
 		Direction[] directions = arraySetter();
@@ -200,78 +201,26 @@ public class BlocksDatabaseTest {
 		directions[1].setDistance(d12);
 		directions[2].setDistance(d13);
 
-		database.saveBlock( "d1", directions);
-
+		database.saveBlock( "d1", directions, "red");
 
 		directions = arraySetter();
 		int[] d21 = {0,1,0,0};
 		int[] d22 = {0,2,0,0};
 		directions[0].setDistance(d21);
 		directions[1].setDistance(d22);
-		database.saveBlock( "d2", directions);
+		database.saveBlock( "d2", directions, "blue");
 
 		directions = arraySetter();
 		int[] d31 = { 0, 1, 0, 0};
 		int[] d32 = { 0, 1, 1, 0};
 		directions[0].setDistance(d31);
 		directions[1].setDistance(d32);
-		database.saveBlock("d3", directions );
-
-
-
-
-		//database.updateBlockInformation( "n1" , n1);
-/*		int right = 0;
-		int down = 1;
-		int left = 0;
-		int up = 0;
-		int[] directions = {right,down,left,up};
-		for (int x:directions
-			 ) {
-
-			System.out.println( x );
-		}
-		n1[0].setDistance(directions);
-		n1[0].setDown(2);
-		n1[1].setDistance( n1[0].getDistance() );
-		n1[0].setDown(3);
-		n1[2].setDistance( n1[0].getDistance() );
-		n1[0].setDown(0);
-		n1[0].setRight(1);
-		n1[3].setDistance( n1[0].getDistance() );
-		database.saveBlock( "n1", n1 );
- 		/*int[] a1 = {1,0,0,0};
-		int[] a2 = {5,6,7,8};
-		int[] a3 = {9,10,11,12};
-		int[] a4 = {13,14,15,16};
-		Direction d1 = new Direction();
-		d1.setDistance( a1 );
-		Direction d2 = new Direction();
-		d2.setDistance( a2 );
-		Direction d3 = new Direction();
-		d3.setDistance( a3 );
-		Direction d4 = new Direction();
-		d4.setDistance( a4 );
-		Direction[] dir = {d1,d2,d3,d4};
-		Direction[] dir2 = {d1,d2,d3, null};
-		Direction[] dir3 = {d1,d2, null,null};
-		sd.saveBlock("ali",dir);
-		sd.saveBlock("veli",dir2);
-		sd.saveBlock("mert",dir3);
-
-		for (int i = 0; i < 4; i++)
-			for (int a = 0; a < 4; a++)
-		System.out.println(sd.getDirections("veli").get(i).getDistance()[a]);
-		//sd.clearDatabase();
-		sd.updateBlockInformation("mert", dir2);
-		sd.deleteBlock("ali");
-		//System.out.println(sd.getBlockNames());
-		database.deleteBlock("veli");
-		database.deleteBlock("mert");*/
-
+		database.saveBlock("d3", directions, "green" );
+				
+		database.closeDatabase();
 	}
-
-	static Direction[] arraySetter( )
+	
+	static Direction[] arraySetter()
 	{
 
 		Direction[] directions = new Direction[4];
@@ -279,40 +228,5 @@ public class BlocksDatabaseTest {
 			directions[ i ] = new Direction();
 		return directions;
 	}
-
-
-/*
-	public static void main(String[] args) {
-		BlocksDatabase bd = new BlocksDatabase("13111997");
-		int[] a1 = {1,2,3,4};
-		int[] a2 = {5,6,7,8};
-		int[] a3 = {9,10,11,12};
-		int[] a4 = {13,14,15,16};
-		Direction d1 = new Direction();
-		d1.setDistance( a1 );	
-		Direction d2 = new Direction();
-		d2.setDistance( a2 );
-		Direction d3 = new Direction();
-		d3.setDistance( a3 );
-		Direction d4 = new Direction();
-		d4.setDistance( a4 );
-		Direction[] dir = {d1,d2,d3,d4};
-		Direction[] dir2 = {d1,d2};
-		Direction[] dir3 = {d1,d2, null,null};
-		bd.saveBlock("ali",dir);
-		bd.saveBlock("veli",dir2);
-		bd.saveBlock("mert",dir3);
-		
-		for (int i = 0; i < 4; i++)
-			for (int a = 0; a < 4; a++)
-		System.out.println(bd.getDirections("veli").get(i).getDistance()[a]);
-		//bd.clearDatabase();
-		bd.updateBlockInformation("mert", dir2);
-		bd.deleteBlock("ali");
-		System.out.println(bd.controlBlockName("mert"));
-		System.out.println(bd.controlBlockName("abdfas"));
-		//System.out.println(bd.getBlockNames());
-		bd.closeDatabase();
-	}*/
 
 }

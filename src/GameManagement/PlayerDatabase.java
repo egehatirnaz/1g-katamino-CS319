@@ -1,5 +1,3 @@
-package GameManagement;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -8,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
 
-public class PlayerDatabase {/*
+public class PlayerDatabase {
 	
 	//VARIABLES
 	private String password;
@@ -38,7 +36,7 @@ public class PlayerDatabase {/*
 			ps = c.prepareStatement(copyCode);
 			ps.execute();				
 			} */
-			/*
+				
 		}catch (SQLException e) {
 				e.printStackTrace();
 		}
@@ -188,12 +186,12 @@ public class PlayerDatabase {/*
 		for(int i = 0; i < nicknames.size(); i++)
 		{		
 			String name = nicknames.get(i);
-			Time time = new Time( times.get(i) );
+			int time = times.get(i);
 			//System.out.println(time.getTime());
-			Player newOne = new Player(name, Integer.parseInt(time));
+			Player newOne = new Player(name, time);
 			sortedPlayers.add(newOne);
 		}
 		return sortedPlayers;
 	}
-*/
+
 }

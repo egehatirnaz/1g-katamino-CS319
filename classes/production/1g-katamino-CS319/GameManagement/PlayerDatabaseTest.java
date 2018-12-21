@@ -12,7 +12,7 @@ public class PlayerDatabaseTest {
 		pd.addPlayer("burak", 175);*/
 		
 		for(int i = 0; i < pd.getSortedPlayers().size(); i++)
-		System.out.println( pd.getSortedPlayers().get(i).getNickName() + " " +pd.getSortedPlayers().get(i).getTime().getTime());
+		System.out.println( pd.getSortedPlayers().get(i).getNickName() + " " +pd.getSortedPlayers().get(i).getTime());
 		pd.closeDatabase();
 
 	}
