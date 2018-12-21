@@ -253,8 +253,8 @@ public class BlocksDatabaseTest {
 	static Direction[] arraySetter()
 	{
 
-		Direction[] directions = new Direction[4];
-		for( int i = 0; i < 4 ; i++)
+		Direction[] directions = new Direction[6];
+		for( int i = 0; i < 6 ; i++)
 			directions[ i ] = new Direction();
 		return directions;
 	}
