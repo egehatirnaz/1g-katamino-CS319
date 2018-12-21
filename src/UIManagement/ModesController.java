@@ -24,27 +24,31 @@ public class ModesController {
     public void handleChallenge(ActionEvent event) {
         GamePlay gamePlay = new GamePlay( "ChallangeMode" );
         gamePlay.start(new Stage());
-        this.stage.setScene(gamePlay.returnScene());
-        this.stage.setResizable(true);
+        //this.stage.setScene(gamePlay.returnScene());
+        //this.stage.setResizable(true);
     }
 
     @FXML
     public void handleNormal(ActionEvent event) {
+        stage = (Stage)((Button) event.getSource()).getScene().getWindow();
         GamePlay gamePlay = new GamePlay( "NormalMode" );
         Stage stage = new Stage();
         stage.setFullScreen(true);
         stage.setMaximized(true);
         gamePlay.start(stage);
-        this.stage.setScene(gamePlay.returnScene());
-        this.stage.setResizable(true);
+        VBox layout1 = new VBox(20);
+        //Scene sceneNormal = gamePlay.returnScene();
+        stage.setScene(gamePlay.returnScene());
+        //this.stage.setScene(gamePlay.returnScene());
+        //this.stage.setResizable(true);
     }
 
     @FXML
     public void handleDynamic(ActionEvent event) {
         GamePlay gamePlay = new GamePlay( "DynamicMode" );
         gamePlay.start(new Stage());
-        this.stage.setScene(gamePlay.returnScene());
-        this.stage.setResizable(true);
+        //this.stage.setScene(gamePlay.returnScene());
+        //this.stage.setResizable(true);
     }
 
     @FXML
