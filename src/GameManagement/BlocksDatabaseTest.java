@@ -216,6 +216,36 @@ public class BlocksDatabaseTest {
 		directions[0].setDistance(d31);
 		directions[1].setDistance(d32);
 		database.saveBlock("d3", directions, "green" );
+		
+		directions = arraySetter();
+		int[] d41 = { 1, 0, 0, 0};
+		int[] d42 = { 2, 0, 0, 0};
+		int[] d43 = { 3, 0, 0, 0};
+		int[] d44 = { 4, 0, 0, 0};
+		int[] d45 = { 3, 1, 0, 0};
+		int[] d46 = { 4, 1, 0, 0};
+		directions[0].setDistance(d41);
+		directions[1].setDistance(d42);
+		directions[2].setDistance(d43);
+		directions[3].setDistance(d44);
+		directions[4].setDistance(d45);
+		directions[5].setDistance(d46);
+		database.saveBlock("d4", directions, "purple" );
+
+		directions = arraySetter();
+		int[] d51 = { 1, 0, 0, 0};
+		int[] d52 = { 2, 0, 0, 0};
+		int[] d53 = { 3, 0, 0, 0};
+		int[] d54 = { 3, 1, 0, 0};
+		int[] d55 = { 0, 1, 0, 0};
+		int[] d56 = { 0, 2, 0, 0};
+		directions[0].setDistance(d51);
+		directions[1].setDistance(d52);
+		directions[2].setDistance(d53);
+		directions[3].setDistance(d54);
+		directions[4].setDistance(d55);
+		directions[5].setDistance(d56);
+		database.saveBlock("d5", directions, "magenta" );
 				
 		database.closeDatabase();
 	}
