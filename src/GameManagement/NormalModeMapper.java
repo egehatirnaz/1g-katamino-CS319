@@ -10,11 +10,13 @@ public class NormalModeMapper extends CommonMapper {
 
     private ArrayList<ImageView> imageList;
     private SolutionDatabase solutionDatabase;
-    public  NormalModeMapper(String password){
-        solutionDatabase = new SolutionDatabase(password);
+    public  NormalModeMapper(){
+        solutionDatabase = new SolutionDatabase("29");
         imageList = new ArrayList<>();
         setGame(getCurrentLevel());
     }
+
+
 
     @Override
     ArrayList<ImageView> getInitialImageList() {

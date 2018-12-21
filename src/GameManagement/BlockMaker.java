@@ -19,7 +19,7 @@ public class BlockMaker extends Application {
 
 
     public BlockMaker(){
-         database = new BlocksDatabase("8222");
+         database = new BlocksDatabase("29");
     }
 
     @Override
@@ -48,7 +48,7 @@ public class BlockMaker extends Application {
 
         Pane root = new Pane();
         root.getChildren().add( btn );
-        //root.getChildren().add( dynamic );
+       // root.getChildren().add( dynamic );
         Scene scene = new Scene(root, 500, 500);
         primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);

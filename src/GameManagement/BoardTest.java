@@ -198,10 +198,7 @@ public class BoardTest extends Application {
                                     count2++;
                             }
                         }
-
-
                     }
-
                 }
 
                 System.out.println(gm.getSQUARESIZE());
