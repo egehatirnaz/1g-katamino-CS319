@@ -7,6 +7,13 @@ import java.util.ArrayList;
 
 public class DynamicModeMapper extends GameMapper {
 
+    private String password;
+
+    public DynamicModeMapper( String password )
+    {
+        this.password = password;
+    }
+
     @Override
     void setGame( int currentLevel ) {
         switch (currentLevel){

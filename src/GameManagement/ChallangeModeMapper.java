@@ -30,7 +30,7 @@ public class ChallangeModeMapper extends CommonMapper{
     void setInitialImageList() {
     	int currentLevel = getCurrentLevel();
         imageList.clear();
-        System.out.println( "setInitialImage: "+ currentLevel );
+        //System.out.println( "setInitialImage: "+ currentLevel );
         String str;
         System.out.println( solutionDatabase );
         ArrayList<String> solutionList = solutionDatabase.getSolution( "NormalMode", currentLevel, 1);

@@ -63,25 +63,27 @@ public class BoardTest extends Application {
     double originX, originY;
     int startLevel = 4;
 
-    //Text tLab = new Text(10,20,"Time: ");
-    //Text timeLL = new Text(100,20," Hey");
+    Text tLab = new Text(10,20,"Time: ");
+    Text timeLL = new Text(100,20," Hey");
     //static int i = 0;
-    //private long time;
+    private long time;
 
     private VBox vbox = new VBox();
     private DigitalClock clock = new DigitalClock();
     private boolean running = false;
     TimeKeeper t1 = new TimeKeeper();
+    GameMapper gm = new NormalModeMapper("yusuf123");
 
     @Override
     public void start(Stage primaryStage) {
+        Group root = new Group();
+        Scene scene = new Scene(root, 1000, 1000);
+
         //setBlocks();
         vbox.getChildren().addAll(clock);
-        /*tLab.setFont(Font.font ("Verdana", 20));
+        tLab.setFont(Font.font ("Verdana", 20));
         tLab.setFill(Color.RED);
-        timeLL.setFont(Font.font ("Verdana", 20));*/
-        Group root = new Group();
-        GameMapper gm = new NormalModeMapper("8222");
+        timeLL.setFont(Font.font ("Verdana", 20));
        // System.out.println( "Stage im " + gm.getCurrentLevel() );
         ArrayList<ImageView> imageList =  gm.getInitialImageList();
         System.out.println( "initial image list start method: " + gm.getInitialImageList().size() );
@@ -103,8 +105,6 @@ public class BoardTest extends Application {
             }
         }
         root.getChildren().add(vbox);
-        Scene scene = new Scene(root, 1000, 1000);
-
 
         //System.out.println( "ImageSize: "  + imageList.size() );
         //System.out.println( "ImageSize: "  + imageList.size() );
@@ -300,12 +300,12 @@ public class BoardTest extends Application {
                 }
 
                 if ( gm.isLevelFinished(startLevel)){
-                    try {
+                   /* try {
                         t1.stopTimer(t1.getTime());
                         Thread.sleep( 1000 );
                     } catch (InterruptedException e) {
                         e.printStackTrace();
-                    }
+                    }*/
                     startLevel++;
                     start( primaryStage );
                 }
@@ -324,10 +324,10 @@ public class BoardTest extends Application {
         //t1.startTimer(00);
         //t1.run(timeLL);
         //t1.stopTimer(t1.getTime());
-        /*Thread clock = new Thread();
-        System.out.println(clock.start());
+        //Thread clock = new Thread();
+        //System.out.println(clock.start());
         root.getChildren().add(gm.getStickView());
-        root.getChildren().add(10, tLab);
+        /*root.getChildren().add(10, tLab);
         root.getChildren().add(10, timeLL);*/
         primaryStage.setTitle("Katamino");
         primaryStage.setScene(scene);
@@ -341,7 +341,7 @@ public class BoardTest extends Application {
 
         });
         runClock();
-        //t1.run(timeLL);
+        t1.run(timeLL);
     }
 
     private void runClock() {
