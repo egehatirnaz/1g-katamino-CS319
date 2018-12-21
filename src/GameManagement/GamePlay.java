@@ -6,10 +6,12 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
+import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 
 import java.text.DecimalFormat;
@@ -106,22 +108,31 @@ public class GamePlay extends Application {
                         ImageView blockPiece = (ImageView) (t.getSource());
                         blockPiece.toFront(); // newer image will be in front
 
-                        if (t.getClickCount() % 2 == 0) { // rotate logic
-                            double orX = blockPiece.getX();
-                            double orY = blockPiece.getY();
-                            blockPiece.setFitWidth(fitWidth);
-                            blockPiece.setFitHeight(fitHeight);
+                // rotate logic
+                if( (t.getButton() == MouseButton.PRIMARY) && (t.getClickCount()%2==0 ) ) {
+                    blockPiece.setFitWidth(fitWidth);
+                    blockPiece.setFitHeight(fitHeight);
 
-                            SnapshotParameters param = new SnapshotParameters();
-                            param.setFill(Color.TRANSPARENT);
-                            param.setTransform(new Rotate(90, blockPiece.getImage().getHeight(), blockPiece.getImage().getWidth()));
+                    SnapshotParameters param = new SnapshotParameters();
+                    param.setFill(Color.TRANSPARENT);
+                    param.setTransform(new Rotate(90,blockPiece.getImage().getHeight(),blockPiece.getImage().getWidth()));
+                    blockPiece.setImage(blockPiece.snapshot(param,null));
+                    blockPiece.setFitWidth(100);
+                    blockPiece.setFitHeight(100);
+                }
+                else if(  t.getButton() == MouseButton.SECONDARY  )
+                {
+                    blockPiece.setFitWidth(fitWidth);
+                    blockPiece.setFitHeight(fitHeight);
 
-                            blockPiece.setImage(blockPiece.snapshot(param, null));
-                            blockPiece.setFitWidth(100);
-                            blockPiece.setFitHeight(100);
-                        }
-                    }
-            );
+                    SnapshotParameters param = new SnapshotParameters();
+                    param.setFill(Color.TRANSPARENT);
+                    param.setTransform(new Scale( 1,-1));
+                    blockPiece.setImage(blockPiece.snapshot(param,null));
+                    blockPiece.setFitWidth(100);
+                    blockPiece.setFitHeight(100);
+                }
+            });
 
             /**************When mouse is dragged****************/
             blockList.get(i).setOnMouseDragged(  (t) ->

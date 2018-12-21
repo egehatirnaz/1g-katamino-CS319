@@ -19,7 +19,7 @@ public class BlockMaker extends Application {
 
 
     public BlockMaker(){
-         database = new BlocksDatabase("8222");
+         database = new BlocksDatabase("yusuf123");
     }
 
     @Override
@@ -74,7 +74,9 @@ public class BlockMaker extends Application {
                 directions[ k ]  = adjacents.get(k);
             }
             loc += blockName + ".png";
-            v = new Vertex(main, directions, Color.BLUE, loc);
+            Color c = Color.rgb(database.getColor(blockName).getRed(),database.getColor(blockName).getGreen(),
+                    database.getColor(blockName).getBlue() );
+            v = new Vertex(main, directions, c , loc);
             save.setRequirements( v , loc);
             save.start(new Stage());
         }

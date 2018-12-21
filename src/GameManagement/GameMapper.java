@@ -51,8 +51,6 @@ public abstract class GameMapper {
 
 
     void setSquares(int width, int height){
-        //System.out.println( "setSquares cur level : "  + currentLevel );
-        //currentLevel = 2;
         squares = new Square[width][height];
         for(int i = 0; i < squares.length; i++){
             double xCoor = i * SQUARESIZE + BOARDCOORDX;
@@ -62,10 +60,12 @@ public abstract class GameMapper {
                 if(i>=currentLevel  ){
                     squares[i][j].getRect().setStroke(Color.BURLYWOOD);
                     squares[i][j].getRect().setFill(Color.GRAY);
+                    squares[i][j].getRect().setOpacity( 0.7 );
                 }
                 else {
                     squares[i][j].getRect().setStroke(Color.BURLYWOOD);
                     squares[i][j].getRect().setFill(Color.AQUA);
+                    squares[i][j].getRect().setOpacity( 0.7 );
                 }
             }
         }
@@ -88,7 +88,7 @@ public abstract class GameMapper {
         return  awardView;
     }
 
-    public void setAward()
+    protected void setAward()
     {
         Image award = new Image(Paths.get("src/GameManagement/media/award.png").toUri().toString());
         awardView = new ImageView(award);
