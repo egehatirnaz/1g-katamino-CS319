@@ -93,11 +93,7 @@ public class MainMenuController {
         Parent root;
         root = FXMLLoader.load(getClass().getResource("Leaderboard.fxml"));
         Scene scene = new Scene(root);
-
         TableView tb = (TableView) scene.lookup("#tableview");
-
-
-
         stage.setScene(scene);
         stage.initStyle(StageStyle.UNDECORATED);
         System.out.println("Leaderboard Pressed");

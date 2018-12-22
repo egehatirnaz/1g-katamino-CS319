@@ -8,7 +8,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 
 public class PlayerDatabase {
-
+	
 	//VARIABLES
 	private String password;
 	private String rvr = "\'";

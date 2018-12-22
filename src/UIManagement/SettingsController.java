@@ -23,15 +23,18 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 public class SettingsController {
-    @FXML private RadioButton signIn, music;
+    @FXML RadioButton signIn;
     @FXML private Button save, cancel;
+    MediaPlayer mp;
     Stage stage;
-    PlayerDatabase pD = new PlayerDatabase("29");
+    PlayerDatabase pD = new PlayerDatabase("8222");
     @FXML TextField nicknameID;
+    @FXML Text entText, secEnd;
     private MediaPlayer media;
-    //ControlManager neC =new ControlManager();
+
     @FXML
     protected void handleSaveClick(ActionEvent event) throws IOException {
+        mp.play();
         stage = (Stage)((Button) event.getSource()).getScene().getWindow();
         Scene scene = (Scene)((Button) event.getSource()).getScene();
         TextField tf = (TextField) scene.lookup("#nicknameID");
@@ -39,20 +42,46 @@ public class SettingsController {
         if(tf.getText() != null && !tf.getText().isEmpty()){
             username = tf.getText();
         }
-        //TODO: Do what you want with the username input.
-        //pD.addPlayer(nicknameID.getText(), 0);
-        //ModesController mm = new ModesController(nicknameID.getText());
-        Parent root;
-        root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Modes.fxml"));
         VBox layout1 = new VBox(20);
-        layout1.getChildren().setAll((Parent)loader.load());
-        Scene scene1 = new Scene(layout1, 600, 400);
-        stage.setScene(scene1);
+        if(signIn.isSelected() && !(pD.controlNickName(nicknameID.getText()))){
+            System.out.println("updated" + nicknameID.getText());
+            int time = pD.getTime(nicknameID.getText());
+            pD.updatePlayerTime(nicknameID.getText(), time);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Modes.fxml"));
+            layout1.getChildren().setAll((Parent)loader.load());
+            Scene scene1 = new Scene(layout1, 600, 400);
+            stage.setScene(scene1);
+        }
+        else if(!signIn.isSelected() && pD.controlNickName(nicknameID.getText())){
+            System.out.println("added"+ nicknameID.getText());
+            pD.addPlayer(nicknameID.getText(),0);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Modes.fxml"));
+            layout1.getChildren().setAll((Parent)loader.load());
+            Scene scene1 = new Scene(layout1, 600, 400);
+            stage.setScene(scene1);
+
+        }
+        else{
+            System.out.println("hata" + nicknameID.getText());
+            entText.setText("");
+            secEnd.setText("The nickname has already exist! Use another one to join or sign in.");
+        }
+        /*if(!(pD.controlNickName(nicknameID.getText()))){
+            System.out.println("updated" + nicknameID.getText());
+            int time = pD.getTime(nicknameID.getText());
+            pD.updatePlayerTime(nicknameID.getText(), time);
+        }
+        else{
+            pD.addPlayer(nicknameID.getText(),0);
+            System.out.println("added"+ nicknameID.getText());
+        }*/
+        //Parent root;
+        //root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
     }
 
     @FXML
     protected void handleCancelClick(ActionEvent event) throws IOException{
+        mp.play();
         stage = (Stage)((Button) event.getSource()).getScene().getWindow();
         Parent root;
         root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
@@ -62,40 +91,9 @@ public class SettingsController {
         Scene scene1 = new Scene(layout1, 600, 400);
         stage.setScene(scene1);
     }
-
-    public void handleMusic(ActionEvent event) {
-        if(music.isSelected()){
-            media = new MediaPlayer(new Media(Paths.get("src/GameManagement/media/title.mp3").toUri().toString()));
-            media.play();
-            music.setText("Muzik");
-        }
-        else{
-            media.setVolume(0);
-        }
-    }
     @FXML
-    public void handleSignIn(MouseEvent event) {
-
+    protected void initialize(){
+        mp = new MediaPlayer(new Media(Paths.get("src/GameManagement/media/ding.mp3").toUri().toString()));
     }
 
-    @FXML
-    protected void changeLanguageEN(){
-        System.out.println("EN Selected - God save the queen!");
-        //lang.setEnglish();
-    }
-    @FXML
-    protected void changeLanguageTR(MouseEvent event) throws IOException{
-        stage = (Stage)((ImageView) event.getSource()).getScene().getWindow();
-        Parent root;
-        root = FXMLLoader.load(getClass().getResource("FXML/TUR/Settings.fxml"));
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML/TUR/Settings.fxml"));
-        VBox layout1 = new VBox(20);
-        layout1.getChildren().setAll((Parent)loader.load());
-        Scene scene1 = new Scene(layout1, 600, 400);
-        stage.setScene(scene1);
-    }
-
-    public String getUsername(){
-        return nicknameID.getText();
-    }
 }

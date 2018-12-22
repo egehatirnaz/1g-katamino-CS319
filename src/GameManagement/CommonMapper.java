@@ -26,10 +26,12 @@ abstract class CommonMapper extends GameMapper {
     @Override
     protected void setGame( int currentLevel){
         System.out.println( "SETGAME currentLevel: " + currentLevel );
-        super.setSquares( BOARDWIDTH, BOARDHEIGHT );
+        super.setSquares( BOARDWIDTH, BOARDHEIGHT);
         setInitialImageList();
-        setStickView( currentLevel );
-        super.setupEntity(getInitialImageList());
+        if(!isGameFinished()) {
+            setStickView(currentLevel);
+            super.setupEntity(getInitialImageList());
+        }
     }
 
     @Override
@@ -44,8 +46,8 @@ abstract class CommonMapper extends GameMapper {
 
         Image stick = new Image(Paths.get("src/GameManagement/media/Stick.png").toUri().toString());
         stickView = new ImageView( stick );
-        stickView.setX(STICKCOORDX + ( currentLevel * SQUARESIZE ) );
-        stickView.setY(STICKCOORDY);
+        stickView.setX(super.getBOARDCOORDX() + ( currentLevel * SQUARESIZE ) - 15);
+        stickView.setY(super.getBOARDCOORDY() - 70 );
     }
 
     @Override
@@ -60,4 +62,5 @@ abstract class CommonMapper extends GameMapper {
         super.updateLevel();
         return true;
     }
+
 }

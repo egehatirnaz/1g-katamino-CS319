@@ -70,6 +70,7 @@ public class BoardTest extends Application {
     Text timeLL = new Text(100,20," Hey");
     //static int i = 0;
     private long time;
+    PlayerDatabase pD = new PlayerDatabase("8222");
     ArrayList<ImageView> imageList;
     private DigitalClock clock;
     private boolean running = false;
@@ -84,9 +85,6 @@ public class BoardTest extends Application {
         clock = new DigitalClock(true);
         //setBlocks();
         vbox.getChildren().addAll(clock);
-       /* tLab.setFont(Font.font ("Verdana", 20));
-        tLab.setFill(Color.RED);
-        timeLL.setFont(Font.font ("Verdana", 20));*/
        // System.out.println( "Stage im " + gm.getCurrentLevel() );
         imageList =  gm.getInitialImageList();
         System.out.println( "initial image list start method: " + gm.getInitialImageList().size() );
@@ -387,6 +385,8 @@ public class BoardTest extends Application {
                 oldTime = count;
                 oldNumber = number;
             }
+            int lastPoint = 5000 / (oldTime + (60 * oldNumber));
+            pD.updatePlayerTime(pD.getLastNickname(), lastPoint);
         }).start();
     }
 

@@ -23,7 +23,7 @@ public class GamePlay extends Application {
 
     // properties
     GameMapper gameMapper;
-    final String password = "29";
+    final String password = "yusuf123";
     private Scene window;
     double originX, originY;
     Text tLab;
@@ -46,6 +46,7 @@ public class GamePlay extends Application {
     private String modeName;
     private int lev;
 
+
     // constructor
     public GamePlay( String gameMode  )
     {
@@ -53,22 +54,19 @@ public class GamePlay extends Application {
         {
             gameMapper = new NormalModeMapper(password);
             startLevel = 3;
-            modeName = gameMode;
 
         }
         else if( gameMode.equals("ChallangeMode") )
         {
             gameMapper = new ChallangeModeMapper( password );
             startLevel = 4;
-            modeName = gameMode;
         }
         else if( gameMode.equals( "DynamicMode" ) )
         {
             gameMapper = new DynamicModeMapper( password );
             startLevel = 1;
-            modeName = gameMode;
         }
-
+        modeName = gameMode;
         // array initializations
         fitHeightList = new ArrayList<>();
         fitWidthList = new ArrayList<>();
@@ -115,8 +113,6 @@ public class GamePlay extends Application {
             blockList.get(i).setCursor(Cursor.HAND);
             double fitHeight = fitHeightList.get(i);
             double fitWidth = fitWidthList.get(i);
-
-
 
             /************* When mouse is pressed ********************/
             blockList.get(i).setOnMousePressed((t) -> {
@@ -202,8 +198,8 @@ public class GamePlay extends Application {
 
 
 
-                System.out.println("lev " + lev);
-                System.out.println();
+               // System.out.println("lev " + lev);
+               // System.out.println();
                 if( count != 0){
                     double xlocation=0,ylocation=0;
                     boolean outside = false;
@@ -215,6 +211,7 @@ public class GamePlay extends Application {
                                 if(a < 220 || a > (250 + lev * 100 ) + 30|| b < 70 || b > 130 + boardSquares[0].length   *100 )
                                     outside = true;
                             }
+
                         }
                     }
                     double maxheight=0;
@@ -268,11 +265,15 @@ public class GamePlay extends Application {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    startLevel++;
-                    start( primaryStage );
+                    if(gameMapper.isGameFinished())
+                    {
+                        root.getChildren().add(gameMapper.getAward());
+                    }
+                    else {
+                        startLevel++;
+                        start(primaryStage);
+                    }
                 }
-                else
-                    System.out.println("Tobetobe");
             });
         }
 
@@ -340,8 +341,8 @@ public class GamePlay extends Application {
 
     private void returnToInitialPlace( ImageView blockPiece )
     {
-        blockPiece.setX(gameMapper.getInitialPositionX().get(blockList.indexOf(blockPiece)));
-        blockPiece.setY(gameMapper.getInitialPositionY().get(blockList.indexOf(blockPiece)));
+        blockPiece.setX( gameMapper.getInitialPositionX().get( blockList.indexOf(blockPiece) ) );
+        blockPiece.setY( gameMapper.getInitialPositionY().get( blockList.indexOf(blockPiece) ) );
         blockPiece.setPreserveRatio(true);
         blockPiece.setFitWidth(100);
         blockPiece.setFitHeight(100);
