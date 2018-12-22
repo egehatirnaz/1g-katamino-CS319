@@ -1,6 +1,7 @@
 package UIManagement;
 
 import GameManagement.BoardTest;
+import GameManagement.PlayerDatabase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,29 +25,13 @@ import java.nio.file.Paths;
 public class SettingsController {
     @FXML private RadioButton signIn, music;
     @FXML private Button save, cancel;
-    @FXML Stage stage;
+    Stage stage;
+    PlayerDatabase pD = new PlayerDatabase("8222");
+    @FXML TextField nicknameID;
     private MediaPlayer media;
     //ControlManager neC =new ControlManager();
-
     @FXML
     protected void handleSaveClick(ActionEvent event) throws IOException {
-
-        /*if(neC.sth){
-            oyun ekranina git ve kaydet
-        }
-        else{
-            geri don
-        }*/
-        /*
-        stage = (Stage)((Button) event.getSource()).getScene().getWindow();
-        StackPane layout = new StackPane();
-        Scene scene;
-        BoardTest bT = new BoardTest();
-        bT.start(new Stage());
-        scene = bT.returnScene();
-        stage.setScene(scene);
-        System.out.println("Helo");*/
-        //Scene scene = (Scene)((Button) event.getSource()).getScene();
         stage = (Stage)((Button) event.getSource()).getScene().getWindow();
         Scene scene = (Scene)((Button) event.getSource()).getScene();
         TextField tf = (TextField) scene.lookup("#nicknameID");
@@ -55,7 +40,8 @@ public class SettingsController {
             username = tf.getText();
         }
         //TODO: Do what you want with the username input.
-
+        //pD.addPlayer(nicknameID.getText(), 0);
+        //ModesController mm = new ModesController(nicknameID.getText());
         Parent root;
         root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Modes.fxml"));
@@ -63,7 +49,6 @@ public class SettingsController {
         layout1.getChildren().setAll((Parent)loader.load());
         Scene scene1 = new Scene(layout1, 600, 400);
         stage.setScene(scene1);
-
     }
 
     @FXML
@@ -90,6 +75,7 @@ public class SettingsController {
     }
     @FXML
     public void handleSignIn(MouseEvent event) {
+
     }
 
     @FXML
@@ -107,5 +93,9 @@ public class SettingsController {
         layout1.getChildren().setAll((Parent)loader.load());
         Scene scene1 = new Scene(layout1, 600, 400);
         stage.setScene(scene1);
+    }
+
+    public String getUsername(){
+        return nicknameID.getText();
     }
 }

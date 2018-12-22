@@ -178,3 +178,56 @@ Location: Bilkent G Building
 
 
 
+## Meeting on Dec 19, 16:00 - 00:00
+
+Participants: Burak, Fırat, Mert, Yusuf, Ege 
+
+Location: Bilkent Library
+
+### Agenda
+* [Burak, Fırat, Mert, Yusuf, Ege] Work on modes, block movements and game screens of the game.
+
+### Action Items
+* [Yusuf, Mert, Burak] Work on block movements and findsthe blocks it's true place.
+* [Ege] Work on language of the screens.
+* [Fırat] Work on revising game screen and good interface.
+
+
+## Meeting on Dec 20, 16:00 - 00:00
+
+Participants: Burak, Fırat, Mert, Yusuf
+
+Location: Bilkent Library
+
+### Agenda
+* [Burak, Fırat, Mert, Yusuf] Work on dynamic mode, database optimization and configuration, nickname control.
+
+### Action Items
+* [Yusuf] Work on challenge mode and test it's correctness.
+* [Burak] Work on the player class and it's usage inside other classes and block moves.
+* [Mert] Work on database systems and it's implementation inside another classes. Work on easier usable database.
+* [Yusuf, Mert] Work on creating more optimal system which does the same with less efort.
+* [Firat] Work on the nickname control system and fix the problems between screens.
+
+
+## Meeting on Dec 21, 16:00 - 00:00
+
+Participants: Burak, Fırat, Mert, Yusuf
+
+Location: Bilkent Library
+
+### Agenda
+* [Fırat, Mert, Yusuf] Work on dynamic mode, database optimization and configuration, nickname control.
+
+### Action Items
+* [Yusuf] Work on dynamic mode and test it's correctness.
+* [Mert] Work on usage of database systems in leaderboard and player save.
+* [Fırat] Work on time systems, player save and their implementation to database
+* [Yusuf, Mert] Solve dynamic model and block movement bugs.
+* [Fırat, Mert] Solve the time system bugs.
+* [Fırat, Yusuf] Implement the time systems to whole programme.
+
+
+
+
+

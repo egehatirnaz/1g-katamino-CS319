@@ -8,16 +8,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class ModesController {
-    @FXML
-    Stage stage;
 
-    public ModesController() {
+    Stage stage;
+    String nick;
+
+    public ModesController(String name) {
+        nick = name;
     }
 
     @FXML

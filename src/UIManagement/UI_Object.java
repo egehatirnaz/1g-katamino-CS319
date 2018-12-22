@@ -44,7 +44,6 @@ public class UI_Object extends Application {
         VBox layout1 = new VBox(20);
         layout1.getChildren().setAll((Parent)loader.load());
         scene1 = new Scene(layout1, 600, 400);
-
         VBox layout2 = new VBox(20);
         FXMLLoader loader2 = new FXMLLoader(getClass().getResource("NormalMode.fxml"));
         layout2.getChildren().setAll((VBox)loader2.load());
