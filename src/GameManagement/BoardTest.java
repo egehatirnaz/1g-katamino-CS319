@@ -64,24 +64,24 @@ public class BoardTest extends Application {
     private Scene window;
     double originX, originY;
     int startLevel = 4;
-
+    int oldNumber = 0;
+    int oldTime = 0;
     Text tLab = new Text(10,20,"Time: ");
     Text timeLL = new Text(100,20," Hey");
     //static int i = 0;
     private long time;
     ArrayList<ImageView> imageList;
-
-
-    private DigitalClock clock = new DigitalClock();
+    private DigitalClock clock;
     private boolean running = false;
     TimeKeeper t1 = new TimeKeeper();
-    GameMapper gm = new NormalModeMapper("yusuf123");
+    GameMapper gm = new NormalModeMapper("8222");
 
     @Override
     public void start(Stage primaryStage) {
         Group root = new Group();
         Scene scene = new Scene(root, 1000, 1000);
         VBox vbox = new VBox();
+        clock = new DigitalClock(true);
         //setBlocks();
         vbox.getChildren().addAll(clock);
        /* tLab.setFont(Font.font ("Verdana", 20));
@@ -340,7 +340,6 @@ public class BoardTest extends Application {
 
         });*/
         runClock();
-        t1.run(timeLL);
     }
 
     private void runClock() {
@@ -349,8 +348,8 @@ public class BoardTest extends Application {
             long last = System.nanoTime();
             double delta = 0;
             double ns = 1000000000.0 / 1;
-            int count = 0;
-            int number = 0;
+            int count = oldTime;
+            int number = oldNumber;
             boolean check = false;
 
             while (running) {
@@ -369,6 +368,8 @@ public class BoardTest extends Application {
                     clock.refreshMinute(number);
                     delta--;
                 }
+                oldTime = count;
+                oldNumber = number;
             }
         }).start();
     }

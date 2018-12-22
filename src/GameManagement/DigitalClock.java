@@ -22,10 +22,14 @@ public class DigitalClock extends Parent {
     private Text[] digits = new Text[3];
     private Group[] digitsGroup = new Group[3];
 
-    public DigitalClock() {
-        configureDigits();
-        configureHbox();
+    public DigitalClock(boolean levelControl) {
+        if(levelControl){
+            configureDigits();
+            configureHbox();
+
+        }
         getChildren().add(hbox);
+
     }
 
     private void configureHbox() {

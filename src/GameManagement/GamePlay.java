@@ -70,7 +70,7 @@ public class GamePlay extends Application {
         // time initialization
         tLab   = new Text(10,20,null);
         timeLL = new Text(100,20,null);
-        clock = new DigitalClock();
+        clock = new DigitalClock(true);//?
         running = false;
         t1 = new TimeKeeper();
     }
