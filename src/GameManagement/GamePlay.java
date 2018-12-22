@@ -23,7 +23,7 @@ public class GamePlay extends Application {
 
     // properties
     GameMapper gameMapper;
-    final String password = "8222";
+    final String password = "yusuf123";
     private Scene window;
     double originX, originY;
     Text tLab;

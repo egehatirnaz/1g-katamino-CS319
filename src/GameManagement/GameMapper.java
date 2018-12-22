@@ -8,17 +8,20 @@ package GameManagement;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Screen;
+
 /**
  *
  * @author burak korkmaz
  * @author yusuf samsum
  */
 public abstract class GameMapper {
-    
+
     // properties
     private Square[][] squares;
     private int currentLevel;
@@ -26,10 +29,19 @@ public abstract class GameMapper {
     private ArrayList<Double>       originalWidthScale;
     private ArrayList<Double>       initialPositionX;
     private ArrayList<Double>       initialPositionY;
-    private final double SQUARESIZE = 100.0;
-    private final double BOARDCOORDX = 250.0;
-    private final double BOARDCOORDY = 100.0;
+    protected final double SQUARESIZE = 100.0;
+    private final int SQUARENUMBER = 13;
+   // private final double BOARDCOORDX = 250.0;
+    //private final double BOARDCOORDY = 100.0;
+    protected double screenWidth;
+    protected double screenHeight;
     private ImageView awardView;
+    private Rectangle2D screenBounds;
+    private double startCoordX;
+    private double startCoordY;
+    private double imgStartCoordX;
+    private double imgStartCoordY;
+    protected boolean isGameFinished;
     // constructor
     public GameMapper(){
         this.currentLevel = 3;
@@ -37,9 +49,14 @@ public abstract class GameMapper {
         originalWidthScale = new ArrayList<>();
         initialPositionX = new ArrayList<>();
         initialPositionY = new ArrayList<>();
+        screenBounds = Screen.getPrimary().getBounds();
+        screenWidth = screenBounds.getWidth();
+        screenHeight = screenBounds.getHeight();
+        startCoordX = ( screenWidth - SQUARENUMBER * SQUARESIZE ) / 2;
+        startCoordY = ( screenHeight - 750 ) / 2;
         setAward();
     }
-    
+
     // methods
     // abstract methods
     abstract  ImageView getStickView();
@@ -53,9 +70,9 @@ public abstract class GameMapper {
     void setSquares(int width, int height){
         squares = new Square[width][height];
         for(int i = 0; i < squares.length; i++){
-            double xCoor = i * SQUARESIZE + BOARDCOORDX;
+            double xCoor = i * SQUARESIZE + startCoordX;
             for(int j = 0; j < squares[i].length; j++){
-                double yCoor = j * SQUARESIZE + BOARDCOORDY;
+                double yCoor = j * SQUARESIZE + startCoordY;
                 squares[i][j] = new Square(xCoor, yCoor, SQUARESIZE,SQUARESIZE);
                 if(i>=currentLevel  ){
                     squares[i][j].getRect().setStroke(Color.BURLYWOOD);
@@ -71,16 +88,19 @@ public abstract class GameMapper {
         }
     }
 
+    public boolean isGameFinished(){
+        return isGameFinished;
+    }
     protected double getSQUARESIZE(){
         return SQUARESIZE;
     }
 
     protected double getBOARDCOORDX() {
-        return BOARDCOORDX;
+        return startCoordX;
     }
 
     protected double getBOARDCOORDY() {
-        return BOARDCOORDY;
+        return startCoordY;
     }
 
     public ImageView getAward()
@@ -99,11 +119,14 @@ public abstract class GameMapper {
 
     protected void setupEntity(ArrayList<ImageView> imageList)
     {
+        imgStartCoordX = (( screenWidth - imageList.size() * 150) / 2 );
+        imgStartCoordY = (screenHeight - 150);
+
         for( int i = 0; i < imageList.size(); i++ )
         {
-            imageList.get(i).setX(BOARDCOORDX + i * 2 * SQUARESIZE);
+            imageList.get(i).setX(imgStartCoordX + i * 2 * SQUARESIZE);
             initialPositionX.add( imageList.get(i).getX() );
-            imageList.get(i).setY( 5 * SQUARESIZE + BOARDCOORDY + 100 );
+            imageList.get(i).setY( imgStartCoordY );
             initialPositionY.add( imageList.get(i).getY() );
             originalHeightScale.add( imageList.get(i).getFitHeight() );
             originalWidthScale.add( imageList.get(i).getFitWidth() );

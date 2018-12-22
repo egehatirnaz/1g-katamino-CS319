@@ -14,6 +14,7 @@ public class NormalModeMapper extends CommonMapper {
     public  NormalModeMapper(String password){
         solutionDatabase = new SolutionDatabase(password);
         imageList = new ArrayList<>();
+        isGameFinished = false;
         setGame(getCurrentLevel());
     }
 
@@ -30,14 +31,21 @@ public class NormalModeMapper extends CommonMapper {
         String str;
         System.out.println( solutionDatabase );
         ArrayList<String> solutionList = solutionDatabase.getSolution( "NormalMode", currentLevel, 4);
-        for( int i = 0; i < solutionList.size(); i++ )
-        {
-            str = "src/GameManagement/media/" + solutionList.get(i) + ".png";
-            Image block = new Image( Paths.get(str).toUri().toString());
-            ImageView blockView = new ImageView(block);
-            imageList.add(blockView);
-        }
 
+        if(solutionList.size() == 0)
+            super.isGameFinished = true;
+
+        else {
+            for (int i = 0; i < solutionList.size(); i++) {
+                str = "src/GameManagement/media/" + solutionList.get(i) + ".png";
+                Image block = new Image(Paths.get(str).toUri().toString());
+                ImageView blockView = new ImageView(block);
+                imageList.add(blockView);
+            }
+        }
     }
+
+
+
 
 }
