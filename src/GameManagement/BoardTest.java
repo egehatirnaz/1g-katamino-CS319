@@ -63,7 +63,7 @@ public class BoardTest extends Application {
 
     private Scene window;
     double originX, originY;
-    int startLevel = 4;
+    int startLevel = 3;
     int oldNumber = 0;
     int oldTime = 0;
     Text tLab = new Text(10,20,"Time: ");
@@ -74,7 +74,7 @@ public class BoardTest extends Application {
     private DigitalClock clock;
     private boolean running = false;
     TimeKeeper t1 = new TimeKeeper();
-    GameMapper gm = new NormalModeMapper("8222");
+    GameMapper gm = new NormalModeMapper("29");
 
     @Override
     public void start(Stage primaryStage) {
@@ -220,13 +220,14 @@ public class BoardTest extends Application {
 
                 System.out.println(gm.getSQUARESIZE());
 
-                if(count % 5 == 0 && count != 0){
+                if( count != 0){
                     //System.out.println(count);
                     System.out.println("True");
                     System.out.println(anImage.getX());
                     System.out.println(anImage.getY());
                     //anImage.setPickOnBounds(true);
                     //System.out.println(anImage.getX());
+                    boolean outside = false;
 
                     double xlocation=0,ylocation=0;
                     System.out.println("X (ilk) lokasyonu " + anImage.getImage().getWidth());
@@ -234,15 +235,30 @@ public class BoardTest extends Application {
                     System.out.println(gm.getCurrentLevel());
                     System.out.println(boardSquares[0].length);
 
-                    for(double b = (anImage.getY()+anImage.getImage().getHeight());b >anImage.getY();b-- ){
-                        for(double a = (anImage.getX()+ anImage.getImage().getWidth());a>anImage.getX();a--){
+
+                    System.out.println("X lokasyonu " + anImage.getX());
+                    System.out.println("Y lokasyonu " + anImage.getY());
+                    System.out.println("X lokasyonu " + (anImage.getX() + anImage.getImage().getWidth()));
+                    System.out.println("Y lokasyonu " + (anImage.getY() + anImage.getImage().getHeight()));
+                    for(double a = (anImage.getX()+ anImage.getImage().getWidth());a>anImage.getX();a= a -100){
+                        for(double b = (anImage.getY()+anImage.getImage().getHeight());b >anImage.getY();b= b - 100 ){
                             if(root.getChildren().get(root.getChildren().indexOf(anImage)).contains(a, b)){
                                 xlocation = a;
                                 ylocation = b;
+                                System.out.println(xlocation + " " );
+                                System.out.println(ylocation + " " );
+
+                                if((xlocation < 200 || xlocation > (250 + gm.getCurrentLevel() * 100 ) + 50 || ylocation < 50 || ylocation > 150 + boardSquares[0].length*100  ) && !outside ) {
+                                    outside = true;
+                                    System.out.println(xlocation + " " +  (300 + (gm.getCurrentLevel() * 100)));
+                                    System.out.println(ylocation + " " +  (150 + boardSquares[0].length*100));
+                                }
                             }
 
                         }
                     }
+                    System.out.println(":)) " + outside);
+
                     System.out.println("X lokasyonu " + xlocation);
                     System.out.println("Y lokasyonu " + ylocation);
 
@@ -276,7 +292,7 @@ public class BoardTest extends Application {
                     if(maxheight  == boardSquares[0].length)
                         y--;
 
-                    if( x>=0 && x < gm.getCurrentLevel()  && y >= 0 && y < boardSquares[0].length  && anImage.preserveRatioProperty().getValue() == false && count2==0) {
+                    if( x>=0 && x < gm.getCurrentLevel()  && y >= 0 && y < boardSquares[0].length  && anImage.preserveRatioProperty().getValue() == false && count2==0 && !outside) {
                         if (boardSquares[x][y].getStateOfSquare()) {
                             System.out.println("Yok Artık");
 

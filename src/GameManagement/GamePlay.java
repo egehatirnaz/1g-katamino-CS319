@@ -23,7 +23,7 @@ public class GamePlay extends Application {
 
     // properties
     GameMapper gameMapper;
-    final String password = "yusuf123";
+    final String password = "29";
     private Scene window;
     double originX, originY;
     Text tLab;
@@ -43,6 +43,8 @@ public class GamePlay extends Application {
     private ArrayList<Double> initialListY;
     private ArrayList<ImageView> blockList;
     private int startLevel;
+    private String modeName;
+    private int lev;
 
     // constructor
     public GamePlay( String gameMode  )
@@ -51,16 +53,20 @@ public class GamePlay extends Application {
         {
             gameMapper = new NormalModeMapper(password);
             startLevel = 3;
+            modeName = gameMode;
+
         }
         else if( gameMode.equals("ChallangeMode") )
         {
             gameMapper = new ChallangeModeMapper( password );
             startLevel = 4;
+            modeName = gameMode;
         }
         else if( gameMode.equals( "DynamicMode" ) )
         {
             gameMapper = new DynamicModeMapper( password );
             startLevel = 1;
+            modeName = gameMode;
         }
 
         // array initializations
@@ -99,11 +105,18 @@ public class GamePlay extends Application {
         initialListY = gameMapper.getInitialPositionY();
         Square[][] boardSquares = gameMapper.getSquares();
 
+        lev = gameMapper.getCurrentLevel();
+        if( modeName.equals("Dynamic Mode") )
+            lev = gameMapper.getSquares().length;
+
+
         /************** Listeners *******************/
         for (int i = 0; i < blockList.size(); i++) {
             blockList.get(i).setCursor(Cursor.HAND);
             double fitHeight = fitHeightList.get(i);
             double fitWidth = fitWidthList.get(i);
+
+
 
             /************* When mouse is pressed ********************/
             blockList.get(i).setOnMousePressed((t) -> {
@@ -169,7 +182,7 @@ public class GamePlay extends Application {
                 ImageView blockPiece = (ImageView)(t.getSource());
 
                 double xLoc = originX , yLoc = originY;
-                for( int k = 0; k < startLevel ; k++ ) {
+                for( int k = 0; k < lev ; k++ ) {
                     for (int j = 0; j < boardSquares[k].length; j++) {
                         boardSquares[k][j].setFilled(false);
                         for( int noOfImage = 0; noOfImage < blockList.size(); noOfImage++ ) {
@@ -185,17 +198,23 @@ public class GamePlay extends Application {
                     }
                 }
 
-                System.out.println(gameMapper.getSQUARESIZE());
+                System.out.println(gameMapper.getSquares().length);
 
-                if(count % 5 == 0 && count != 0){
+
+
+                System.out.println("lev " + lev);
+                System.out.println();
+                if( count != 0){
                     double xlocation=0,ylocation=0;
+                    boolean outside = false;
                     for(double b = (blockPiece.getY()+blockPiece.getImage().getHeight());b >blockPiece.getY();b-- ){
                         for(double a = (blockPiece.getX()+ blockPiece.getImage().getWidth());a>blockPiece.getX();a--){
                             if(root.getChildren().get(root.getChildren().indexOf(blockPiece)).contains(a, b)){
                                 xlocation = a;
                                 ylocation = b;
+                                if(a < 220 || a > (250 + lev * 100 ) + 30|| b < 70 || b > 130 + boardSquares[0].length   *100 )
+                                    outside = true;
                             }
-
                         }
                     }
                     double maxheight=0;
@@ -218,12 +237,12 @@ public class GamePlay extends Application {
                     int x = ((int)xlocation - 225) /100 ;
                     int y = ((int)ylocation - 75) / 100;
 
-                    if(maxwidth  == gameMapper.getCurrentLevel())
+                    if(maxwidth  == lev)
                         x--;
                     if(maxheight  == boardSquares[0].length)
                         y--;
 
-                    if( x>=0 && x < gameMapper.getCurrentLevel()  && y >= 0 && y < boardSquares[0].length  && blockPiece.preserveRatioProperty().getValue() == false && count2==0) {
+                    if( x>=0 && x < lev  && y >= 0 && y < boardSquares[0].length  && blockPiece.preserveRatioProperty().getValue() == false && count2==0 && outside==false) {
                         if (boardSquares[x][y].getStateOfSquare()) {
                             double stickX = 250+x*100 ;
                             double stickY = 100+y*100 ;
@@ -242,7 +261,7 @@ public class GamePlay extends Application {
                     returnToInitialPlace(blockPiece);
 
 
-                if ( gameMapper.isLevelFinished(startLevel)){
+                if ( gameMapper.isLevelFinished(lev)){
                     try {
                         t1.stopTimer(t1.getTime());
                         Thread.sleep( 1000 );
@@ -252,6 +271,8 @@ public class GamePlay extends Application {
                     startLevel++;
                     start( primaryStage );
                 }
+                else
+                    System.out.println("Tobetobe");
             });
         }
 
