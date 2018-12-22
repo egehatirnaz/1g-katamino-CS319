@@ -74,12 +74,16 @@ public class DigitalClock extends Parent {
 
     public void refreshDigits(String number) {
         for (int i = 1; i < digits.length; i++) {
-            digits[i].setText(number.substring(i, i + 1));
+            digits[i].setText(number.substring(i, i+1));
         }
     }
 
     //calisjhgjhbjhb
-    public void refreshMinute(int number){
-        digits[0].setText(number+"");
+    public void refreshMinute(int number) {
+        int temp = number % 10;
+        digits[1].setText(temp + "");
+        number = number - temp;
+        number = number / 10;
+        digits[0].setText(number + "");
     }
 }

@@ -27,7 +27,7 @@ public class SettingsController {
     @FXML private Button save, cancel;
     MediaPlayer mp;
     Stage stage;
-    PlayerDatabase pD = new PlayerDatabase("251364feh");
+    PlayerDatabase pD = new PlayerDatabase("8222");
     @FXML TextField nicknameID;
     @FXML Text entText, secEnd;
     private MediaPlayer media;
@@ -64,7 +64,7 @@ public class SettingsController {
         else{
             System.out.println("hata" + nicknameID.getText());
             entText.setText("");
-            secEnd.setText("The nickname already exists! Use another one to join or sign in.");
+            secEnd.setText("The nickname has already exist! Use another one to join or sign in.");
         }
         /*if(!(pD.controlNickName(nicknameID.getText()))){
             System.out.println("updated" + nicknameID.getText());

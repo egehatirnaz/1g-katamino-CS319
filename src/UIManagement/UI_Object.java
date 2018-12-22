@@ -34,8 +34,7 @@ public class UI_Object extends Application {
     private double x,y;
 
     // God dislikes lazy static variables.
-    private static MediaPlayer media = new MediaPlayer(new Media(Paths.get("src/GameManagement/media/title.mp3").toUri().toString()));;
-
+    private static MediaPlayer media = new MediaPlayer(new Media(Paths.get("src/GameManagement/media/title.mp3").toUri().toString()));
     @Override
     public void start(Stage stage) throws Exception{
         window = stage;
@@ -61,7 +60,6 @@ public class UI_Object extends Application {
 
         media.play();
         media.setCycleCount(MediaPlayer.INDEFINITE);
-
         window.setScene(scene1);
         window.initStyle(StageStyle.UNDECORATED);
         window.setTitle("Katamino");

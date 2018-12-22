@@ -24,9 +24,10 @@ public class GamePlay extends Application {
 
     // properties
     GameMapper gameMapper;
-    final String password = "29";
+    final String password = "8222";
     private Scene window;
     double originX, originY;
+    private Player player;
     Text tLab;
     Text timeLL;
     private DigitalClock clock;
@@ -46,6 +47,7 @@ public class GamePlay extends Application {
     private int startLevel;
     private String modeName;
     private int lev;
+    private PlayerDatabase pD = new PlayerDatabase(password);
 
 
     // constructor
@@ -67,6 +69,8 @@ public class GamePlay extends Application {
             gameMapper = new DynamicModeMapper( password );
             startLevel = 1;
         }
+
+        player = new Player(pD.getLastNickname(), 0);
         modeName = gameMode;
         // array initializations
         fitHeightList = new ArrayList<>();
@@ -338,6 +342,8 @@ public class GamePlay extends Application {
                 oldTime = count;
                 oldNumber = number;
             }
+            int lastPoint = (oldTime + (60 * oldNumber));
+            pD.updatePlayerTime(player.getNickName(), lastPoint);
         }).start();
     }
 

@@ -4,7 +4,8 @@ import java.util.ArrayList;
 public class PlayerDatabaseTest {
 
 	public static void main(String[] args) {
-		PlayerDatabase pd = new PlayerDatabase("29");
+		PlayerDatabase pd = new PlayerDatabase("8222");
+		pd.clearDatabase();
 		pd.addPlayer("mert", 150);
 		pd.addPlayer("ali", 205);
 		pd.addPlayer("omur", 175);

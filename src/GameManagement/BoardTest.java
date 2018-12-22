@@ -72,12 +72,12 @@ public class BoardTest extends Application {
     Text timeLL = new Text(100,20," Hey");
     //static int i = 0;
     private long time;
-    PlayerDatabase pD = new PlayerDatabase("29");
+    PlayerDatabase pD = new PlayerDatabase("8222");
     ArrayList<ImageView> imageList;
     private DigitalClock clock;
     private boolean running = false;
     TimeKeeper t1 = new TimeKeeper();
-    GameMapper gm = new NormalModeMapper("29");
+    GameMapper gm = new NormalModeMapper("8222");
 
     @Override
     public void start(Stage primaryStage) {
@@ -387,9 +387,9 @@ public class BoardTest extends Application {
                 }
                 oldTime = count;
                 oldNumber = number;
+                int lastPoint = (oldTime + (60 * oldNumber));
+                pD.updatePlayerTime(pD.getLastNickname(), lastPoint);
             }
-            int lastPoint = 5000 / (oldTime + (60 * oldNumber));
-            pD.updatePlayerTime(pD.getLastNickname(), lastPoint);
         }).start();
     }
 

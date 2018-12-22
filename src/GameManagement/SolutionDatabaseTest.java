@@ -5,7 +5,10 @@ import java.util.Arrays;
 public class SolutionDatabaseTest {
 
     public static void main( String args[]) {
-        SolutionDatabase sd = new SolutionDatabase("251364feh");
+        SolutionDatabase sd = new SolutionDatabase("8222");
+        sd.deleteDatabase();
+        sd = new SolutionDatabase("8222");
+       // sd.deleteDatabase();
         /*String [] level4 = {"n1", "n4", "n5", "n12"};
         String [] level5 = {"n1", "n4", "n5", "n12", "n3"};
         String [] level6 = {"n1", "n4", "n5", "n12", "n3", "n7"};
@@ -68,7 +71,7 @@ public class SolutionDatabaseTest {
         String [] level7_4 = {"n1", "n9" , "n7", "n6", "n2", "n5", "n12"};
         String [] level8_4 = {"n1", "n9" , "n7", "n6", "n2", "n5", "n12", "n4"};
         sd.addSolution("NormalMode", 3, 4,level3_4 );
-        sd.addSolution("NormalMode", 4, 4,level4_4 );
+        /*sd.addSolution("NormalMode", 4, 4,level4_4 );
         sd.addSolution("NormalMode", 5, 4,level5_4 );
         sd.addSolution("NormalMode", 6, 4,level6_4 );
         sd.addSolution("NormalMode", 7, 4,level7_4 );
