@@ -25,13 +25,15 @@ import java.nio.file.Paths;
 public class SettingsController {
     @FXML private RadioButton signIn, music;
     @FXML private Button save, cancel;
+    MediaPlayer mp;
     Stage stage;
-    PlayerDatabase pD = new PlayerDatabase("yusuf123");
+    PlayerDatabase pD = new PlayerDatabase("251364feh");
     @FXML TextField nicknameID;
     private MediaPlayer media;
     //ControlManager neC =new ControlManager();
     @FXML
     protected void handleSaveClick(ActionEvent event) throws IOException {
+        mp.play();
         stage = (Stage)((Button) event.getSource()).getScene().getWindow();
         Scene scene = (Scene)((Button) event.getSource()).getScene();
         TextField tf = (TextField) scene.lookup("#nicknameID");
@@ -53,6 +55,7 @@ public class SettingsController {
 
     @FXML
     protected void handleCancelClick(ActionEvent event) throws IOException{
+        mp.play();
         stage = (Stage)((Button) event.getSource()).getScene().getWindow();
         Parent root;
         root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
@@ -97,5 +100,10 @@ public class SettingsController {
 
     public String getUsername(){
         return nicknameID.getText();
+    }
+
+    @FXML
+    protected void initialize(){
+        mp = new MediaPlayer(new Media(Paths.get("src/GameManagement/media/ding.mp3").toUri().toString()));
     }
 }
