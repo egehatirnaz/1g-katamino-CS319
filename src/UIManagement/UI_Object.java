@@ -32,7 +32,9 @@ public class UI_Object extends Application {
     Scene scene1, scene2, scene4;
     Scene scene;
     private double x,y;
-    private MediaPlayer media = new MediaPlayer(new Media(Paths.get("src/GameManagement/media/title.mp3").toUri().toString()));;
+
+    // God dislikes lazy static variables.
+    private static MediaPlayer media = new MediaPlayer(new Media(Paths.get("src/GameManagement/media/title.mp3").toUri().toString()));;
 
     @Override
     public void start(Stage stage) throws Exception{
@@ -57,6 +59,10 @@ public class UI_Object extends Application {
             window.setX(event.getScreenX() - x);
             window.setY(event.getScreenY() - y);
         });
+
+        media.play();
+        media.setCycleCount(MediaPlayer.INDEFINITE);
+
         window.setScene(scene1);
         window.initStyle(StageStyle.UNDECORATED);
         window.setTitle("Katamino");
@@ -67,7 +73,16 @@ public class UI_Object extends Application {
         launch(args);
     }
 
-    public MediaPlayer returnMediaPlayer(){
+    public static MediaPlayer returnMediaPlayer(){
         return media;
+    }
+
+    public static void toggleMusic(boolean on){
+        if(on){
+            media.stop();
+        }
+        else{
+            media.play();
+        }
     }
 }

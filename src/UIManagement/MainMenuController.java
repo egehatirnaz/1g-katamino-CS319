@@ -143,21 +143,30 @@ public class MainMenuController {
     @FXML
     protected void initialize(){
         //Worst fucking idea, ever. But fuck me, it works.
+        /*
         if(ui_object == null) {
             ui_object = new UI_Object();
-        }
+            //ui_object.returnMediaPlayer().setCycleCount(MediaPlayer.INDEFINITE); //yeah infinite loop baby.
+            ui_object.returnMediaPlayer().play();
+        } else {
+            ui_object.returnMediaPlayer().stop();
+        }*/
     }
     @FXML
     protected void toggleMusic(MouseEvent event) throws IOException{
+
         stage = (Stage)((RadioButton) event.getSource()).getScene().getWindow();
         RadioButton music = (RadioButton) stage.getScene().lookup("#music");
+        UI_Object.toggleMusic(music.isSelected());
+        /*
         if(music.isSelected()){
             ui_object.returnMediaPlayer().stop();
-            ui_object.returnMediaPlayer().play();
+
         }
         else{
             ui_object.returnMediaPlayer().stop();
-        }
+            ui_object.returnMediaPlayer().play();
+        }*/
     }
 
 }
