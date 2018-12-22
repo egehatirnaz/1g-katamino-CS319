@@ -27,7 +27,7 @@ public class SettingsController {
     @FXML private Button save, cancel;
     MediaPlayer mp;
     Stage stage;
-    PlayerDatabase pD = new PlayerDatabase("8222");
+    PlayerDatabase pD = new PlayerDatabase("yusuf123");
     @FXML TextField nicknameID;
     @FXML Text entText, secEnd;
     private MediaPlayer media;
