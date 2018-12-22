@@ -23,7 +23,7 @@ public class DynamicModeMapper extends GameMapper {
     {
         solutionDatabase = new SolutionDatabase(password);
         imageList = new ArrayList<>();
-        currentLevel = getCurrentLevel() - 2;
+        currentLevel = getCurrentLevel()-2;
         System.out.println( "DYNAMIC MODE: " + currentLevel );
         setGame(currentLevel);
     }
@@ -86,9 +86,12 @@ public class DynamicModeMapper extends GameMapper {
 
     @Override
     boolean isLevelFinished(int currentLevel) {
-        Square[][] squares = super.getSquares();
+        Square[][] squares = getSquares();
+        System.out.println("Width " + squares.length);
+        System.out.println("Height " + squares[0].length);
         for(int i = 0; i < width; i++){
             for(int j = 0; j < height; j++) {
+                System.out.println(i+ " " + j);
                 if(squares[i][j].getStateOfSquare()==false)
                     return false;
             }
