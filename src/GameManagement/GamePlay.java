@@ -1,6 +1,7 @@
 package GameManagement;
 
 import javafx.application.Application;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -13,6 +14,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Scale;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.nio.file.Paths;
@@ -43,6 +45,7 @@ public class GamePlay extends Application {
     private ArrayList<Double> initialListY;
     private ArrayList<ImageView> blockList;
     private int startLevel;
+
 
     // constructor
     public GamePlay( String gameMode  )
@@ -249,9 +252,16 @@ public class GamePlay extends Application {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    startLevel++;
-                    start( primaryStage );
+                    if(gameMapper.isGameFinished())
+                    {
+                        root.getChildren().add(gameMapper.getAward());
+                    }
+                    else {
+                        startLevel++;
+                        start(primaryStage);
+                    }
                 }
+
             });
         }
 
@@ -319,8 +329,8 @@ public class GamePlay extends Application {
 
     private void returnToInitialPlace( ImageView blockPiece )
     {
-        blockPiece.setX(gameMapper.getInitialPositionX().get(blockList.indexOf(blockPiece)));
-        blockPiece.setY(gameMapper.getInitialPositionY().get(blockList.indexOf(blockPiece)));
+        blockPiece.setX( gameMapper.getInitialPositionX().get( blockList.indexOf(blockPiece) ) );
+        blockPiece.setY( gameMapper.getInitialPositionY().get( blockList.indexOf(blockPiece) ) );
         blockPiece.setPreserveRatio(true);
         blockPiece.setFitWidth(100);
         blockPiece.setFitHeight(100);
