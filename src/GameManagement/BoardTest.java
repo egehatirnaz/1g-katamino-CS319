@@ -11,6 +11,7 @@ import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.*;
@@ -35,6 +36,7 @@ import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -87,7 +89,7 @@ public class BoardTest extends Application {
         vbox.getChildren().addAll(clock);
        // System.out.println( "Stage im " + gm.getCurrentLevel() );
         imageList =  gm.getInitialImageList();
-        System.out.println( "initial image list start method: " + gm.getInitialImageList().size() );
+        System.out.println( "initial image list start method: " + gm.getInitialImageList().size());
 
         final ArrayList<Double> fitHeightList = gm.getOriginalHeightScale();
         final ArrayList<Double> fitWidthList = gm.getOriginalWidthScale();
@@ -320,8 +322,8 @@ public class BoardTest extends Application {
                         e.printStackTrace();
                     }*/
                     startLevel++;
-                    start( primaryStage );
-                }
+                        this.start( primaryStage );
+                    }
                 /*if(){
                     System.out.println("Game is over");
 
