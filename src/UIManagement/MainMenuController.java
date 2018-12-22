@@ -193,7 +193,7 @@ public class MainMenuController {
         score1.setText(pArr.get(0).getTime() + "");
         Text score2 = (Text) scene1.lookup("#score2");
         score2.setText(pArr.get(1).getTime() + "");
-        Text score3 = (Text) scene1.lookup("#score1");
+        Text score3 = (Text) scene1.lookup("#score3");
         score3.setText(pArr.get(2).getTime() + "");
         Text score4 = (Text) scene1.lookup("#score4");
         score4.setText(pArr.get(3).getTime() + "");
