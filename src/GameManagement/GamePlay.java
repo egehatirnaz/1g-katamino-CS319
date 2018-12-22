@@ -88,12 +88,8 @@ public class GamePlay extends Application {
         root = new Pane();
         scene = new Scene(root, primaryStage.getWidth(),primaryStage.getHeight());
         vbox = new VBox();
-        String url =  "src/GameManagement/media/gameboard.png";
-        BackgroundImage myBffI= new BackgroundImage(new Image(Paths.get(url).toUri().toString(), primaryStage.getWidth(), primaryStage.getHeight(), true,true),
-                BackgroundRepeat.ROUND, BackgroundRepeat.ROUND, BackgroundPosition.CENTER,
-                BackgroundSize.DEFAULT);
-        Background myBI = new Background( myBffI );
-        root.setBackground( myBI );
+
+
         // assignments
         blockList = gameMapper.getInitialImageList();
         fitHeightList = gameMapper.getOriginalHeightScale();
@@ -254,6 +250,7 @@ public class GamePlay extends Application {
                     }
                     if(gameMapper.isGameFinished())
                     {
+                        running = false;
                         root.getChildren().add(gameMapper.getAward());
                     }
                     else {
@@ -280,8 +277,10 @@ public class GamePlay extends Application {
                 root.getChildren().add(gameMapper.getStickView());
             }
             root.getChildren().add(vbox);
+            root.setBackground( gameMapper.getBackgroundImage() );
 
-            // time keeper
+
+            /**********************time keeper********************/
             for (int i = 0; i < blockList.size(); i++)
                 root.getChildren().add(blockList.get(i));
             runClock();
@@ -302,7 +301,7 @@ public class GamePlay extends Application {
         new Thread(() -> {
             long last = System.nanoTime();
             double delta = 0;
-            double ns = 1000000000.0 / 1;
+            double ns = 1000000000.0;
             int count = oldTime;
             int number = oldNumber;
             boolean check = false;
@@ -318,7 +317,7 @@ public class GamePlay extends Application {
                         number ++;
                     }
                     check = true;
-                    DecimalFormat df = new DecimalFormat("000");
+                    DecimalFormat df = new DecimalFormat("0000");
                     clock.refreshDigits(df.format(count));
                     clock.refreshMinute(number);
                     delta--;
