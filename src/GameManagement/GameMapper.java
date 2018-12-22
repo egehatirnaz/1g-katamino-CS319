@@ -25,11 +25,11 @@ public abstract class GameMapper {
 
     // properties
     private Square[][] squares;
-    private int currentLevel;
+    protected int currentLevel;
     private ArrayList<Double>       originalHeightScale;
     private ArrayList<Double>       originalWidthScale;
-    private ArrayList<Double>       initialPositionX;
-    private ArrayList<Double>       initialPositionY;
+    protected ArrayList<Double>       initialPositionX;
+    protected ArrayList<Double>       initialPositionY;
     protected final double SQUARESIZE = 100.0;
     private final int SQUARENUMBER = 13;
    // private final double BOARDCOORDX = 250.0;
@@ -120,15 +120,18 @@ public abstract class GameMapper {
 
     protected void setupEntity(ArrayList<ImageView> imageList)
     {
-        imgStartCoordX = (( screenWidth - imageList.size() * 150) / 2 );
+        initialPositionX.clear();
+        initialPositionY.clear();
+        imgStartCoordX = ( screenWidth - imageList.size() * 150) / 2 ;
         imgStartCoordY = (screenHeight - 150);
 
         for( int i = 0; i < imageList.size(); i++ )
         {
-            imageList.get(i).setX(imgStartCoordX + i * 2 * SQUARESIZE);
+            imageList.get(i).setX(imgStartCoordX + (i * 2 * SQUARESIZE));
             initialPositionX.add( imageList.get(i).getX() );
             imageList.get(i).setY( imgStartCoordY );
             initialPositionY.add( imageList.get(i).getY() );
+            System.out.println( "INITIAL POSX: " + imageList.get(i).getX() + "INITIAL POSY: " + imageList.get(i).getY() );
             originalHeightScale.add( imageList.get(i).getFitHeight() );
             originalWidthScale.add( imageList.get(i).getFitWidth() );
             imageList.get(i).setFitHeight(100);
@@ -165,9 +168,9 @@ public abstract class GameMapper {
     {
         return squares;
     }
-    
 
-    public void updateLevel() {
+
+    protected void updateLevel() {
         currentLevel++;
         setGame(currentLevel);
     }
@@ -176,9 +179,9 @@ public abstract class GameMapper {
     {
         String url =  "src/GameManagement/media/gameboard.png";
         BackgroundImage backgroundImage= new BackgroundImage(new Image(Paths.get(url).toUri().toString(), screenWidth, screenHeight, true,true),
-                null, null, null,
-                null);
-        Background background = new Background(backgroundImage);
+                BackgroundRepeat.ROUND, BackgroundRepeat.ROUND, BackgroundPosition.CENTER,
+                BackgroundSize.DEFAULT);
+        Background background = new Background( backgroundImage );
         return background;
     }
 }
