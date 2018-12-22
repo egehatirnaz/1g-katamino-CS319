@@ -32,7 +32,7 @@ public abstract class GameMapper {
     private ImageView awardView;
     // constructor
     public GameMapper(){
-        this.currentLevel = 4;
+        this.currentLevel = 3;
         originalHeightScale = new ArrayList<>();
         originalWidthScale = new ArrayList<>();
         initialPositionX = new ArrayList<>();

@@ -33,6 +33,8 @@ public class GamePlay extends Application {
     private Group root;
     private Scene scene;
     VBox vbox;
+    int oldTime;
+    int oldNumber;
     private ArrayList<Double> fitHeightList;
     private ArrayList<Double> fitWidthList;
     private ArrayList<Double> initialListX;
@@ -46,7 +48,7 @@ public class GamePlay extends Application {
         if( gameMode.equals("NormalMode") )
         {
             gameMapper = new NormalModeMapper(password);
-            startLevel = 4;
+            startLevel = 3;
         }
         else if( gameMode.equals("ChallangeMode") )
         {
@@ -282,8 +284,8 @@ public class GamePlay extends Application {
             long last = System.nanoTime();
             double delta = 0;
             double ns = 1000000000.0 / 1;
-            int count = 0;
-            int number = 0;
+            int count = oldTime;
+            int number = oldNumber;
             boolean check = false;
 
             while (running) {
@@ -302,6 +304,8 @@ public class GamePlay extends Application {
                     clock.refreshMinute(number);
                     delta--;
                 }
+                oldTime = count;
+                oldNumber = number;
             }
         }).start();
     }

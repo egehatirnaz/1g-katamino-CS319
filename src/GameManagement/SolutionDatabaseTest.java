@@ -6,13 +6,11 @@ public class SolutionDatabaseTest {
 
     public static void main( String args[]) {
         SolutionDatabase sd = new SolutionDatabase("yusuf123");
-        String [] level4 = {"n1", "n4", "n5", "n12"};
+        /*String [] level4 = {"n1", "n4", "n5", "n12"};
         String [] level5 = {"n1", "n4", "n5", "n12", "n3"};
         String [] level6 = {"n1", "n4", "n5", "n12", "n3", "n7"};
         String [] level7 = {"n1", "n4", "n5", "n12", "n3", "n7", "n6"};
         String [] level8 = {"n1", "n4", "n5", "n12", "n3", "n7", "n6", "n8"};
-        String [] dyn1 = {"n6", "d1", "d2"};
-        String [] dyn2= {"n9", "n7", "d1", "d2", "d3"};
         String [] level9 = {"n1", "n4", "n5", "n12", "n3", "n7", "n6", "n8", "n11"};
         String [] level10 = {"n1", "n4", "n5", "n12", "n3", "n7", "n6", "n8", "n11", "n10"};
         String [] level11 = {"n1", "n4", "n5", "n12", "n3", "n7", "n6", "n8", "n11", "n10", "n2"};
@@ -61,10 +59,27 @@ public class SolutionDatabaseTest {
         sd.addSolution("NormalMode", 8, 3,level8_3 );
         sd.addSolution("NormalMode", 9, 3,level9_3 );
         sd.addSolution("NormalMode", 10, 3,level10_3 );
-        sd.addSolution("NormalMode", 11, 3,level11_3 );
+        sd.addSolution("NormalMode", 11, 3,level11_3 );*/
 
-        sd.addSolution("DynamicMode", 1, 1, dyn1 );
-        sd.addSolution("DynamicMode", 2, 1, dyn2 );
-    }
+        String [] level3_4 = {"n1", "n9" , "n7"};
+        String [] level4_4 = {"n1", "n9" , "n7", "n6"};
+        String [] level5_4 = {"n1", "n9" , "n7", "n6", "n2"};
+        String [] level6_4 = {"n1", "n9" , "n7", "n6", "n2", "n5"};
+        String [] level7_4 = {"n1", "n9" , "n7", "n6", "n2", "n5", "n12"};
+        String [] level8_4 = {"n1", "n9" , "n7", "n6", "n2", "n5", "n12", "n4"};
+        sd.addSolution("NormalMode", 3, 4,level3_4 );
+        sd.addSolution("NormalMode", 4, 4,level4_4 );
+        sd.addSolution("NormalMode", 5, 4,level5_4 );
+        sd.addSolution("NormalMode", 6, 4,level6_4 );
+        sd.addSolution("NormalMode", 7, 4,level7_4 );
+        sd.addSolution("NormalMode", 8, 4,level8_4 );
+/*
+        String [] dyn1 = {"n6", "d1", "d2"};
+        String [] dyn2 = {"n9", "n7", "d1", "d2", "d3"};
+        String [] dyn3 = { "d1", "d2", "d4", "d5", "n4", "n6", "n9" };
+       // sd.addSolution("DynamicMode", 1, 1, dyn1 );
+       // sd.addSolution("DynamicMode", 2, 1, dyn2 );
+        sd.addSolution("DynamicMode", 3,1, dyn3 );
+    */}
 
 }
