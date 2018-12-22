@@ -19,8 +19,8 @@ public class ModesController {
     Stage stage;
     String nick;
 
-    public ModesController(String name) {
-        nick = name;
+    public ModesController() {
+
     }
 
     @FXML

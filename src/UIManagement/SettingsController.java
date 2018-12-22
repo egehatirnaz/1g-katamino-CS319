@@ -26,7 +26,7 @@ public class SettingsController {
     @FXML private RadioButton signIn, music;
     @FXML private Button save, cancel;
     Stage stage;
-    PlayerDatabase pD = new PlayerDatabase("8222");
+    PlayerDatabase pD = new PlayerDatabase("yusuf123");
     @FXML TextField nicknameID;
     private MediaPlayer media;
     //ControlManager neC =new ControlManager();

@@ -13,13 +13,17 @@ public class DynamicModeMapper extends GameMapper {
     private SolutionDatabase solutionDatabase;
     private int width;
     private int height;
+    private int currentLevel;
+    private Square[][] squares;
 
 
     public DynamicModeMapper( String password )
     {
         solutionDatabase = new SolutionDatabase(password);
         imageList = new ArrayList<>();
-        setGame(getCurrentLevel());
+        currentLevel = getCurrentLevel() - 2;
+        System.out.println( "DYNAMIC MODE: " + currentLevel );
+        setGame(currentLevel);
     }
 
     @Override
@@ -27,12 +31,18 @@ public class DynamicModeMapper extends GameMapper {
         switch (currentLevel){
             case 1:
                 setSquares( 3, 4);
+                setInitialImageList();
+                super.setupEntity(imageList);
                 break;
             case 2:
                 setSquares( 5, 4 );
+                setInitialImageList();
+                super.setupEntity(imageList);
                 break;
             case 3:
                 setSquares( 7 , 6 );
+                setInitialImageList();
+                super.setupEntity(imageList);
                 break;
         }
     }
@@ -41,7 +51,6 @@ public class DynamicModeMapper extends GameMapper {
     void setSquares(int width, int height){
         this.width = width;
         this.height = height;
-        Square[][] squares = super.getSquares();
         squares = new Square[width][height];
         for(int i = 0; i < squares.length; i++){
             double xCoor = i * super.getSQUARESIZE() + super.getBOARDCOORDX();
@@ -52,6 +61,12 @@ public class DynamicModeMapper extends GameMapper {
                     squares[i][j].getRect().setFill(Color.GRAY);
             }
         }
+    }
+
+    @Override
+    public Square[][] getSquares()
+    {
+        return squares;
     }
 
     @Override
@@ -80,8 +95,6 @@ public class DynamicModeMapper extends GameMapper {
 
     @Override
     void setInitialImageList() {
-
-        int currentLevel = getCurrentLevel();
         imageList.clear();
         String str;
         ArrayList<String> solutionList = solutionDatabase.getSolution( "DynamicMode", currentLevel, 1);
