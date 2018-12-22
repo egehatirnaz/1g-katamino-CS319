@@ -29,7 +29,7 @@ import java.nio.file.Paths;
 
 public class UI_Object extends Application {
     Stage window;
-    Scene scene1, scene2, scene4;
+    Scene scene1, scene2;
     Scene scene;
     private double x,y;
 
@@ -39,10 +39,10 @@ public class UI_Object extends Application {
     @Override
     public void start(Stage stage) throws Exception{
         window = stage;
-        Parent root;
-        root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+        //Parent root;
+        //root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
-        Parent root1 = FXMLLoader.load(getClass().getResource("Settings.fxml"));
+        //Parent root1 = FXMLLoader.load(getClass().getResource("Settings.fxml"));
         VBox layout1 = new VBox(20);
         layout1.getChildren().setAll((Parent)loader.load());
         scene1 = new Scene(layout1, 600, 400);
@@ -50,7 +50,6 @@ public class UI_Object extends Application {
         FXMLLoader loader2 = new FXMLLoader(getClass().getResource("NormalMode.fxml"));
         layout2.getChildren().setAll((VBox)loader2.load());
         scene2 = new Scene(layout2, 640, 425);
-
         scene1.setOnMousePressed(event -> {
             x = event.getSceneX();
             y = event.getSceneY();
