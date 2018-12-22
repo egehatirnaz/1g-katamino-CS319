@@ -101,7 +101,7 @@ public abstract class GameMapper {
     {
         for( int i = 0; i < imageList.size(); i++ )
         {
-            imageList.get(i).setX(BOARDCOORDX + i * 3 * SQUARESIZE);
+            imageList.get(i).setX(BOARDCOORDX + i * 2 * SQUARESIZE);
             initialPositionX.add( imageList.get(i).getX() );
             imageList.get(i).setY( 5 * SQUARESIZE + BOARDCOORDY + 100 );
             initialPositionY.add( imageList.get(i).getY() );

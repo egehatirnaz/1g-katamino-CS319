@@ -26,9 +26,9 @@ public class BlocksDatabaseTest {
 			n2[i] = new Direction();
 		}
 		int n2Directions1[] = {1,0,0,0};
-		int n2Directions2[] = {1,0,0,1};
-		int n2Directions3[] = {2,0,0,1};
-		int n2Directions4[] = {2,0,0,2};
+		int n2Directions2[] = {1,1,0,0};
+		int n2Directions3[] = {2,1,0,0};
+		int n2Directions4[] = {2,2,0,0};
 		n2[0].setDistance( n2Directions1);
 		n2[1].setDistance( n2Directions2);
 		n2[2].setDistance( n2Directions3);
@@ -58,9 +58,9 @@ public class BlocksDatabaseTest {
 		}
 
 		int n4Directions1[] = {1,0,0,0};
-		int n4Directions2[] = {1,0,0,1};
-		int n4Directions3[] = {2,0,0,1};
-		int n4Directions4[] = {3,0,0,1};
+		int n4Directions2[] = {1,1,0,0};
+		int n4Directions3[] = {2,1,0,0};
+		int n4Directions4[] = {3,1,0,0};
 		n4[0].setDistance( n4Directions1);
 		n4[1].setDistance( n4Directions2);
 		n4[2].setDistance( n4Directions3);
@@ -119,10 +119,10 @@ public class BlocksDatabaseTest {
 		{
 			n8[i] = new Direction();
 		}
-		int n8Directions1[] = {1,0,0,0};
-		int n8Directions2[] = {0,0,1,0};
-		int n8Directions3[] = {0,0,0,1};
-		int n8Directions4[] = {0,1,0,0};
+		int n8Directions1[] = {1,1,0,0};
+		int n8Directions2[] = {0,1,0,0};
+		int n8Directions3[] = {0,2,0,0};
+		int n8Directions4[] = {0,0,1,0};
 		n8[0].setDistance( n8Directions1 );
 		n8[1].setDistance( n8Directions2 );
 		n8[2].setDistance( n8Directions3 );
@@ -135,7 +135,7 @@ public class BlocksDatabaseTest {
 			n9[i] = new Direction();
 		}
 		int n9Directions1[] = {1,0,0,0};
-		int n9Directions2[] = {1,0,0,1};
+		int n9Directions2[] = {1,1,0,0};
 		int n9Directions3[] = {2,0,0,0};
 		int n9Directions4[] = {3,0,0,0};
 		n9[0].setDistance( n9Directions1 );
@@ -166,10 +166,10 @@ public class BlocksDatabaseTest {
 		{
 			n11[i] = new Direction();
 		}
-		int n11Directions1[] = {1,0,0,1};
-		int n11Directions2[] = {1,0,0,0};
-		int n11Directions3[] = {1,1,0,0};
-		int n11Directions4[] = {2,1,0,0};
+		int n11Directions1[] = {0,1,0,0};
+		int n11Directions2[] = {0,1,1,0};
+		int n11Directions3[] = {0,2,0,0};
+		int n11Directions4[] = {1,2,0,0};
 		n11[0].setDistance( n11Directions1 );
 		n11[1].setDistance( n11Directions2 );
 		n11[2].setDistance( n11Directions3 );

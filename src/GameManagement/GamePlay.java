@@ -5,15 +5,17 @@ import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 
+import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -30,7 +32,7 @@ public class GamePlay extends Application {
     private boolean running;
     TimeKeeper t1;
     private long time;
-    private Group root;
+    private Pane root;
     private Scene scene;
     VBox vbox;
     int oldTime;
@@ -80,10 +82,15 @@ public class GamePlay extends Application {
     @Override
     public void start(Stage primaryStage) {
         // first initialization for showing
-        root = new Group();
+        root = new Pane();
         scene = new Scene(root, primaryStage.getWidth(),primaryStage.getHeight());
         vbox = new VBox();
-
+        String url =  "src/GameManagement/media/gameboard.png";
+        BackgroundImage myBffI= new BackgroundImage(new Image(Paths.get(url).toUri().toString(), primaryStage.getWidth(), primaryStage.getHeight(), true,true),
+                BackgroundRepeat.ROUND, BackgroundRepeat.ROUND, BackgroundPosition.CENTER,
+                BackgroundSize.DEFAULT);
+        Background myBI = new Background( myBffI );
+        root.setBackground( myBI );
         // assignments
         blockList = gameMapper.getInitialImageList();
         fitHeightList = gameMapper.getOriginalHeightScale();
