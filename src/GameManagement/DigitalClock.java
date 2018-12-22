@@ -19,8 +19,8 @@ public class DigitalClock extends Parent {
     private Font FONT = new Font(10 * scale);
 
     private HBox hbox = new HBox();
-    private Text[] digits = new Text[3];
-    private Group[] digitsGroup = new Group[3];
+    private Text[] digits = new Text[4];
+    private Group[] digitsGroup = new Group[4];
 
     public DigitalClock(boolean levelControl) {
         if(levelControl){
@@ -49,10 +49,14 @@ public class DigitalClock extends Parent {
                 digits[i].setFill(Color.BLACK);
             }
             if (i == 1) {
+                bg = createBackground(Color.ANTIQUEWHITE, Color.BLACK);
+                digits[i].setFill(Color.BLACK);
+            }
+            if (i == 2) {
                 bg = createBackground(Color.RED, Color.BLACK);
                 digits[i].setFill(Color.WHITE);
             }
-            if (i == 2) {
+            if (i == 3) {
                 bg = createBackground(Color.RED, Color.BLACK);
                 digits[i].setFill(Color.WHITE);
             }
@@ -74,6 +78,7 @@ public class DigitalClock extends Parent {
         }
     }
 
+    //calisjhgjhbjhb
     public void refreshMinute(int number){
         digits[0].setText(number+"");
     }

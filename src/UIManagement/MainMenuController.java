@@ -51,12 +51,14 @@ public class MainMenuController {
     @FXML
     private Button minimizeButton;
     double x,y;
+    MediaPlayer mp;
 
     @FXML
     Stage stage;
     UI_Object ui_object;
 
     @FXML protected void handleCredits(ActionEvent event) throws IOException{
+        mp.play();
         stage = (Stage)((Button) event.getSource()).getScene().getWindow();
         Parent root;
         root = FXMLLoader.load(getClass().getResource("Credits.fxml"));
@@ -66,12 +68,13 @@ public class MainMenuController {
     }
 
     @FXML protected void handleStart(ActionEvent event) throws IOException {
+        mp.play();
         stage = (Stage)((Button) event.getSource()).getScene().getWindow();
         Parent root;
         root = FXMLLoader.load(getClass().getResource("Settings.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.initStyle(StageStyle.UNDECORATED);
+        //stage.initStyle(StageStyle.UNDECORATED);
         /*scene.setOnMousePressed(e -> {
             x = e.getSceneX();
             y = e.getSceneY();
@@ -85,15 +88,12 @@ public class MainMenuController {
 
     // Leaderboard için sonradan eklenen zımbırtılar. -Ege
     @FXML protected void handleLeaderboard(ActionEvent event) throws IOException {
+        mp.play();
         stage = (Stage)((Button) event.getSource()).getScene().getWindow();
         Parent root;
         root = FXMLLoader.load(getClass().getResource("Leaderboard.fxml"));
         Scene scene = new Scene(root);
-
         TableView tb = (TableView) scene.lookup("#tableview");
-
-
-
         stage.setScene(scene);
         stage.initStyle(StageStyle.UNDECORATED);
         System.out.println("Leaderboard Pressed");
@@ -116,6 +116,7 @@ public class MainMenuController {
 
     @FXML
     public void handleHowToPlay(ActionEvent event) throws IOException{
+        mp.play();
         stage = (Stage)((Button) event.getSource()).getScene().getWindow();
         Parent root;
         root = FXMLLoader.load(getClass().getResource("HowToPlay.fxml"));
@@ -131,6 +132,9 @@ public class MainMenuController {
     }
     @FXML
     protected void changeLanguageTR(MouseEvent event) throws IOException{
+        mp = new MediaPlayer(new Media(Paths.get("src/GameManagement/media/stomp.wav").toUri().toString()));
+        mp.play();
+        mp = new MediaPlayer(new Media(Paths.get("src/GameManagement/media/ding.mp3").toUri().toString()));
         stage = (Stage)((ImageView) event.getSource()).getScene().getWindow();
         Parent root;
         root = FXMLLoader.load(getClass().getResource("FXML/TUR/MainMenu.fxml"));
@@ -142,15 +146,7 @@ public class MainMenuController {
     }
     @FXML
     protected void initialize(){
-        //Worst fucking idea, ever. But fuck me, it works.
-        /*
-        if(ui_object == null) {
-            ui_object = new UI_Object();
-            //ui_object.returnMediaPlayer().setCycleCount(MediaPlayer.INDEFINITE); //yeah infinite loop baby.
-            ui_object.returnMediaPlayer().play();
-        } else {
-            ui_object.returnMediaPlayer().stop();
-        }*/
+        mp = new MediaPlayer(new Media(Paths.get("src/GameManagement/media/ding.mp3").toUri().toString()));
     }
     @FXML
     protected void toggleMusic(MouseEvent event) throws IOException{

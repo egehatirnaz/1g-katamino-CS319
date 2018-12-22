@@ -124,7 +124,7 @@ public class SolutionDatabase {
 	void deleteDatabase()
 	{	
 		try {
-			String deletionCode = "DROP TABLE [ IF EXISTS ] solutions";
+			String deletionCode = "DROP TABLE  IF EXISTS  solutions";
 			ps = c.prepareStatement(deletionCode);
 			ps.execute();		
 
