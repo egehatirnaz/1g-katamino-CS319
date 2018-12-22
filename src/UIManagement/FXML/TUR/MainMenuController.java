@@ -150,7 +150,7 @@ public class MainMenuController {
     public void handleLeaderBoard(ActionEvent event) throws IOException {
         //Parent root = FXMLLoader.load(getClass().getResource("LeaderBoard.fxml"));
         //System.out.println(root.getLayoutX());
-
+        mp.play();
         stage = (Stage)((Button) event.getSource()).getScene().getWindow();
         VBox layout1 = new VBox(10);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("LeaderBoard.fxml"));

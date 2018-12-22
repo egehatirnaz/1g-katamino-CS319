@@ -54,11 +54,17 @@ public class LeaderBoardController {
     Stage stage;
     MediaPlayer mp;
     public void handleBack(ActionEvent event) throws IOException {
+        mp.play();
         stage = (Stage)((Button) event.getSource()).getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
         VBox layout1 = new VBox(20);
         layout1.getChildren().setAll((Parent)loader.load());
         Scene scene1 = new Scene(layout1, 600, 400);
         stage.setScene(scene1);
+    }
+
+    @FXML
+    protected void initialize(){
+        mp = new MediaPlayer(new Media(Paths.get("src/GameManagement/media/ding.mp3").toUri().toString()));
     }
 }
