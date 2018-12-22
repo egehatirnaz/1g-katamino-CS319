@@ -12,19 +12,24 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 
 public class SettingsController {
     public Button butt;
     private double x,y;
     @FXML
     Stage stage;
+    MediaPlayer mp;
     //ControlManager neC =new ControlManager();
 
     @FXML
     protected void handleSaveClick(ActionEvent event) throws IOException {
+        mp.play();
 
         /*if(neC.sth){
             oyun ekranina git ve kaydet
@@ -74,6 +79,7 @@ public class SettingsController {
 
     @FXML
     protected void handleCancelClick(ActionEvent event) throws IOException{
+        mp.play();
         stage = (Stage)((Button) event.getSource()).getScene().getWindow();
         Parent root;
         root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
@@ -102,6 +108,11 @@ public class SettingsController {
 
     @FXML
     public void handleSignIn(MouseEvent event) {
+    }
+
+    @FXML
+    protected void initialize(){
+        mp = new MediaPlayer(new Media(Paths.get("src/GameManagement/media/ding.mp3").toUri().toString()));
     }
 
 }
