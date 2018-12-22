@@ -23,9 +23,7 @@ public class ModesController {
     String nick;
     MediaPlayer mp;
 
-    public ModesController() {
-
-    }
+    public ModesController() {}
 
     @FXML
     public void handleChallenge(ActionEvent event) {
@@ -42,8 +40,8 @@ public class ModesController {
         stage = (Stage)((Button) event.getSource()).getScene().getWindow();
         GamePlay gamePlay = new GamePlay( "NormalMode" );
         Stage stage = new Stage();
-        stage.setFullScreen(true);
-        stage.setMaximized(true);
+       // stage.setFullScreen(true);
+       // stage.setMaximized(true);
         gamePlay.start(stage);
         VBox layout1 = new VBox(20);
         //Scene sceneNormal = gamePlay.returnScene();

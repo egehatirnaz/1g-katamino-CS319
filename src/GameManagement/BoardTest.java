@@ -63,14 +63,14 @@ public class BoardTest extends Application {
 
     private Scene window;
     double originX, originY;
-    int startLevel = 3;
+    int startLevel = 4;
     int oldNumber = 0;
     int oldTime = 0;
     Text tLab = new Text(10,20,"Time: ");
     Text timeLL = new Text(100,20," Hey");
     //static int i = 0;
     private long time;
-    PlayerDatabase pD = new PlayerDatabase("8222");
+    PlayerDatabase pD = new PlayerDatabase("29");
     ArrayList<ImageView> imageList;
     private DigitalClock clock;
     private boolean running = false;
@@ -346,7 +346,7 @@ public class BoardTest extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
         window = scene;
-        /*primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             public void handle(WindowEvent arg0) {
                 running = false;
                 primaryStage.close();
@@ -377,9 +377,10 @@ public class BoardTest extends Application {
                         number ++;
                     }
                     check = true;
-                    DecimalFormat df = new DecimalFormat("000");
+                    DecimalFormat df = new DecimalFormat("0000");
                     clock.refreshDigits(df.format(count));
                     clock.refreshMinute(number);
+                    System.out.println( "Clock: " + number );
                     delta--;
                 }
                 oldTime = count;
