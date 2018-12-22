@@ -1,7 +1,6 @@
 package GameManagement;
 
 import javafx.application.Application;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -11,10 +10,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Scale;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.nio.file.Paths;
@@ -25,7 +24,7 @@ public class GamePlay extends Application {
 
     // properties
     GameMapper gameMapper;
-    final String password = "8222";
+    final String password = "29";
     private Scene window;
     double originX, originY;
     Text tLab;
@@ -45,6 +44,8 @@ public class GamePlay extends Application {
     private ArrayList<Double> initialListY;
     private ArrayList<ImageView> blockList;
     private int startLevel;
+    private String modeName;
+    private int lev;
 
 
     // constructor
@@ -54,6 +55,7 @@ public class GamePlay extends Application {
         {
             gameMapper = new NormalModeMapper(password);
             startLevel = 3;
+
         }
         else if( gameMode.equals("ChallangeMode") )
         {
@@ -65,7 +67,7 @@ public class GamePlay extends Application {
             gameMapper = new DynamicModeMapper( password );
             startLevel = 1;
         }
-
+        modeName = gameMode;
         // array initializations
         fitHeightList = new ArrayList<>();
         fitWidthList = new ArrayList<>();
@@ -88,12 +90,8 @@ public class GamePlay extends Application {
         root = new Pane();
         scene = new Scene(root, primaryStage.getWidth(),primaryStage.getHeight());
         vbox = new VBox();
-        String url =  "src/GameManagement/media/gameboard.png";
-        BackgroundImage myBffI= new BackgroundImage(new Image(Paths.get(url).toUri().toString(), primaryStage.getWidth(), primaryStage.getHeight(), true,true),
-                BackgroundRepeat.ROUND, BackgroundRepeat.ROUND, BackgroundPosition.CENTER,
-                BackgroundSize.DEFAULT);
-        Background myBI = new Background( myBffI );
-        root.setBackground( myBI );
+
+
         // assignments
         blockList = gameMapper.getInitialImageList();
         fitHeightList = gameMapper.getOriginalHeightScale();
@@ -101,6 +99,11 @@ public class GamePlay extends Application {
         initialListX = gameMapper.getInitialPositionX();
         initialListY = gameMapper.getInitialPositionY();
         Square[][] boardSquares = gameMapper.getSquares();
+
+        lev = gameMapper.getCurrentLevel();
+        if( modeName.equals("Dynamic Mode") )
+            lev = gameMapper.getSquares().length;
+
 
         /************** Listeners *******************/
         for (int i = 0; i < blockList.size(); i++) {
@@ -167,19 +170,18 @@ public class GamePlay extends Application {
 
             /*************** When mouse is released *************/
             blockList.get(i).setOnMouseReleased((t)-> {
-                int count = 0;
+                int count1 = 0;
                 int count2 = 0;
                 ImageView blockPiece = (ImageView)(t.getSource());
-
                 double xLoc = originX , yLoc = originY;
-                for( int k = 0; k < startLevel ; k++ ) {
+                for( int k = 0; k < lev ; k++ ) {
                     for (int j = 0; j < boardSquares[k].length; j++) {
                         boardSquares[k][j].setFilled(false);
                         for( int noOfImage = 0; noOfImage < blockList.size(); noOfImage++ ) {
-                            if (root.getChildren().get(root.getChildren().indexOf(blockList.get(noOfImage))).contains((300) + (k) * 100, (150) + (j) * 100)) {
+                            if (root.getChildren().get(root.getChildren().indexOf(blockList.get(noOfImage))).contains(gameMapper.getBOARDCOORDX()+50 + (k) * 100, (gameMapper.getBOARDCOORDY()+50) + (j) * 100)) {
                                 if(boardSquares[k][j].getStateOfSquare()!= true) {
                                     boardSquares[k][j].setFilled(true);
-                                    count++;
+                                    count1++;
                                 }
                                 else
                                     count2++;
@@ -188,15 +190,22 @@ public class GamePlay extends Application {
                     }
                 }
 
-                System.out.println(gameMapper.getSQUARESIZE());
+                System.out.println(gameMapper.getSquares().length);
 
-                if(count % 5 == 0 && count != 0){
+
+
+
+                if( count1 != 0){
                     double xlocation=0,ylocation=0;
-                    for(double b = (blockPiece.getY()+blockPiece.getImage().getHeight());b >blockPiece.getY();b-- ){
-                        for(double a = (blockPiece.getX()+ blockPiece.getImage().getWidth());a>blockPiece.getX();a--){
+                    boolean outside = false;
+                    for(double b = (blockPiece.getY()+blockPiece.getImage().getHeight());b >blockPiece.getY();b= b - 10){
+                        for(double a = (blockPiece.getX()+ blockPiece.getImage().getWidth());a>blockPiece.getX();a = a - 10){
                             if(root.getChildren().get(root.getChildren().indexOf(blockPiece)).contains(a, b)){
                                 xlocation = a;
                                 ylocation = b;
+                                if((xlocation > gameMapper.getBOARDCOORDX()-25 && xlocation < (gameMapper.getBOARDCOORDX()+25 + lev * 100 ) && (ylocation > (gameMapper.getBOARDCOORDY()-25) && ylocation < gameMapper.getBOARDCOORDY()+25 + (boardSquares[0].length)*100 ))== false && !outside ) {
+                                    outside = true;
+                                }
                             }
 
                         }
@@ -214,38 +223,39 @@ public class GamePlay extends Application {
                             maxheight = a;
                     }
 
-                    if(xlocation==225)
+                    if(xlocation==gameMapper.getBOARDCOORDX()-25)
                         xlocation++;
-                    if(ylocation==-75)
+                    if(ylocation==gameMapper.getBOARDCOORDY()-25)
                         ylocation++;
-                    int x = ((int)xlocation - 225) /100 ;
-                    int y = ((int)ylocation - 75) / 100;
+                    int x = ((int)xlocation - ((int)gameMapper.getBOARDCOORDX()-25)) /100 ;
+                    int y = ((int)ylocation - ((int)gameMapper.getBOARDCOORDY()-25)) / 100;
 
-                    if(maxwidth  == gameMapper.getCurrentLevel())
+                    if(maxwidth  == lev)
                         x--;
                     if(maxheight  == boardSquares[0].length)
                         y--;
 
-                    if( x>=0 && x < gameMapper.getCurrentLevel()  && y >= 0 && y < boardSquares[0].length  && blockPiece.preserveRatioProperty().getValue() == false && count2==0) {
+                    if( x>=0 && x < lev  && y >= 0 && y < boardSquares[0].length  && blockPiece.preserveRatioProperty().getValue() == false && count2==0 && outside==false) {
                         if (boardSquares[x][y].getStateOfSquare()) {
-                            double stickX = 250+x*100 ;
-                            double stickY = 100+y*100 ;
+                            double stickX = gameMapper.getBOARDCOORDX()+x*100 ;
+                            double stickY = gameMapper.getBOARDCOORDY()+y*100 ;
                             blockPiece.setX(stickX + blockPiece.getX() - xlocation);
                             blockPiece.setY(stickY + blockPiece.getY() - ylocation);
                         }
-                        else
+                        else {
                             returnToInitialPlace(blockPiece);
-
+                        }
                     }
-                    else
+                    else {
                         returnToInitialPlace(blockPiece);
-
+                    }
                 }
-                else
+                else {
                     returnToInitialPlace(blockPiece);
+                }
 
 
-                if ( gameMapper.isLevelFinished(startLevel)){
+                if ( gameMapper.isLevelFinished(lev)){
                     try {
                         t1.stopTimer(t1.getTime());
                         Thread.sleep( 1000 );
@@ -254,6 +264,7 @@ public class GamePlay extends Application {
                     }
                     if(gameMapper.isGameFinished())
                     {
+                        running = false;
                         root.getChildren().add(gameMapper.getAward());
                     }
                     else {
@@ -261,7 +272,6 @@ public class GamePlay extends Application {
                         start(primaryStage);
                     }
                 }
-
             });
         }
 
@@ -280,8 +290,10 @@ public class GamePlay extends Application {
                 root.getChildren().add(gameMapper.getStickView());
             }
             root.getChildren().add(vbox);
+            root.setBackground( gameMapper.getBackgroundImage() );
 
-            // time keeper
+
+            /**********************time keeper********************/
             for (int i = 0; i < blockList.size(); i++)
                 root.getChildren().add(blockList.get(i));
             runClock();
@@ -302,7 +314,7 @@ public class GamePlay extends Application {
         new Thread(() -> {
             long last = System.nanoTime();
             double delta = 0;
-            double ns = 1000000000.0 / 1;
+            double ns = 1000000000.0;
             int count = oldTime;
             int number = oldNumber;
             boolean check = false;
@@ -318,7 +330,7 @@ public class GamePlay extends Application {
                         number ++;
                     }
                     check = true;
-                    DecimalFormat df = new DecimalFormat("000");
+                    DecimalFormat df = new DecimalFormat("0000");
                     clock.refreshDigits(df.format(count));
                     clock.refreshMinute(number);
                     delta--;

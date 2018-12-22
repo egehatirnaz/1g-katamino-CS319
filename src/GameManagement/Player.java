@@ -6,6 +6,12 @@ public class Player {
     private int time;
 
 
+    public Player(String nickName){
+        this.nickName = nickName;
+        //this.playerID = playerID;
+        this.time = 0;
+    }
+
     public Player(String nickName, int time){
         this.nickName = nickName;
         //this.playerID = playerID;

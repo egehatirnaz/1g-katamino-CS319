@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
@@ -170,6 +171,14 @@ public abstract class GameMapper {
         currentLevel++;
         setGame(currentLevel);
     }
-    
-    
+
+    public Background getBackgroundImage()
+    {
+        String url =  "src/GameManagement/media/gameboard.png";
+        BackgroundImage backgroundImage= new BackgroundImage(new Image(Paths.get(url).toUri().toString(), screenWidth, screenHeight, true,true),
+                BackgroundRepeat.ROUND, BackgroundRepeat.ROUND, BackgroundPosition.CENTER,
+                BackgroundSize.DEFAULT);
+        Background background = new Background( backgroundImage );
+        return background;
+    }
 }
