@@ -3,7 +3,7 @@ package GameManagement;
 public class BlocksDatabaseTest {
 
 	public static void main(String[] args) {
-		BlocksDatabase database = new BlocksDatabase("8222");
+		BlocksDatabase database = new BlocksDatabase("251364feh");
 
 		Direction[] n1 = new Direction[4];
 		for( int i = 0; i < 4; i++)

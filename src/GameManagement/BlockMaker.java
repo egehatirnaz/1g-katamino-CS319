@@ -19,7 +19,7 @@ public class BlockMaker extends Application {
 
 
     public BlockMaker(){
-         database = new BlocksDatabase("yusuf123");
+         database = new BlocksDatabase("251364feh");
     }
 
     @Override

@@ -5,8 +5,7 @@ import java.util.Arrays;
 public class SolutionDatabaseTest {
 
     public static void main( String args[]) {
-        SolutionDatabase sd = new SolutionDatabase("8222");
-       // sd.deleteDatabase();
+        SolutionDatabase sd = new SolutionDatabase("251364feh");
         /*String [] level4 = {"n1", "n4", "n5", "n12"};
         String [] level5 = {"n1", "n4", "n5", "n12", "n3"};
         String [] level6 = {"n1", "n4", "n5", "n12", "n3", "n7"};
