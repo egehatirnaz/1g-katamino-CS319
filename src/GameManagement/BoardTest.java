@@ -361,9 +361,10 @@ public class BoardTest extends Application {
                         number ++;
                     }
                     check = true;
-                    DecimalFormat df = new DecimalFormat("000");
+                    DecimalFormat df = new DecimalFormat("0000");
                     clock.refreshDigits(df.format(count));
                     clock.refreshMinute(number);
+                    System.out.println( "Clock: " + number );
                     delta--;
                 }
                 oldTime = count;
