@@ -28,18 +28,19 @@ public class SolutionDatabase {
 						"  level integer," + 
 						"  solutionnumber integer," + 
 						"  solution character varying[]," +
-						"  UNIQUE(level, solutionnumber)," +
+						"  UNIQUE(modename, level, solutionnumber)," +
 						"  PRIMARY KEY (solution) )";
 			ps = c.prepareStatement(creationCode);
-			ps.execute();		
-		
-			/*if(getBlockNames().size() == 0 )
+			ps.execute();
+
+			if(getSolution("ChallangeMode", 4,1).size() == 0 )
 			{
-			String copyCode = " COPY blocks " + 
-					"FROM 'D:\\Users\\Mert\\eclipse-workspace\\Katamino\\blocksDatabase' DELIMITER ',' CSV HEADER;";
-			ps = c.prepareStatement(copyCode);
-			ps.execute();				
-			} */
+				String copyCode = " COPY solutions " +
+						" FROM '" + System.getProperty("user.dir") +
+						"/src/GameManagement/databases/solutionDatabase' DELIMITER ',' CSV HEADER;";
+				ps = c.prepareStatement(copyCode);
+				ps.execute();
+			}
 				
 		}catch (SQLException e) {
 				e.printStackTrace();
@@ -165,7 +166,6 @@ public class SolutionDatabase {
 		try {
 			String solutionCode = "SELECT solution FROM solutions WHERE modename = '" + mode + "' AND level = " + level + 
 					" AND solutionnumber = " + solutionNumber;
-			System.out.println(solutionCode);
 			ps = c.prepareStatement(solutionCode);
 			rs = ps.executeQuery();		
 		if(temp.equals("")) {

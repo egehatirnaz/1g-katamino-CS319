@@ -28,11 +28,20 @@ public class PlayerDatabase {
 						"  time integer," + 
 						"  PRIMARY KEY (nickname) )";
 			ps = c.prepareStatement(creationCode);
-			ps.execute();		
+			ps.execute();
+
+			if(getNickNames().size() == 0 ) {
+				String copyCode = " COPY players " +
+						" FROM '" + System.getProperty("user.dir") +
+						"/src/GameManagement/databases/playerDatabase' DELIMITER ',' CSV HEADER;";
+				ps = c.prepareStatement(copyCode);
+				ps.execute();
+			}
 				
 		}catch (SQLException e) {
 				e.printStackTrace();
 		}
+
 
 	}
 	
@@ -81,7 +90,7 @@ public class PlayerDatabase {
 	public void deleteDatabase()
 	{	
 		try {
-			String deletionCode = "DROP TABLE [ IF EXISTS ] players";
+			String deletionCode = "DROP TABLE  IF EXISTS  players";
 			ps = c.prepareStatement(deletionCode);
 			ps.execute();		
 
