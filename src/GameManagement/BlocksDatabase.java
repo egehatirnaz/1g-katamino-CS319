@@ -39,13 +39,14 @@ public class BlocksDatabase {
 			ps = c.prepareStatement(creationCode);
 			ps.execute();		
 	
-			/*if(getBlockNames().size() == 0 )
+			if(getBlockNames().size() == 0 )
 			{
-			String copyCode = " COPY blocks " + 
-					"FROM 'D:\\Users\\Mert\\eclipse-workspace\\Katamino\\blocksDatabase' DELIMITER ',' CSV HEADER;";
-			ps = c.prepareStatement(copyCode);
-			ps.execute();				
-			} */
+				String copyCode = " COPY blocks " +
+						" FROM '" + System.getProperty("user.dir") +
+						"/src/GameManagement/databases/blockDatabase' DELIMITER ',' CSV HEADER;";
+				ps = c.prepareStatement(copyCode);
+				ps.execute();
+			}
 			
 		}catch (SQLException e) {
 				e.printStackTrace();
@@ -192,7 +193,6 @@ public class BlocksDatabase {
 			updateCode = updateCode + ", sixthvertex = " + rvr + directionToString(directions[5]) + rvr ;
 
 		updateCode = updateCode + " WHERE blockname = '" + blockname + "';";
-		System.out.println(updateCode);
 		if(!controlBlockName(blockname)) {
 
 		try {
@@ -241,7 +241,6 @@ public class BlocksDatabase {
 				insertionCode = insertionCode + "," + rvr + "{}" + rvr;
 			
 			insertionCode = insertionCode + ", '" + color + "')";
-			System.out.print(insertionCode);	
 			ps = c.prepareStatement(insertionCode);
 			ps.execute();	
 			} catch (SQLException e) {
