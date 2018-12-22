@@ -14,6 +14,8 @@ public class DynamicModeMapper extends GameMapper {
     private int width;
     private int height;
     private int currentLevel;
+    private double startCoordX;
+    private double startCoordY;
     private Square[][] squares;
 
 
@@ -51,11 +53,13 @@ public class DynamicModeMapper extends GameMapper {
     void setSquares(int width, int height){
         this.width = width;
         this.height = height;
+        startCoordX = ( screenWidth - width * SQUARESIZE ) / 2;
+        startCoordY = ( screenHeight - 750 ) / 2;
         squares = new Square[width][height];
         for(int i = 0; i < squares.length; i++){
-            double xCoor = i * super.getSQUARESIZE() + super.getBOARDCOORDX();
+            double xCoor = i * getSQUARESIZE() + startCoordX;
             for(int j = 0; j < squares[i].length; j++){
-                double yCoor = j * super.getSQUARESIZE() + super.getBOARDCOORDY();
+                double yCoor = j * getSQUARESIZE() + startCoordY;
                 squares[i][j] = new Square(xCoor, yCoor, super.getSQUARESIZE(), super.getSQUARESIZE());
                     squares[i][j].getRect().setStroke(Color.BURLYWOOD);
                     squares[i][j].getRect().setFill(Color.GRAY);
@@ -110,5 +114,6 @@ public class DynamicModeMapper extends GameMapper {
 
     @Override
     void setStickView(int currentLevel) {}
+
 
 }
