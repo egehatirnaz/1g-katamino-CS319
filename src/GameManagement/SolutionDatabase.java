@@ -24,7 +24,7 @@ public class SolutionDatabase {
 		createConnection();
 		try {
 			String creationCode = "CREATE TABLE IF NOT EXISTS solutions" + 
-						"( modename character varying(10)," + 
+						"( modename character varying(20)," +
 						"  level integer," + 
 						"  solutionnumber integer," + 
 						"  solution character varying[]," +

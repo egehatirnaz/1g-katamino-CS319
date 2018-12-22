@@ -29,7 +29,7 @@ public class NormalModeMapper extends CommonMapper {
         System.out.println( "setInitialImage: "+ currentLevel );
         String str;
         System.out.println( solutionDatabase );
-        ArrayList<String> solutionList = solutionDatabase.getSolution( "NormalMode", currentLevel, 1);
+        ArrayList<String> solutionList = solutionDatabase.getSolution( "NormalMode", currentLevel, 4);
         for( int i = 0; i < solutionList.size(); i++ )
         {
             str = "src/GameManagement/media/" + solutionList.get(i) + ".png";

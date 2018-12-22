@@ -6,10 +6,12 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
+import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 
 import java.text.DecimalFormat;
@@ -31,6 +33,8 @@ public class GamePlay extends Application {
     private Group root;
     private Scene scene;
     VBox vbox;
+    int oldTime;
+    int oldNumber;
     private ArrayList<Double> fitHeightList;
     private ArrayList<Double> fitWidthList;
     private ArrayList<Double> initialListX;
@@ -44,21 +48,18 @@ public class GamePlay extends Application {
         if( gameMode.equals("NormalMode") )
         {
             gameMapper = new NormalModeMapper(password);
-            startLevel = 4;
+            startLevel = 3;
         }
         else if( gameMode.equals("ChallangeMode") )
         {
             gameMapper = new ChallangeModeMapper( password );
+            startLevel = 4;
         }
         else if( gameMode.equals( "DynamicMode" ) )
         {
             gameMapper = new DynamicModeMapper( password );
+            startLevel = 1;
         }
-        // boxes and scenes
-        /*
-        root = new Group();
-        scene = new Scene(root, 1000, 1000);
-        vbox = new VBox();*/
 
         // array initializations
         fitHeightList = new ArrayList<>();
@@ -97,7 +98,7 @@ public class GamePlay extends Application {
             double fitHeight = fitHeightList.get(i);
             double fitWidth = fitWidthList.get(i);
 
-            /*************When mouse is pressed********************/
+            /************* When mouse is pressed ********************/
             blockList.get(i).setOnMousePressed((t) -> {
                         // calculation of origin position of image with respect to scene
                         originX = t.getSceneX();
@@ -106,22 +107,31 @@ public class GamePlay extends Application {
                         ImageView blockPiece = (ImageView) (t.getSource());
                         blockPiece.toFront(); // newer image will be in front
 
-                        if (t.getClickCount() % 2 == 0) { // rotate logic
-                            double orX = blockPiece.getX();
-                            double orY = blockPiece.getY();
-                            blockPiece.setFitWidth(fitWidth);
-                            blockPiece.setFitHeight(fitHeight);
+                // rotate logic
+                if( (t.getButton() == MouseButton.PRIMARY) && (t.getClickCount()%2==0 ) ) {
+                    blockPiece.setFitWidth(fitWidth);
+                    blockPiece.setFitHeight(fitHeight);
 
-                            SnapshotParameters param = new SnapshotParameters();
-                            param.setFill(Color.TRANSPARENT);
-                            param.setTransform(new Rotate(90, blockPiece.getImage().getHeight(), blockPiece.getImage().getWidth()));
+                    SnapshotParameters param = new SnapshotParameters();
+                    param.setFill(Color.TRANSPARENT);
+                    param.setTransform(new Rotate(90,blockPiece.getImage().getHeight(),blockPiece.getImage().getWidth()));
+                    blockPiece.setImage(blockPiece.snapshot(param,null));
+                    blockPiece.setFitWidth(100);
+                    blockPiece.setFitHeight(100);
+                }
+                else if(  t.getButton() == MouseButton.SECONDARY  )
+                {
+                    blockPiece.setFitWidth(fitWidth);
+                    blockPiece.setFitHeight(fitHeight);
 
-                            blockPiece.setImage(blockPiece.snapshot(param, null));
-                            blockPiece.setFitWidth(100);
-                            blockPiece.setFitHeight(100);
-                        }
-                    }
-            );
+                    SnapshotParameters param = new SnapshotParameters();
+                    param.setFill(Color.TRANSPARENT);
+                    param.setTransform(new Scale( 1,-1));
+                    blockPiece.setImage(blockPiece.snapshot(param,null));
+                    blockPiece.setFitWidth(100);
+                    blockPiece.setFitHeight(100);
+                }
+            });
 
             /**************When mouse is dragged****************/
             blockList.get(i).setOnMouseDragged(  (t) ->
@@ -248,7 +258,10 @@ public class GamePlay extends Application {
 
             vbox.getChildren().addAll(clock);
 
-            root.getChildren().add(gameMapper.getStickView());
+            if( gameMapper.getStickView() != null )
+            {
+                root.getChildren().add(gameMapper.getStickView());
+            }
             root.getChildren().add(vbox);
 
             // time keeper
@@ -271,8 +284,8 @@ public class GamePlay extends Application {
             long last = System.nanoTime();
             double delta = 0;
             double ns = 1000000000.0 / 1;
-            int count = 0;
-            int number = 0;
+            int count = oldTime;
+            int number = oldNumber;
             boolean check = false;
 
             while (running) {
@@ -291,6 +304,8 @@ public class GamePlay extends Application {
                     clock.refreshMinute(number);
                     delta--;
                 }
+                oldTime = count;
+                oldNumber = number;
             }
         }).start();
     }
