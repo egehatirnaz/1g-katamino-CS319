@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIManagement.FXML.TUR.LeaderBoardController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIManagement.LeaderBoardController">
    <children>
       <ImageView fitHeight="567.0" fitWidth="996.0" layoutX="-371.0" layoutY="-149.0" opacity="0.79" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -26,12 +26,12 @@
             <Font name="Avenir Next Bold" size="31.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="177.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nick Names">
+      <Text fill="WHITE" layoutX="177.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nicknames">
          <font>
             <Font name="Chalkboard" size="27.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="422.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scores">
+      <Text fill="WHITE" layoutX="422.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Times">
          <font>
             <Font name="Chalkboard" size="27.0" />
          </font>

@@ -31,7 +31,7 @@
             <Font name="Chalkboard" size="27.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="422.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Skor">
+      <Text fill="WHITE" layoutX="422.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Süre">
          <font>
             <Font name="Chalkboard" size="27.0" />
          </font>
