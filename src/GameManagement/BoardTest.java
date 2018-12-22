@@ -195,15 +195,15 @@ public class BoardTest extends Application {
                 for( int k = 0; k < startLevel ; k++ ) {
                     for (int j = 0; j < boardSquares[k].length; j++) {
                         Circle c = new Circle();
-                        c.setCenterY((150) + (j) * 100);
-                        c.setCenterX((300) + (k) * 100);
+                        c.setCenterY((gm.getBOARDCOORDY())+ 50 + (j) * 100);
+                        c.setCenterX((gm.getBOARDCOORDX())+ 50 + (k) * 100);
                         c.setRadius(3);
                         c.setFill(Color.RED);
                         boardSquares[k][j].setFilled(false);
                         root.getChildren().add(c);
 
                         for( int noOfImage = 0; noOfImage < imageList.size(); noOfImage++ ) {
-                            if (root.getChildren().get(root.getChildren().indexOf(imageList.get(noOfImage))).contains((300) + (k) * 100, (150) + (j) * 100)) {
+                            if (root.getChildren().get(root.getChildren().indexOf(imageList.get(noOfImage))).contains((gm.getBOARDCOORDX()+50) + (k) * 100, (gm.getBOARDCOORDY()+50) + (j) * 100)) {
                                 c.setFill(Color.GREEN);
                                 if(boardSquares[k][j].getStateOfSquare()!= true) {
                                     boardSquares[k][j].setFilled(true);
@@ -238,18 +238,18 @@ public class BoardTest extends Application {
                     System.out.println("Y lokasyonu " + anImage.getY());
                     System.out.println("X lokasyonu " + (anImage.getX() + anImage.getImage().getWidth()));
                     System.out.println("Y lokasyonu " + (anImage.getY() + anImage.getImage().getHeight()));
-                    for(double a = (anImage.getX()+ anImage.getImage().getWidth());a>anImage.getX();a= a -100){
-                        for(double b = (anImage.getY()+anImage.getImage().getHeight());b >anImage.getY();b= b - 100 ){
+                    for(double a = (anImage.getX()+ anImage.getImage().getWidth());a>anImage.getX();a= a - 10){
+                        for(double b = (anImage.getY()+anImage.getImage().getHeight());b >anImage.getY();b= b - 10){
                             if(root.getChildren().get(root.getChildren().indexOf(anImage)).contains(a, b)){
                                 xlocation = a;
                                 ylocation = b;
-                                System.out.println(xlocation + " " );
-                                System.out.println(ylocation + " " );
+                                //System.out.println(xlocation + " " );
+                                //System.out.println(ylocation + " " );
 
-                                if((xlocation < 200 || xlocation > (250 + gm.getCurrentLevel() * 100 ) + 50 || ylocation < 50 || ylocation > 150 + boardSquares[0].length*100  ) && !outside ) {
+                                if((xlocation > gm.getBOARDCOORDX()-25 && xlocation < (gm.getBOARDCOORDX()+25 + (gm.getCurrentLevel()) * 100 ) && (ylocation > gm.getBOARDCOORDY()-25 && ylocation < gm.getBOARDCOORDY()+25 + (boardSquares[0].length)*100 ))== false && !outside ) {
                                     outside = true;
-                                    System.out.println(xlocation + " " +  (300 + (gm.getCurrentLevel() * 100)));
-                                    System.out.println(ylocation + " " +  (150 + boardSquares[0].length*100));
+                                    System.out.println(xlocation + " false " +  (300 + (gm.getCurrentLevel() * 100)));
+                                    System.out.println(ylocation + " false " +  (150 + boardSquares[0].length * 100));
                                 }
                             }
 
@@ -276,12 +276,12 @@ public class BoardTest extends Application {
                     System.out.println("Max Height" + maxheight + " Max Width" + maxwidth);
                     System.out.println("Origin 1- "+ anImage.getX() + " 2- " + anImage.getY() );
                     System.out.println("loc 1- "+ xlocation + " 2- " + ylocation );
-                    if(xlocation==225)
+                    if(xlocation==gm.getBOARDCOORDX()-25)
                         xlocation++;
-                    if(ylocation==-75)
+                    if(ylocation==gm.getBOARDCOORDY()-25)
                         ylocation++;
-                    int x = ((int)xlocation - 225) /100 ;
-                    int y = ((int)ylocation - 75) / 100;
+                    int x = ((int)xlocation - ((int)gm.getBOARDCOORDX()-25)) /100 ;
+                    int y = ((int)ylocation - ((int)gm.getBOARDCOORDY()-25)) / 100;
 
                     System.out.println(" 1- "+ x + " 2- " + y );
 
@@ -295,8 +295,8 @@ public class BoardTest extends Application {
                             System.out.println("Yok Artık");
 
 
-                            double stickX = 250+x*100 ;
-                            double stickY = 100+y*100 ;
+                            double stickX = gm.getBOARDCOORDX()+x*100 ;
+                            double stickY = gm.getBOARDCOORDY()+y*100 ;
                             anImage.setX(stickX + anImage.getX() - xlocation);
                             anImage.setY(stickY + anImage.getY() - ylocation);
                         }
@@ -352,7 +352,7 @@ public class BoardTest extends Application {
                 primaryStage.close();
             }
 
-        });*/
+        });
         runClock();
     }
 

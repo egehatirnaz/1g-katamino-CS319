@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Scale;
@@ -23,7 +24,7 @@ public class GamePlay extends Application {
 
     // properties
     GameMapper gameMapper;
-    final String password = "yusuf123";
+    final String password = "29";
     private Scene window;
     double originX, originY;
     Text tLab;
@@ -169,19 +170,18 @@ public class GamePlay extends Application {
 
             /*************** When mouse is released *************/
             blockList.get(i).setOnMouseReleased((t)-> {
-                int count = 0;
+                int count1 = 0;
                 int count2 = 0;
                 ImageView blockPiece = (ImageView)(t.getSource());
-
                 double xLoc = originX , yLoc = originY;
                 for( int k = 0; k < lev ; k++ ) {
                     for (int j = 0; j < boardSquares[k].length; j++) {
                         boardSquares[k][j].setFilled(false);
                         for( int noOfImage = 0; noOfImage < blockList.size(); noOfImage++ ) {
-                            if (root.getChildren().get(root.getChildren().indexOf(blockList.get(noOfImage))).contains((300) + (k) * 100, (150) + (j) * 100)) {
+                            if (root.getChildren().get(root.getChildren().indexOf(blockList.get(noOfImage))).contains(gameMapper.getBOARDCOORDX()+50 + (k) * 100, (gameMapper.getBOARDCOORDY()+50) + (j) * 100)) {
                                 if(boardSquares[k][j].getStateOfSquare()!= true) {
                                     boardSquares[k][j].setFilled(true);
-                                    count++;
+                                    count1++;
                                 }
                                 else
                                     count2++;
@@ -194,18 +194,18 @@ public class GamePlay extends Application {
 
 
 
-               // System.out.println("lev " + lev);
-               // System.out.println();
-                if( count != 0){
+
+                if( count1 != 0){
                     double xlocation=0,ylocation=0;
                     boolean outside = false;
-                    for(double b = (blockPiece.getY()+blockPiece.getImage().getHeight());b >blockPiece.getY();b-- ){
-                        for(double a = (blockPiece.getX()+ blockPiece.getImage().getWidth());a>blockPiece.getX();a--){
+                    for(double b = (blockPiece.getY()+blockPiece.getImage().getHeight());b >blockPiece.getY();b= b - 10){
+                        for(double a = (blockPiece.getX()+ blockPiece.getImage().getWidth());a>blockPiece.getX();a = a - 10){
                             if(root.getChildren().get(root.getChildren().indexOf(blockPiece)).contains(a, b)){
                                 xlocation = a;
                                 ylocation = b;
-                                if(a < 220 || a > (250 + lev * 100 ) + 30|| b < 70 || b > 130 + boardSquares[0].length   *100 )
+                                if((xlocation > gameMapper.getBOARDCOORDX()-25 && xlocation < (gameMapper.getBOARDCOORDX()+25 + lev * 100 ) && (ylocation > (gameMapper.getBOARDCOORDY()-25) && ylocation < gameMapper.getBOARDCOORDY()+25 + (boardSquares[0].length)*100 ))== false && !outside ) {
                                     outside = true;
+                                }
                             }
 
                         }
@@ -223,12 +223,12 @@ public class GamePlay extends Application {
                             maxheight = a;
                     }
 
-                    if(xlocation==225)
+                    if(xlocation==gameMapper.getBOARDCOORDX()-25)
                         xlocation++;
-                    if(ylocation==-75)
+                    if(ylocation==gameMapper.getBOARDCOORDY()-25)
                         ylocation++;
-                    int x = ((int)xlocation - 225) /100 ;
-                    int y = ((int)ylocation - 75) / 100;
+                    int x = ((int)xlocation - ((int)gameMapper.getBOARDCOORDX()-25)) /100 ;
+                    int y = ((int)ylocation - ((int)gameMapper.getBOARDCOORDY()-25)) / 100;
 
                     if(maxwidth  == lev)
                         x--;
@@ -237,21 +237,22 @@ public class GamePlay extends Application {
 
                     if( x>=0 && x < lev  && y >= 0 && y < boardSquares[0].length  && blockPiece.preserveRatioProperty().getValue() == false && count2==0 && outside==false) {
                         if (boardSquares[x][y].getStateOfSquare()) {
-                            double stickX = 250+x*100 ;
-                            double stickY = 100+y*100 ;
+                            double stickX = gameMapper.getBOARDCOORDX()+x*100 ;
+                            double stickY = gameMapper.getBOARDCOORDY()+y*100 ;
                             blockPiece.setX(stickX + blockPiece.getX() - xlocation);
                             blockPiece.setY(stickY + blockPiece.getY() - ylocation);
                         }
-                        else
+                        else {
                             returnToInitialPlace(blockPiece);
-
+                        }
                     }
-                    else
+                    else {
                         returnToInitialPlace(blockPiece);
-
+                    }
                 }
-                else
+                else {
                     returnToInitialPlace(blockPiece);
+                }
 
 
                 if ( gameMapper.isLevelFinished(lev)){
