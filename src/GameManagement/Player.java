@@ -1,7 +1,7 @@
 package GameManagement;
 import java.lang.*;
 
-class Player {
+public class Player {
     private String nickName;
     private int time;
 

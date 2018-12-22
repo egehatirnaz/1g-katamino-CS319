@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -26,25 +27,28 @@
             <Font name="Georgia" size="33.0" />
          </font>
       </Button>
-      <Button fx:id="howToPlay" layoutX="226.0" layoutY="232.0" mnemonicParsing="false" onAction="#handleHowToPlay" opacity="0.85" prefHeight="48.0" prefWidth="126.0" style="-fx-background-radius: 20; -fx-background-color: #0072B3;" text="How To Play" textFill="#b7aed7">
+      <Button fx:id="howToPlay" layoutX="226.0" layoutY="226.0" mnemonicParsing="false" onAction="#handleHowToPlay" opacity="0.85" prefHeight="48.0" prefWidth="126.0" style="-fx-background-radius: 20; -fx-background-color: #0072B3;" text="How To Play" textFill="#b7aed7">
          <font>
             <Font name="Georgia" size="17.0" />
          </font>
       </Button>
-      <Button fx:id="creditsID" layoutX="226.0" layoutY="176.0" mnemonicParsing="false" onAction="#handleCredits" opacity="0.8" prefHeight="48.0" prefWidth="126.0" style="-fx-background-radius: 20; -fx-background-color: #006290;" text="Credits" textFill="#b7aed7">
+      <Button fx:id="creditsID" layoutX="226.0" layoutY="166.0" mnemonicParsing="false" onAction="#handleCredits" opacity="0.8" prefHeight="48.0" prefWidth="126.0" style="-fx-background-radius: 20; -fx-background-color: #006290;" text="Credits" textFill="#b7aed7">
          <font>
             <Font name="Georgia" size="17.0" />
          </font>
       </Button>
-      <Button fx:id="quitID" layoutX="226.0" layoutY="289.0" mnemonicParsing="false" onAction="#handleExit" opacity="0.79" prefHeight="48.0" prefWidth="126.0" style="-fx-background-radius: 20; -fx-background-color: #3676AE;" text="Quit" textFill="#b7aed7">
+      <Button fx:id="quitID" layoutX="226.0" layoutY="341.0" mnemonicParsing="false" onAction="#handleExit" opacity="0.59" prefHeight="48.0" prefWidth="126.0" style="-fx-background-radius: 20; -fx-background-color: #3676AE;" text="Quit" textFill="#b7aed7">
          <font>
             <Font name="Georgia" size="17.0" />
          </font>
       </Button>
-      <RadioButton fx:id="music" layoutX="100.0" layoutY="346.0" mnemonicParsing="false" opacity="0.69" onMouseClicked="#toggleMusic" text="Music off" textFill="#c96a6a">
+      <RadioButton fx:id="music" layoutX="79.0" layoutY="341.0" mnemonicParsing="false" onMouseClicked="#toggleMusic" opacity="0.69" prefHeight="24.0" prefWidth="107.0" text="Music off" textFill="#1b1a1a">
          <font>
-            <Font size="14.0" />
-         </font></RadioButton>
+            <Font size="17.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect></RadioButton>
       <ImageView fitHeight="39.0" fitWidth="58.0" layoutX="401.0" layoutY="337.0" onMousePressed="#changeLanguageTR" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@res/TUR-flag.gif" />
@@ -61,5 +65,10 @@
             <InnerShadow />
          </effect>
       </ImageView>
+      <Button fx:id="leaderBoard" layoutX="226.0" layoutY="283.0" mnemonicParsing="false" onAction="#handleLeaderBoard" opacity="0.7" prefHeight="48.0" prefWidth="126.0" style="-fx-background-radius: 20; -fx-background-color: #0072B3;" text="Leaderboard" textFill="#b7aed7">
+         <font>
+            <Font name="Georgia" size="17.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

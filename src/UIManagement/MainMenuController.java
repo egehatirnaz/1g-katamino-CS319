@@ -1,6 +1,8 @@
 package UIManagement;
 
 import GameManagement.BoardTest;
+import GameManagement.Player;
+import GameManagement.PlayerDatabase;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -46,12 +48,14 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class MainMenuController {
     @FXML
     private Button minimizeButton;
     double x,y;
     MediaPlayer mp;
+    PlayerDatabase pD = new PlayerDatabase("8222");
 
     @FXML
     Stage stage;
@@ -165,4 +169,36 @@ public class MainMenuController {
         }*/
     }
 
+    public void handleLeaderBoard(ActionEvent event) throws IOException {
+        //Parent root = FXMLLoader.load(getClass().getResource("LeaderBoard.fxml"));
+        //System.out.println(root.getLayoutX());
+
+        stage = (Stage)((Button) event.getSource()).getScene().getWindow();
+        VBox layout1 = new VBox(10);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("LeaderBoard.fxml"));
+        layout1.getChildren().setAll((Parent)loader.load());
+        Scene scene1 = new Scene(layout1, 600, 400);
+        ArrayList<Player> pArr = pD.getSortedPlayers();
+        Text use1 = (Text) scene1.lookup("#use1");
+        use1.setText(pArr.get(0).getNickName());
+        Text use2 = (Text) scene1.lookup("#use2");
+        use2.setText(pArr.get(1).getNickName());
+        Text use3 = (Text) scene1.lookup("#use3");
+        use3.setText(pArr.get(2).getNickName());
+        Text use4 = (Text) scene1.lookup("#use4");
+        use4.setText(pArr.get(3).getNickName());
+        Text use5 = (Text) scene1.lookup("#use5");
+        use5.setText(pArr.get(4).getNickName());
+        Text score1 = (Text) scene1.lookup("#score1");
+        score1.setText(pArr.get(0).getTime() + "");
+        Text score2 = (Text) scene1.lookup("#score2");
+        score2.setText(pArr.get(1).getTime() + "");
+        Text score3 = (Text) scene1.lookup("#score1");
+        score3.setText(pArr.get(2).getTime() + "");
+        Text score4 = (Text) scene1.lookup("#score4");
+        score4.setText(pArr.get(3).getTime() + "");
+        Text score5 = (Text) scene1.lookup("#score5");
+        score5.setText(pArr.get(4).getTime() + "");
+        stage.setScene(scene1);
+    }
 }
