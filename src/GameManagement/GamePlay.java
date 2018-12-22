@@ -24,10 +24,9 @@ public class GamePlay extends Application {
 
     // properties
     GameMapper gameMapper;
-    final String password = "8222";
+    final String password = "yusuf123";
     private Scene window;
     double originX, originY;
-    private Player player;
     Text tLab;
     Text timeLL;
     private DigitalClock clock;
@@ -47,7 +46,6 @@ public class GamePlay extends Application {
     private int startLevel;
     private String modeName;
     private int lev;
-    private PlayerDatabase pD = new PlayerDatabase(password);
 
 
     // constructor
@@ -69,8 +67,6 @@ public class GamePlay extends Application {
             gameMapper = new DynamicModeMapper( password );
             startLevel = 1;
         }
-
-        player = new Player(pD.getLastNickname(), 0);
         modeName = gameMode;
         // array initializations
         fitHeightList = new ArrayList<>();
@@ -105,8 +101,8 @@ public class GamePlay extends Application {
         Square[][] boardSquares = gameMapper.getSquares();
 
         lev = gameMapper.getCurrentLevel();
-        if( modeName.equals("Dynamic Mode") )
-            lev = gameMapper.getSquares().length;
+        if( modeName.equals("DynamicMode") )
+            lev = boardSquares.length;
 
 
         /************** Listeners *******************/
@@ -135,6 +131,7 @@ public class GamePlay extends Application {
                     blockPiece.setImage(blockPiece.snapshot(param,null));
                     blockPiece.setFitWidth(100);
                     blockPiece.setFitHeight(100);
+                    returnToInitialPlace(blockPiece);
                 }
                 else if(  t.getButton() == MouseButton.SECONDARY  )
                 {
@@ -147,6 +144,7 @@ public class GamePlay extends Application {
                     blockPiece.setImage(blockPiece.snapshot(param,null));
                     blockPiece.setFitWidth(100);
                     blockPiece.setFitHeight(100);
+                    returnToInitialPlace(blockPiece);
                 }
             });
 
@@ -177,6 +175,7 @@ public class GamePlay extends Application {
                 int count1 = 0;
                 int count2 = 0;
                 ImageView blockPiece = (ImageView)(t.getSource());
+               // System.out.println( "GAMEPLAY BOARDX: " + gameMapper.getBOARDCOORDX() + "GAMEPLAY BOARDY: " + gameMapper.getBOARDCOORDY() );
                 double xLoc = originX , yLoc = originY;
                 for( int k = 0; k < lev ; k++ ) {
                     for (int j = 0; j < boardSquares[k].length; j++) {
@@ -194,7 +193,7 @@ public class GamePlay extends Application {
                     }
                 }
 
-                System.out.println(gameMapper.getSquares().length);
+               // System.out.println(gameMapper.getSquares().length);
 
 
 
@@ -259,6 +258,8 @@ public class GamePlay extends Application {
                 }
 
 
+
+
                 if ( gameMapper.isLevelFinished(lev)){
                     try {
                         t1.stopTimer(t1.getTime());
@@ -272,7 +273,7 @@ public class GamePlay extends Application {
                         root.getChildren().add(gameMapper.getAward());
                     }
                     else {
-                        startLevel++;
+                        lev++;
                         start(primaryStage);
                     }
                 }
@@ -342,15 +343,14 @@ public class GamePlay extends Application {
                 oldTime = count;
                 oldNumber = number;
             }
-            int lastPoint = (oldTime + (60 * oldNumber));
-            pD.updatePlayerTime(player.getNickName(), lastPoint);
         }).start();
     }
 
     private void returnToInitialPlace( ImageView blockPiece )
     {
-        blockPiece.setX( gameMapper.getInitialPositionX().get( blockList.indexOf(blockPiece) ) );
-        blockPiece.setY( gameMapper.getInitialPositionY().get( blockList.indexOf(blockPiece) ) );
+        blockPiece.setX( initialListX.get( blockList.indexOf(blockPiece) ) );
+        blockPiece.setY( initialListY.get( blockList.indexOf(blockPiece) ) );
+        System.out.println( "Initial PosX: " + blockPiece.getX() + "Initial PosY: " + blockPiece.getY() );
         blockPiece.setPreserveRatio(true);
         blockPiece.setFitWidth(100);
         blockPiece.setFitHeight(100);

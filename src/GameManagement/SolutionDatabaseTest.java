@@ -5,9 +5,9 @@ import java.util.Arrays;
 public class SolutionDatabaseTest {
 
     public static void main( String args[]) {
-        SolutionDatabase sd = new SolutionDatabase("8222");
+        SolutionDatabase sd = new SolutionDatabase("yusuf123");
         sd.deleteDatabase();
-        sd = new SolutionDatabase("8222");
+        sd = new SolutionDatabase("yusuf123");
        // sd.deleteDatabase();
         /*String [] level4 = {"n1", "n4", "n5", "n12"};
         String [] level5 = {"n1", "n4", "n5", "n12", "n3"};

@@ -72,12 +72,12 @@ public class BoardTest extends Application {
     Text timeLL = new Text(100,20," Hey");
     //static int i = 0;
     private long time;
-    PlayerDatabase pD = new PlayerDatabase("8222");
+    PlayerDatabase pD = new PlayerDatabase("yusuf123");
     ArrayList<ImageView> imageList;
     private DigitalClock clock;
     private boolean running = false;
     TimeKeeper t1 = new TimeKeeper();
-    GameMapper gm = new NormalModeMapper("8222");
+    GameMapper gm = new NormalModeMapper("yusuf123");
 
     @Override
     public void start(Stage primaryStage) {

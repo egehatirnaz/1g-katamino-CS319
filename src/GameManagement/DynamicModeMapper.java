@@ -13,7 +13,6 @@ public class DynamicModeMapper extends GameMapper {
     private SolutionDatabase solutionDatabase;
     private int width;
     private int height;
-    private int currentLevel;
     private double startCoordX;
     private double startCoordY;
     private Square[][] squares;
@@ -23,13 +22,14 @@ public class DynamicModeMapper extends GameMapper {
     {
         solutionDatabase = new SolutionDatabase(password);
         imageList = new ArrayList<>();
-        currentLevel = getCurrentLevel()-2;
+        currentLevel = currentLevel-2;
         System.out.println( "DYNAMIC MODE: " + currentLevel );
         setGame(currentLevel);
     }
 
     @Override
     void setGame( int currentLevel ) {
+        System.out.println( "CURRENT LEVEL IN SET GAME: " + currentLevel );
         switch (currentLevel){
             case 1:
                 setSquares( 3, 4);
@@ -42,7 +42,7 @@ public class DynamicModeMapper extends GameMapper {
                 super.setupEntity(imageList);
                 break;
             case 3:
-                setSquares( 7 , 6 );
+                setSquares( 6 , 6 );
                 setInitialImageList();
                 super.setupEntity(imageList);
                 break;
@@ -58,11 +58,13 @@ public class DynamicModeMapper extends GameMapper {
         squares = new Square[width][height];
         for(int i = 0; i < squares.length; i++){
             double xCoor = i * getSQUARESIZE() + startCoordX;
+            System.out.println( "DYNAMICMAPPER BOARDX: " + xCoor );
             for(int j = 0; j < squares[i].length; j++){
                 double yCoor = j * getSQUARESIZE() + startCoordY;
+                System.out.println( "DYNAMICMAPPER BOARDY: " + yCoor );
                 squares[i][j] = new Square(xCoor, yCoor, super.getSQUARESIZE(), super.getSQUARESIZE());
                     squares[i][j].getRect().setStroke(Color.BURLYWOOD);
-                    squares[i][j].getRect().setFill(Color.GRAY);
+                    squares[i][j].getRect().setFill(Color.AQUA);
             }
         }
     }
@@ -86,17 +88,16 @@ public class DynamicModeMapper extends GameMapper {
 
     @Override
     boolean isLevelFinished(int currentLevel) {
-        Square[][] squares = getSquares();
-        System.out.println("Width " + squares.length);
-        System.out.println("Height " + squares[0].length);
+        System.out.println("LEVEL IS FINISHED!!!!!!!!!!");
+      //  System.out.println("Width " + squares.length);
+      //  System.out.println("Height " + squares[0].length);
         for(int i = 0; i < width; i++){
             for(int j = 0; j < height; j++) {
-                System.out.println(i+ " " + j);
                 if(squares[i][j].getStateOfSquare()==false)
                     return false;
             }
         }
-        super.updateLevel();
+        this.updateLevel();
         return true;
     }
 
@@ -104,6 +105,7 @@ public class DynamicModeMapper extends GameMapper {
     void setInitialImageList() {
         imageList.clear();
         String str;
+        System.out.println( "DYNAMIC MODE CURRENT LEVEL: " + currentLevel );
         ArrayList<String> solutionList = solutionDatabase.getSolution( "DynamicMode", currentLevel, 1);
         for( int i = 0; i < solutionList.size(); i++ )
         {
