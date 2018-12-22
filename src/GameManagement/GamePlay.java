@@ -290,7 +290,9 @@ public class GamePlay extends Application {
             /*********************************/
             primaryStage.setTitle("Katamino");
             primaryStage.setScene(scene);
-            primaryStage.setFullScreen(true);
+            //primaryStage.setFullScreen(true);
+            primaryStage.setMaximized(true);
+            primaryStage.setResizable(false);
             primaryStage.show();
             window = scene;
     }

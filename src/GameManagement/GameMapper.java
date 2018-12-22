@@ -51,7 +51,7 @@ public abstract class GameMapper {
         initialPositionY = new ArrayList<>();
         screenBounds = Screen.getPrimary().getBounds();
         screenWidth = screenBounds.getWidth();
-        screenHeight = screenBounds.getHeight();
+        screenHeight = screenBounds.getHeight() - 80;
         startCoordX = ( screenWidth - SQUARENUMBER * SQUARESIZE ) / 2;
         startCoordY = ( screenHeight - 750 ) / 2;
         setAward();
