@@ -195,7 +195,7 @@ Location: Bilkent Library
 
 ## Meeting on Dec 20, 16:00 - 00:00
 
-Participants: Burak, Fırat, Mert, Yusuf
+Participants: Burak, Fırat, Mert, Yusuf, Ege
 
 Location: Bilkent Library
 
@@ -208,6 +208,7 @@ Location: Bilkent Library
 * [Mert] Work on database systems and it's implementation inside another classes. Work on easier usable database.
 * [Yusuf, Mert] Work on creating more optimal system which does the same with less efort.
 * [Firat] Work on the nickname control system and fix the problems between screens.
+* [Ege] Review TUR/FXML files and fix FXMLControllers
 
 
 ## Meeting on Dec 21, 16:00 - 00:00
