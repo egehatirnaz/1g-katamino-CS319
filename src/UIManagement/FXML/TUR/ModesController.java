@@ -17,29 +17,13 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 public class ModesController {
-    @FXML
+
     Stage stage;
+    String nick;
     MediaPlayer mp;
 
-    public ModesController() {
-    }
+    public ModesController() {}
 
-    /*
-    @FXML
-    public void handleChallenge(ActionEvent event) {
-    }
-
-    @FXML
-    public void handleNormal(ActionEvent event) {
-        BoardTest bT = new BoardTest();
-        bT.start(new Stage());
-        this.stage.setScene(bT.returnScene());
-        this.stage.setResizable(true);
-    }
-
-    @FXML
-    public void handleDynamic(ActionEvent event) {
-    }*/
     @FXML
     public void handleChallenge(ActionEvent event) {
         mp.play();
@@ -52,11 +36,15 @@ public class ModesController {
     @FXML
     public void handleNormal(ActionEvent event) {
         mp.play();
+        stage = (Stage)((Button) event.getSource()).getScene().getWindow();
         GamePlay gamePlay = new GamePlay( "NormalMode" );
         Stage stage = new Stage();
-        stage.setFullScreen(true);
-        stage.setMaximized(true);
+        // stage.setFullScreen(true);
+        // stage.setMaximized(true);
         gamePlay.start(stage);
+        VBox layout1 = new VBox(20);
+        //Scene sceneNormal = gamePlay.returnScene();
+        stage.setScene(gamePlay.returnScene());
         //this.stage.setScene(gamePlay.returnScene());
         //this.stage.setResizable(true);
     }

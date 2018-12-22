@@ -1,6 +1,7 @@
 package UIManagement.FXML.TUR;
 
 import GameManagement.BoardTest;
+import GameManagement.PlayerDatabase;
 import UIManagement.Lang;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,56 +9,32 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.nio.file.Paths;
 
 public class SettingsController {
-    public Button butt;
-    private double x,y;
-    @FXML
-    Stage stage;
+    @FXML RadioButton signIn;
+    @FXML private Button save, cancel;
     MediaPlayer mp;
-    //ControlManager neC =new ControlManager();
+    Stage stage;
+    PlayerDatabase pD = new PlayerDatabase("251364feh");
+    @FXML TextField nicknameID;
+    @FXML Text entText, secEnd;
+    private MediaPlayer media;
 
     @FXML
     protected void handleSaveClick(ActionEvent event) throws IOException {
         mp.play();
-
-        /*if(neC.sth){
-            oyun ekranina git ve kaydet
-        }
-        else{
-            geri don
-        }*/
-        /*
-        stage = (Stage)((Button) event.getSource()).getScene().getWindow();
-        StackPane layout = new StackPane();
-        Scene scene;
-        BoardTest bT = new BoardTest();
-        bT.start(new Stage());
-        scene = bT.returnScene();
-        stage.setScene(scene);
-        System.out.println("Helo");*/
-        /*
-        Scene scene = (Scene)((Button) event.getSource()).getScene();
-        TextField tf = (TextField) scene.lookup("#nicknameID");
-        String username = "Unnamed Player";
-        if(tf.getText() != null && !tf.getText().isEmpty()){
-            username = tf.getText();
-        }
-        BoardTest bT = new BoardTest();
-        //bT.setUsername(username); TODO:add this method to BoardTest
-        bT.start(new Stage());
-        stage.setScene(bT.returnScene());
-        stage.setResizable(true);*/
         stage = (Stage)((Button) event.getSource()).getScene().getWindow();
         Scene scene = (Scene)((Button) event.getSource()).getScene();
         TextField tf = (TextField) scene.lookup("#nicknameID");
@@ -65,16 +42,41 @@ public class SettingsController {
         if(tf.getText() != null && !tf.getText().isEmpty()){
             username = tf.getText();
         }
-        //TODO: Do what you want with the username input.
-
-        Parent root;
-        root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Modes.fxml"));
         VBox layout1 = new VBox(20);
-        layout1.getChildren().setAll((Parent)loader.load());
-        Scene scene1 = new Scene(layout1, 600, 400);
-        stage.setScene(scene1);
+        if(signIn.isSelected() && !(pD.controlNickName(nicknameID.getText()))){
+            System.out.println("updated" + nicknameID.getText());
+            int time = pD.getTime(nicknameID.getText());
+            pD.updatePlayerTime(nicknameID.getText(), time);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Modes.fxml"));
+            layout1.getChildren().setAll((Parent)loader.load());
+            Scene scene1 = new Scene(layout1, 600, 400);
+            stage.setScene(scene1);
+        }
+        else if(!signIn.isSelected() && pD.controlNickName(nicknameID.getText())){
+            System.out.println("added"+ nicknameID.getText());
+            pD.addPlayer(nicknameID.getText(),99999);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Modes.fxml"));
+            layout1.getChildren().setAll((Parent)loader.load());
+            Scene scene1 = new Scene(layout1, 600, 400);
+            stage.setScene(scene1);
 
+        }
+        else{
+            System.out.println("hata" + nicknameID.getText());
+            entText.setText("");
+            secEnd.setText("Bu isimde bir kullanıcı mevcut! Lütfen giriş yap veya başka bir isimle kayıt ol.");
+        }
+        /*if(!(pD.controlNickName(nicknameID.getText()))){
+            System.out.println("updated" + nicknameID.getText());
+            int time = pD.getTime(nicknameID.getText());
+            pD.updatePlayerTime(nicknameID.getText(), time);
+        }
+        else{
+            pD.addPlayer(nicknameID.getText(),0);
+            System.out.println("added"+ nicknameID.getText());
+        }*/
+        //Parent root;
+        //root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
     }
 
     @FXML
@@ -90,21 +92,6 @@ public class SettingsController {
         stage.setScene(scene1);
     }
 
-    @FXML
-    protected void changeLanguageEN(MouseEvent event) throws IOException{
-        stage = (Stage)((ImageView) event.getSource()).getScene().getWindow();
-        Parent root;
-        root = FXMLLoader.load(getClass().getResource("../../Settings.fxml"));
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Settings.fxml"));
-        VBox layout1 = new VBox(20);
-        layout1.getChildren().setAll((Parent)loader.load());
-        Scene scene1 = new Scene(layout1, 600, 400);
-        stage.setScene(scene1);
-    }
-    @FXML
-    protected void changeLanguageTR(){
-        System.out.println("TR Selected - As bayrakları as!");
-    }
 
     @FXML
     public void handleSignIn(MouseEvent event) {

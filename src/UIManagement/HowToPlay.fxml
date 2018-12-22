@@ -7,7 +7,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIManagement.HowToPlayController">
    <children>
       <ImageView fitHeight="436.0" fitWidth="693.0" layoutX="-46.0" layoutY="-12.0" pickOnBounds="true" preserveRatio="true">
@@ -15,17 +14,17 @@
             <Image url="@res/bb.png" />
          </image>
       </ImageView>
-      <Text fill="#09ff00" layoutX="215.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HOW TO PLAY" wrappingWidth="185.81396484375">
+      <Text fill="#13830d" layoutX="215.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HOW TO PLAY" wrappingWidth="185.81396484375">
          <font>
             <Font name="Monaco" size="28.0" />
          </font>
       </Text>
-      <Text fill="#ff5900" layoutX="175.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Click on the &quot;Start&quot; button." wrappingWidth="287.287109375">
+      <Text fill="#ff5900" layoutX="175.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Click on the &quot;Start&quot; button." wrappingWidth="287.287109375">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text fill="#ff5900" layoutX="175.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter your nickname." wrappingWidth="287.287109375">
+      <Text fill="#ff5900" layoutX="175.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter your nickname." wrappingWidth="287.287109375">
          <font>
             <Font size="20.0" />
          </font>
@@ -35,24 +34,24 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <Text fill="#ff3500" layoutX="175.0" layoutY="331.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enjoy the game!" wrappingWidth="287.287109375">
+      <Text fill="#ff3500" layoutX="175.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enjoy the game!" wrappingWidth="287.287109375">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text fill="RED" layoutX="203.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dynamic Mode: Game play with changing   board size.  " wrappingWidth="287.287109375">
+      <Text fill="RED" layoutX="247.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dynamic Mode: Gameplay with changing board size. " wrappingWidth="287.287109375">
          <font>
-            <Font size="20.0" />
+            <Font size="19.0" />
          </font>
       </Text>
-      <Text fill="#800b86" layoutX="203.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Normal Mode: Regular Katamino experience." wrappingWidth="287.287109375">
+      <Text fill="#800b86" layoutX="245.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Normal Mode: Regular Katamino experience." wrappingWidth="287.287109375">
          <font>
-            <Font size="20.0" />
+            <Font size="19.0" />
          </font>
       </Text>
-      <Text fill="#1d00ff" layoutX="203.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Challenge Mode: Game experience with extra pieces." wrappingWidth="287.287109375">
+      <Text fill="#1d00ff" layoutX="246.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Challenge Mode: Game experience with extra pieces." wrappingWidth="287.287109375">
          <font>
-            <Font size="20.0" />
+            <Font size="19.0" />
          </font>
       </Text>
       <Button layoutX="27.0" layoutY="298.0" mnemonicParsing="false" onAction="#handleBack" opacity="0.91" prefHeight="52.0" prefWidth="76.0" style="-fx-background-radius: 30; -fx-background-color: #C2F2FF;" text="Back" textFill="#070606" />

@@ -54,7 +54,7 @@ public class SettingsController {
         }
         else if(!signIn.isSelected() && pD.controlNickName(nicknameID.getText())){
             System.out.println("added"+ nicknameID.getText());
-            pD.addPlayer(nicknameID.getText(),0);
+            pD.addPlayer(nicknameID.getText(),99999);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Modes.fxml"));
             layout1.getChildren().setAll((Parent)loader.load());
             Scene scene1 = new Scene(layout1, 600, 400);

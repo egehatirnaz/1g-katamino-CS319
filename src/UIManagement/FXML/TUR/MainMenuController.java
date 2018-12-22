@@ -1,5 +1,7 @@
 package UIManagement.FXML.TUR;
 
+import GameManagement.Player;
+import GameManagement.PlayerDatabase;
 import UIManagement.Lang;
 import UIManagement.UI_Object;
 import javafx.event.ActionEvent;
@@ -15,17 +17,20 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class MainMenuController {
     @FXML
     private Button minimizeButton;
     double x,y;
     MediaPlayer mp;
+    PlayerDatabase pD = new PlayerDatabase("251364feh");
 
     @FXML
     Stage stage;
@@ -50,7 +55,7 @@ public class MainMenuController {
         root = FXMLLoader.load(getClass().getResource("Settings.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.initStyle(StageStyle.UNDECORATED);
+        //stage.initStyle(StageStyle.UNDECORATED);
         /*scene.setOnMousePressed(e -> {
             x = e.getSceneX();
             y = e.getSceneY();
@@ -69,11 +74,7 @@ public class MainMenuController {
         Parent root;
         root = FXMLLoader.load(getClass().getResource("Leaderboard.fxml"));
         Scene scene = new Scene(root);
-
         TableView tb = (TableView) scene.lookup("#tableview");
-
-
-
         stage.setScene(scene);
         stage.initStyle(StageStyle.UNDECORATED);
         System.out.println("Leaderboard Pressed");
@@ -146,26 +147,36 @@ public class MainMenuController {
         }*/
     }
 
-    /*
-    @FXML
-    public void initialize(){
-        lang.setTurkish();
-        minimizeButton = new Button();
+    public void handleLeaderBoard(ActionEvent event) throws IOException {
+        //Parent root = FXMLLoader.load(getClass().getResource("LeaderBoard.fxml"));
+        //System.out.println(root.getLayoutX());
 
-        Scene scene = minimizeButton.getScene();
-
-
-        Button quitButt = (Button) scene.lookup("#quitID");
-        Button leaderboardButt = (Button) scene.lookup("#leaderboardID");
-        Button creditsButt = (Button) scene.lookup("#creditsID");
-        Button startButt = (Button) scene.lookup("#startID");
-
-        System.out.println(lang.strings[4]);
-
-        quitButt.setText(lang.strings[4]);
-        leaderboardButt.setText(lang.strings[2]);
-        creditsButt.setText(lang.strings[3]);
-        startButt.setText(lang.strings[1]);
+        stage = (Stage)((Button) event.getSource()).getScene().getWindow();
+        VBox layout1 = new VBox(10);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("LeaderBoard.fxml"));
+        layout1.getChildren().setAll((Parent)loader.load());
+        Scene scene1 = new Scene(layout1, 600, 400);
+        ArrayList<Player> pArr = pD.getSortedPlayers();
+        Text use1 = (Text) scene1.lookup("#use1");
+        use1.setText(pArr.get(0).getNickName());
+        Text use2 = (Text) scene1.lookup("#use2");
+        use2.setText(pArr.get(1).getNickName());
+        Text use3 = (Text) scene1.lookup("#use3");
+        use3.setText(pArr.get(2).getNickName());
+        Text use4 = (Text) scene1.lookup("#use4");
+        use4.setText(pArr.get(3).getNickName());
+        Text use5 = (Text) scene1.lookup("#use5");
+        use5.setText(pArr.get(4).getNickName());
+        Text score1 = (Text) scene1.lookup("#score1");
+        score1.setText(pArr.get(0).getTime() + "");
+        Text score2 = (Text) scene1.lookup("#score2");
+        score2.setText(pArr.get(1).getTime() + "");
+        Text score3 = (Text) scene1.lookup("#score3");
+        score3.setText(pArr.get(2).getTime() + "");
+        Text score4 = (Text) scene1.lookup("#score4");
+        score4.setText(pArr.get(3).getTime() + "");
+        Text score5 = (Text) scene1.lookup("#score5");
+        score5.setText(pArr.get(4).getTime() + "");
+        stage.setScene(scene1);
     }
-    */
 }
