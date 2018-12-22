@@ -114,6 +114,15 @@ public class DynamicModeMapper extends GameMapper {
         }
 
     }
+    @Override
+    protected double getBOARDCOORDX() {
+        return startCoordX;
+    }
+
+     @Override
+    protected double getBOARDCOORDY() {
+        return startCoordY;
+    }
 
     @Override
     void setStickView(int currentLevel) {}
