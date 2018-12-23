@@ -177,7 +177,7 @@ public abstract class GameMapper {
 
     public Background getBackgroundImage()
     {
-        String url =  "src/GameManagement/media/gameboard.png";
+        String url =  "src/GameManagement/media/gameBoard.png";
         BackgroundImage backgroundImage= new BackgroundImage(new Image(Paths.get(url).toUri().toString(), screenWidth, screenHeight, true,true),
                 BackgroundRepeat.ROUND, BackgroundRepeat.ROUND, BackgroundPosition.CENTER,
                 BackgroundSize.DEFAULT);
