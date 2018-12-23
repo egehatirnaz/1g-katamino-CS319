@@ -1,6 +1,7 @@
 package UIManagement.FXML.TUR;
 
 import GameManagement.BoardTest;
+import GameManagement.GamePlay;
 import GameManagement.PlayerDatabase;
 import UIManagement.Lang;
 import javafx.event.ActionEvent;
@@ -27,13 +28,14 @@ public class SettingsController {
     @FXML private Button save, cancel;
     MediaPlayer mp;
     Stage stage;
-    PlayerDatabase pD = new PlayerDatabase("251364feh");
+    PlayerDatabase pD;
     @FXML TextField nicknameID;
     @FXML Text entText, secEnd;
     private MediaPlayer media;
 
     @FXML
     protected void handleSaveClick(ActionEvent event) throws IOException {
+        pD =  new PlayerDatabase(GamePlay.password);
         mp.play();
         stage = (Stage)((Button) event.getSource()).getScene().getWindow();
         Scene scene = (Scene)((Button) event.getSource()).getScene();
@@ -77,6 +79,7 @@ public class SettingsController {
         }*/
         //Parent root;
         //root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+        pD.closeDatabase();
     }
 
     @FXML

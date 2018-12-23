@@ -5,7 +5,7 @@ public class PlayerDatabaseTest {
 
 	public static void main(String[] args) {
 		PlayerDatabase pd = new PlayerDatabase("yusuf123");
-		pd.clearDatabase();
+		/*pd.clearDatabase();
 		pd.addPlayer("mert", 150);
 		pd.addPlayer("ali", 205);
 		pd.addPlayer("omur", 175);
@@ -15,7 +15,7 @@ public class PlayerDatabaseTest {
 		
 		for(int i = 0; i < pd.getSortedPlayers().size(); i++)
 		System.out.println( pd.getSortedPlayers().get(i).getNickName() + " " +pd.getSortedPlayers().get(i).getTime());
-		pd.closeDatabase();
+		pd.closeDatabase();*/
 
 	}
 

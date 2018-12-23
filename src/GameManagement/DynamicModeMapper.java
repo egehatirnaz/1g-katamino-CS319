@@ -16,20 +16,19 @@ public class DynamicModeMapper extends GameMapper {
     private double startCoordX;
     private double startCoordY;
     private Square[][] squares;
-
+    private String password;
+    protected int currentLevel;
 
     public DynamicModeMapper( String password )
     {
-        solutionDatabase = new SolutionDatabase(password);
+        currentLevel = 1;
+        this.password = password;
         imageList = new ArrayList<>();
-        currentLevel = currentLevel-2;
-        System.out.println( "DYNAMIC MODE: " + currentLevel );
         setGame(currentLevel);
     }
 
     @Override
     void setGame( int currentLevel ) {
-        System.out.println( "CURRENT LEVEL IN SET GAME: " + currentLevel );
         switch (currentLevel){
             case 1:
                 setSquares( 3, 4);
@@ -46,7 +45,20 @@ public class DynamicModeMapper extends GameMapper {
                 setInitialImageList();
                 super.setupEntity(imageList);
                 break;
+                default: setInitialImageList();
+                break;
         }
+    }
+
+    @Override
+    int getCurrentLevel() {
+        return currentLevel;
+    }
+
+    @Override
+    public void updateLevel() {
+        currentLevel++;
+        setGame(currentLevel);
     }
 
     @Override
@@ -88,7 +100,6 @@ public class DynamicModeMapper extends GameMapper {
 
     @Override
     boolean isLevelFinished(int currentLevel) {
-        System.out.println("LEVEL IS FINISHED!!!!!!!!!!");
       //  System.out.println("Width " + squares.length);
       //  System.out.println("Height " + squares[0].length);
         for(int i = 0; i < width; i++){
@@ -98,23 +109,28 @@ public class DynamicModeMapper extends GameMapper {
             }
         }
         this.updateLevel();
+        System.out.println("LEVEL IS FINISHED!!!!!!!!!!");
         return true;
     }
 
     @Override
     void setInitialImageList() {
+        solutionDatabase = new SolutionDatabase(password);
         imageList.clear();
         String str;
         System.out.println( "DYNAMIC MODE CURRENT LEVEL: " + currentLevel );
         ArrayList<String> solutionList = solutionDatabase.getSolution( "DynamicMode", currentLevel, 1);
-        for( int i = 0; i < solutionList.size(); i++ )
-        {
-            str = "src/GameManagement/media/" + solutionList.get(i) + ".png";
-            Image block = new Image( Paths.get(str).toUri().toString());
-            ImageView blockView = new ImageView(block);
-            imageList.add(blockView);
+        if(solutionList.size() == 0)
+            super.isGameFinished = true;
+        else {
+            for (int i = 0; i < solutionList.size(); i++) {
+                str = "src/GameManagement/media/" + solutionList.get(i) + ".png";
+                Image block = new Image(Paths.get(str).toUri().toString());
+                ImageView blockView = new ImageView(block);
+                imageList.add(blockView);
+            }
         }
-
+        solutionDatabase.closeDatabase();
     }
     @Override
     protected double getBOARDCOORDX() {

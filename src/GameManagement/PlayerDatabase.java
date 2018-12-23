@@ -1,4 +1,5 @@
 package GameManagement;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -29,20 +30,12 @@ public class PlayerDatabase {
 						"  PRIMARY KEY (nickname) )";
 			ps = c.prepareStatement(creationCode);
 			ps.execute();
-
-			if(getNickNames().size() == 0 ) {
-				String copyCode = " COPY players " +
-						" FROM '" + System.getProperty("user.dir") +
-						"/src/GameManagement/databases/playerDatabase' DELIMITER ',' CSV HEADER;";
-				ps = c.prepareStatement(copyCode);
-				ps.execute();
-			}
 				
 		}catch (SQLException e) {
 				e.printStackTrace();
 		}
 
-
+		init();
 	}
 	
 	//HELPER
@@ -212,13 +205,26 @@ public class PlayerDatabase {
 			ps = c.prepareStatement(timeCode);
 			rs = ps.executeQuery();		
 		while(rs.next())
-			time = rs.getInt(time);	
+			time = rs.getInt("time");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			}
 		}
 		
 		return time;	
+	}
+
+	public void init()
+	{
+		if(getNickNames().size() == 0 )
+		{
+			addPlayer("mert", 150);
+			addPlayer("ali", 205);
+			addPlayer("omur", 175);
+			addPlayer("ahmet", 178);
+			addPlayer("ayse", 175);
+			addPlayer("burak", 175);
+		}
 	}
 
 }

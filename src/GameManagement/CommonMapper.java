@@ -59,7 +59,7 @@ abstract class CommonMapper extends GameMapper {
                     return false;
             }
         }
-        super.updateLevel();
+        updateLevel();
         return true;
     }
 

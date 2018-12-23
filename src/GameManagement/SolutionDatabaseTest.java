@@ -6,8 +6,8 @@ public class SolutionDatabaseTest {
 
     public static void main( String args[]) {
         SolutionDatabase sd = new SolutionDatabase("yusuf123");
-        sd.deleteDatabase();
-        sd = new SolutionDatabase("yusuf123");
+        //sd.deleteDatabase();
+       //sd = new SolutionDatabase("yusuf123");
        // sd.deleteDatabase();
         /*String [] level4 = {"n1", "n4", "n5", "n12"};
         String [] level5 = {"n1", "n4", "n5", "n12", "n3"};
@@ -64,14 +64,14 @@ public class SolutionDatabaseTest {
         sd.addSolution("NormalMode", 10, 3,level10_3 );
         sd.addSolution("NormalMode", 11, 3,level11_3 );*/
 
-        String [] level3_4 = {"n1", "n9" , "n7"};
+        /*String [] level3_4 = {"n1", "n9" , "n7"};
         String [] level4_4 = {"n1", "n9" , "n7", "n6"};
         String [] level5_4 = {"n1", "n9" , "n7", "n6", "n2"};
         String [] level6_4 = {"n1", "n9" , "n7", "n6", "n2", "n5"};
         String [] level7_4 = {"n1", "n9" , "n7", "n6", "n2", "n5", "n12"};
         String [] level8_4 = {"n1", "n9" , "n7", "n6", "n2", "n5", "n12", "n4"};
         sd.addSolution("NormalMode", 3, 4,level3_4 );
-        /*sd.addSolution("NormalMode", 4, 4,level4_4 );
+        sd.addSolution("NormalMode", 4, 4,level4_4 );
         sd.addSolution("NormalMode", 5, 4,level5_4 );
         sd.addSolution("NormalMode", 6, 4,level6_4 );
         sd.addSolution("NormalMode", 7, 4,level7_4 );

@@ -1,6 +1,7 @@
 package UIManagement;
 
 import GameManagement.BoardTest;
+import GameManagement.GamePlay;
 import GameManagement.Player;
 import GameManagement.PlayerDatabase;
 import javafx.collections.FXCollections;
@@ -55,7 +56,7 @@ public class MainMenuController {
     private Button minimizeButton;
     double x,y;
     MediaPlayer mp;
-    PlayerDatabase pD = new PlayerDatabase("yusuf123");
+    PlayerDatabase pD;
 
     @FXML
     Stage stage;
@@ -172,6 +173,7 @@ public class MainMenuController {
     public void handleLeaderBoard(ActionEvent event) throws IOException {
         //Parent root = FXMLLoader.load(getClass().getResource("LeaderBoard.fxml"));
         //System.out.println(root.getLayoutX());
+        pD = new PlayerDatabase(GamePlay.password);
         mp.play();
         stage = (Stage)((Button) event.getSource()).getScene().getWindow();
         VBox layout1 = new VBox(10);
@@ -200,5 +202,6 @@ public class MainMenuController {
         Text score5 = (Text) scene1.lookup("#score5");
         score5.setText(pArr.get(4).getTime() + "");
         stage.setScene(scene1);
+        pD.closeDatabase();
     }
 }

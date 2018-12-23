@@ -13,12 +13,27 @@ public class ChallangeModeMapper extends CommonMapper{
     private ArrayList<ImageView> imageList;
     private SolutionDatabase solutionDatabase;
     private String[] additionalBlockNames = {"n1","n2","n3","n4","n5","n6","n7","n8","n9","n10","n11","n12"};
+    private String password;
+    private int currentLevel;
     
     // constructor
     public ChallangeModeMapper(String password){
+        currentLevel = 4;
+        this.password = password;
         imageList = new ArrayList<>();
-        solutionDatabase = new SolutionDatabase(password);
-        setGame(getCurrentLevel());
+        setGame(currentLevel);
+    }
+
+    @Override
+    public int getCurrentLevel()
+    {
+        return currentLevel;
+    }
+
+    @Override
+    void updateLevel() {
+        currentLevel++;
+        setGame(currentLevel);
     }
 
     @Override
@@ -28,12 +43,13 @@ public class ChallangeModeMapper extends CommonMapper{
 
     @Override
     void setInitialImageList() {
+        solutionDatabase = new SolutionDatabase(password);
     	int currentLevel = getCurrentLevel();
         imageList.clear();
         //System.out.println( "setInitialImage: "+ currentLevel );
         String str;
         System.out.println( solutionDatabase );
-        ArrayList<String> solutionList = solutionDatabase.getSolution( "NormalMode", currentLevel, 1);
+        ArrayList<String> solutionList = solutionDatabase.getSolution( "ChallangeMode", currentLevel, 1);
         addTwoBlocks(additionalBlockNames,solutionList);
         shuffle(solutionList);
         for( int i = 0; i < solutionList.size(); i++ )
@@ -43,7 +59,7 @@ public class ChallangeModeMapper extends CommonMapper{
             ImageView blockView = new ImageView(block);
             imageList.add(blockView);
         }
-
+        solutionDatabase.closeDatabase();
     }
     
     void addTwoBlocks(String[] blocks, ArrayList<String> solution) {

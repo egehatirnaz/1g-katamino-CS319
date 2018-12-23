@@ -10,9 +10,12 @@ public class NormalModeMapper extends CommonMapper {
 
     private ArrayList<ImageView> imageList;
     private SolutionDatabase solutionDatabase;
+    private String password;
+    protected int currentLevel;
 
     public  NormalModeMapper(String password){
-        solutionDatabase = new SolutionDatabase(password);
+        this.currentLevel = 3;
+        this.password = password;
         imageList = new ArrayList<>();
         isGameFinished = false;
         setGame(getCurrentLevel());
@@ -24,17 +27,30 @@ public class NormalModeMapper extends CommonMapper {
     }
 
     @Override
+    public int getCurrentLevel()
+    {
+        return currentLevel;
+    }
+
+    @Override
+    void updateLevel() {
+        currentLevel++;
+        setGame(currentLevel);
+    }
+
+    @Override
     void setInitialImageList() {
+        System.out.println( "PASSWORD IN SETINITIALIMAGELIST NORMAL MODE MAPPER: " + password );
+        solutionDatabase = new SolutionDatabase(password);
         int currentLevel = getCurrentLevel();
         imageList.clear();
         System.out.println( "setInitialImage: "+ currentLevel );
         String str;
         System.out.println( solutionDatabase );
-        ArrayList<String> solutionList = solutionDatabase.getSolution( "NormalMode", currentLevel, 4);
+        ArrayList<String> solutionList = solutionDatabase.getSolution( "NormalMode", currentLevel, 1);
 
         if(solutionList.size() == 0)
             super.isGameFinished = true;
-
         else {
             for (int i = 0; i < solutionList.size(); i++) {
                 str = "src/GameManagement/media/" + solutionList.get(i) + ".png";
@@ -43,6 +59,7 @@ public class NormalModeMapper extends CommonMapper {
                 imageList.add(blockView);
             }
         }
+        solutionDatabase.closeDatabase();
     }
 
 

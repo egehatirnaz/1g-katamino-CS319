@@ -24,7 +24,7 @@ public class GamePlay extends Application {
 
     // properties
     GameMapper gameMapper;
-    final String password = "yusuf123";
+    final public static String password = "yusuf123";
     private Scene window;
     double originX, originY;
     Text tLab;
@@ -47,12 +47,13 @@ public class GamePlay extends Application {
     private String modeName;
     private int lev;
     private Player player;
-    private PlayerDatabase pd = new PlayerDatabase(password);
+    private PlayerDatabase pd;
 
 
     // constructor
     public GamePlay( String gameMode  )
     {
+        System.out.println( "GAMEPLAY CONST PASSWORD: " + password );
         if( gameMode.equals("NormalMode") )
         {
             gameMapper = new NormalModeMapper(password);
@@ -69,6 +70,7 @@ public class GamePlay extends Application {
             gameMapper = new DynamicModeMapper( password );
             startLevel = 1;
         }
+        pd = new PlayerDatabase(password);
         player = new Player(pd.getLastNickname(), 0);
         modeName = gameMode;
 
@@ -273,6 +275,7 @@ public class GamePlay extends Application {
                     }
                     if(gameMapper.isGameFinished())
                     {
+                        System.out.println( "Gameplay is game finished");
                         running = false;
                         root.getChildren().add(gameMapper.getAward());
                     }
@@ -348,7 +351,9 @@ public class GamePlay extends Application {
                 oldNumber = number;
             }
             int lastPoint = (oldTime + (60 * oldNumber));
+            pd.createConnection();
             pd.updatePlayerTime(player.getNickName(), lastPoint);
+            pd.closeDatabase();
         }).start();
     }
 

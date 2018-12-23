@@ -25,7 +25,7 @@ public abstract class GameMapper {
 
     // properties
     private Square[][] squares;
-    protected int currentLevel;
+   // protected int currentLevel;
     private ArrayList<Double>       originalHeightScale;
     private ArrayList<Double>       originalWidthScale;
     protected ArrayList<Double>       initialPositionX;
@@ -45,7 +45,6 @@ public abstract class GameMapper {
     protected boolean isGameFinished;
     // constructor
     public GameMapper(){
-        this.currentLevel = 3;
         originalHeightScale = new ArrayList<>();
         originalWidthScale = new ArrayList<>();
         initialPositionX = new ArrayList<>();
@@ -66,6 +65,8 @@ public abstract class GameMapper {
     abstract void setInitialImageList();
     abstract void setStickView( int currentLevel );
     abstract void setGame( int currentLevel );
+    abstract int getCurrentLevel();
+    abstract void updateLevel();
 
 
     void setSquares(int width, int height){
@@ -75,7 +76,7 @@ public abstract class GameMapper {
             for(int j = 0; j < squares[i].length; j++){
                 double yCoor = j * SQUARESIZE + startCoordY;
                 squares[i][j] = new Square(xCoor, yCoor, SQUARESIZE,SQUARESIZE);
-                if(i>=currentLevel  ){
+                if(i>=getCurrentLevel()  ){
                     squares[i][j].getRect().setStroke(Color.BURLYWOOD);
                     squares[i][j].getRect().setFill(Color.GRAY);
                     squares[i][j].getRect().setOpacity( 0.7 );
@@ -122,12 +123,12 @@ public abstract class GameMapper {
     {
         initialPositionX.clear();
         initialPositionY.clear();
-        imgStartCoordX = ( screenWidth - imageList.size() * 150) / 2 ;
-        imgStartCoordY = (screenHeight - 150);
+        imgStartCoordX = ( screenWidth - imageList.size() * 200) / 2 ;
+        imgStartCoordY = (screenHeight - 100);
 
         for( int i = 0; i < imageList.size(); i++ )
         {
-            imageList.get(i).setX(imgStartCoordX + (i * 2 * SQUARESIZE));
+            imageList.get(i).setX(imgStartCoordX + (i * 1.8 * SQUARESIZE));
             initialPositionX.add( imageList.get(i).getX() );
             imageList.get(i).setY( imgStartCoordY );
             initialPositionY.add( imageList.get(i).getY() );
@@ -160,20 +161,12 @@ public abstract class GameMapper {
     }
 
 
-    public int getCurrentLevel(){
-        return currentLevel;
-    }
-
     public Square[][] getSquares()
     {
         return squares;
     }
 
 
-    protected void updateLevel() {
-        currentLevel++;
-        setGame(currentLevel);
-    }
 
     public Background getBackgroundImage()
     {
