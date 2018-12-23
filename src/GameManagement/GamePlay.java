@@ -10,6 +10,7 @@ import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -18,6 +19,7 @@ import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.nio.file.Paths;
 import java.text.DecimalFormat;
@@ -79,7 +81,6 @@ public class GamePlay extends Application {
         pd = new PlayerDatabase(password);
         player = new Player(pd.getLastNickname(), 0);
         modeName = gameMode;
-        System.out.println(player.getNickName());
 
         // array initializations
         fitHeightList = new ArrayList<>();
@@ -118,6 +119,8 @@ public class GamePlay extends Application {
         btn.setLayoutX(50);
         btn.setLayoutY(840);
         btn.setPrefWidth(140);
+        btn.setStyle("-fx-background-radius: 20; -fx-border-color: #a48129; -fx-border-radius: 20;");
+        btn.setOpacity(0.5);
         root.getChildren().add(btn);
 
 
@@ -332,8 +335,12 @@ public class GamePlay extends Application {
             /*********************************/
             primaryStage.setTitle("Katamino");
             primaryStage.setScene(scene);
+            //primaryStage.initStyle(StageStyle.UNDECORATED);
             primaryStage.setFullScreen(true);
-            primaryStage.setMaximized(true);
+            primaryStage.setMaximized(false);
+            primaryStage.setFullScreenExitHint("");
+            primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
+
             //primaryStage.setResizable(false);
             primaryStage.show();
             window = scene;
