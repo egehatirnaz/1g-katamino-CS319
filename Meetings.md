@@ -230,5 +230,39 @@ Location: Bilkent Library
 
 
 
+## Meeting on Dec 22, 10:00 - 00:00
+
+Participants: Burak, Fırat, Mert, Yusuf, Ege
+
+Location: Bilkent Library
+
+### Agenda
+* [Fırat, Mert, Yusuf, Ege, Burak] Work on game modes, small bugs, final report and presentation.
+
+### Action Items
+* [Yusuf, Mert, Burak] Work on small bugs on game modes.
+* [Fırat, Mert] Work on time systems and it's functioning.
+* [Fırat, Burak, Ege] Work on final report.
+* [Fırat, Ege, Mert] Work on leaderboard.
+* [Burak, Yusuf] Work on bugs of block immobilization.
+
+
+## Meeting on Dec 23, 15:00 - 00:00
+
+Participants: Burak, Fırat, Mert, Yusuf, Ege
+
+Location: Bilkent Library
+
+### Agenda
+* [Fırat, Mert, Yusuf, Ege, Burak] Work on final report, video, exe file for the game and time problems.
+
+### Action Items
+* [Yusuf, Fırat] Work on the introduction video.
+* [Burak, Mert] Work on time systems and it's bugs.
+* [Ege] Work on exe file and game play screen.
+* [Fırat, Ege, Mert, Yusuf, Burak] Work on final report.
+* [Mert] Fix small bugs in database systems.
+
+
 
 
