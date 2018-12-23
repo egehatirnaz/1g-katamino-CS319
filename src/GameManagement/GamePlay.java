@@ -52,6 +52,9 @@ public class GamePlay extends Application {
     private Player player;
     private PlayerDatabase pd;
     private Button backButton;
+    private int count;
+    private int number;
+    private int lastPoint;
 
 
     // constructor
@@ -76,6 +79,7 @@ public class GamePlay extends Application {
         pd = new PlayerDatabase(password);
         player = new Player(pd.getLastNickname(), 0);
         modeName = gameMode;
+        System.out.println(player.getNickName());
 
         // array initializations
         fitHeightList = new ArrayList<>();
@@ -90,6 +94,7 @@ public class GamePlay extends Application {
         clock = new DigitalClock(true);//?
         running = false;
         t1 = new TimeKeeper();
+        runClock();
     }
 
 
@@ -217,11 +222,6 @@ public class GamePlay extends Application {
                     }
                 }
 
-               // System.out.println(gameMapper.getSquares().length);
-
-
-
-
                 if( count1 != 0){
                     double xlocation=0,ylocation=0;
                     boolean outside = false;
@@ -285,16 +285,18 @@ public class GamePlay extends Application {
 
 
                 if ( gameMapper.isLevelFinished(lev)){
-                    try {
+                    /*try {
                         t1.stopTimer(t1.getTime());
                         Thread.sleep( 1000 );
                     } catch (InterruptedException e) {
                         e.printStackTrace();
-                    }
+                    }*/
                     if(gameMapper.isGameFinished())
                     {
                         running = false;
                         root.getChildren().add(gameMapper.getAward());
+                        pd.updatePlayerTime(player.getNickName(), lastPoint);
+                        pd.closeDatabase();
                     }
                     else {
                         lev++;
@@ -325,7 +327,6 @@ public class GamePlay extends Application {
             /**********************time keeper********************/
             for (int i = 0; i < blockList.size(); i++)
                 root.getChildren().add(blockList.get(i));
-            runClock();
             t1.run(timeLL);
 
             /*********************************/
@@ -344,8 +345,7 @@ public class GamePlay extends Application {
             long last = System.nanoTime();
             double delta = 0;
             double ns = 1000000000.0;
-            int count = oldTime;
-            int number = oldNumber;
+
             boolean check = false;
 
             while (running) {
@@ -364,13 +364,8 @@ public class GamePlay extends Application {
                     clock.refreshMinute(number);
                     delta--;
                 }
-                oldTime = count;
-                oldNumber = number;
+                lastPoint = (count + (60 * number));
             }
-            int lastPoint = (oldTime + (60 * oldNumber));
-            pd.createConnection();
-            pd.updatePlayerTime(player.getNickName(), lastPoint);
-            pd.closeDatabase();
         }).start();
     }
 
@@ -378,7 +373,7 @@ public class GamePlay extends Application {
     {
         blockPiece.setX( initialListX.get( blockList.indexOf(blockPiece) ) );
         blockPiece.setY( initialListY.get( blockList.indexOf(blockPiece) ) );
-        System.out.println( "Initial PosX: " + blockPiece.getX() + "Initial PosY: " + blockPiece.getY() );
+        //System.out.println( "Initial PosX: " + blockPiece.getX() + "Initial PosY: " + blockPiece.getY() );
         blockPiece.setPreserveRatio(true);
         blockPiece.setFitWidth(100);
         blockPiece.setFitHeight(100);

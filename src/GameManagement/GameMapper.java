@@ -132,7 +132,6 @@ public abstract class GameMapper {
             initialPositionX.add( imageList.get(i).getX() );
             imageList.get(i).setY( imgStartCoordY );
             initialPositionY.add( imageList.get(i).getY() );
-            System.out.println( "INITIAL POSX: " + imageList.get(i).getX() + "INITIAL POSY: " + imageList.get(i).getY() );
             originalHeightScale.add( imageList.get(i).getFitHeight() );
             originalWidthScale.add( imageList.get(i).getFitWidth() );
             imageList.get(i).setFitHeight(100);

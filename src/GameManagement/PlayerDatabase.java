@@ -218,12 +218,12 @@ public class PlayerDatabase {
 	{
 		if(getNickNames().size() == 0 )
 		{
-			addPlayer("mert", 150);
-			addPlayer("ali", 205);
-			addPlayer("omur", 175);
-			addPlayer("ahmet", 178);
-			addPlayer("ayse", 175);
-			addPlayer("burak", 175);
+			addPlayer("yusuf", 9050);
+			addPlayer("mert", 9005);
+			addPlayer("burak", 9075);
+			addPlayer("fırat", 9178);
+			addPlayer("ege", 9175);
+			addPlayer("burak", 9195);
 		}
 	}
 

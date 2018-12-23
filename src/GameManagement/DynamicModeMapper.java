@@ -70,10 +70,10 @@ public class DynamicModeMapper extends GameMapper {
         squares = new Square[width][height];
         for(int i = 0; i < squares.length; i++){
             double xCoor = i * getSQUARESIZE() + startCoordX;
-            System.out.println( "DYNAMICMAPPER BOARDX: " + xCoor );
+            //System.out.println( "DYNAMICMAPPER BOARDX: " + xCoor );
             for(int j = 0; j < squares[i].length; j++){
                 double yCoor = j * getSQUARESIZE() + startCoordY;
-                System.out.println( "DYNAMICMAPPER BOARDY: " + yCoor );
+               // System.out.println( "DYNAMICMAPPER BOARDY: " + yCoor );
                 squares[i][j] = new Square(xCoor, yCoor, super.getSQUARESIZE(), super.getSQUARESIZE());
                     squares[i][j].getRect().setStroke(Color.BURLYWOOD);
                     squares[i][j].getRect().setFill(Color.AQUA);
