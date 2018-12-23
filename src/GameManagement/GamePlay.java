@@ -1,10 +1,13 @@
 package GameManagement;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -48,6 +51,7 @@ public class GamePlay extends Application {
     private int lev;
     private Player player;
     private PlayerDatabase pd = new PlayerDatabase(password);
+    private Button backButton;
 
 
     // constructor
@@ -94,6 +98,21 @@ public class GamePlay extends Application {
         root = new Pane();
         scene = new Scene(root, primaryStage.getWidth(),primaryStage.getHeight());
         vbox = new VBox();
+
+        Button btn = new Button();
+        btn.setText("Exit");
+        btn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                primaryStage.close();
+            }
+        });
+
+
+        btn.setLayoutX(50);
+        btn.setLayoutY(840);
+        btn.setPrefWidth(140);
+        root.getChildren().add(btn);
 
 
         // assignments
@@ -311,9 +330,9 @@ public class GamePlay extends Application {
             /*********************************/
             primaryStage.setTitle("Katamino");
             primaryStage.setScene(scene);
-            //primaryStage.setFullScreen(true);
+            primaryStage.setFullScreen(true);
             primaryStage.setMaximized(true);
-            primaryStage.setResizable(false);
+            //primaryStage.setResizable(false);
             primaryStage.show();
             window = scene;
     }
