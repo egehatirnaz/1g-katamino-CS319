@@ -25,8 +25,23 @@ public class ModesController {
     public ModesController() {}
 
     @FXML
-    public void handleChallenge(ActionEvent event) {
+    public void handleChallenge(ActionEvent event) throws IOException{
+        // Play sound
         mp.play();
+
+        // Go back to main menu
+        stage = (Stage)((Button) event.getSource()).getScene().getWindow();
+        Parent root;
+        root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
+        VBox layout1 = new VBox(20);
+        layout1.getChildren().setAll((Parent)loader.load());
+        Scene scene1 = new Scene(layout1, 600, 400);
+        stage.setScene(scene1);
+
+
+
+        // Start the game
         GamePlay gamePlay = new GamePlay( "ChallangeMode" );
         gamePlay.start(new Stage());
         //this.stage.setScene(gamePlay.returnScene());
@@ -34,8 +49,23 @@ public class ModesController {
     }
 
     @FXML
-    public void handleNormal(ActionEvent event) {
+    public void handleNormal(ActionEvent event) throws IOException{
+        // Play sound
         mp.play();
+
+        // Go back to main menu
+        stage = (Stage)((Button) event.getSource()).getScene().getWindow();
+        Parent root;
+        root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
+        VBox layout2 = new VBox(20);
+        layout2.getChildren().setAll((Parent)loader.load());
+        Scene scene1 = new Scene(layout2, 600, 400);
+        stage.setScene(scene1);
+
+
+
+        // Start the game
         stage = (Stage)((Button) event.getSource()).getScene().getWindow();
         GamePlay gamePlay = new GamePlay( "NormalMode" );
         Stage stage = new Stage();
@@ -50,8 +80,23 @@ public class ModesController {
     }
 
     @FXML
-    public void handleDynamic(ActionEvent event) {
+    public void handleDynamic(ActionEvent event) throws IOException{
+        // Play sound
         mp.play();
+
+        // Go back to main menu
+        stage = (Stage)((Button) event.getSource()).getScene().getWindow();
+        Parent root;
+        root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
+        VBox layout1 = new VBox(20);
+        layout1.getChildren().setAll((Parent)loader.load());
+        Scene scene1 = new Scene(layout1, 600, 400);
+        stage.setScene(scene1);
+
+
+
+        // Start the game
         GamePlay gamePlay = new GamePlay( "DynamicMode" );
         gamePlay.start(new Stage());
         //this.stage.setScene(gamePlay.returnScene());
