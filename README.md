@@ -33,15 +33,11 @@ Nickname: Every user will have a unique nickname in order to be shown in leaderb
 
 Leaderboard: The leaderboard will contain nicknames and their times. Sorting of the users will be determined with respect to their times.
 
-Refresh button: As mentioned, every level has more than one solution. Our game does not contain a guideline as original game. Our game will assign a random solution set instead of showing a guideline. In addition, players can refresh their solution, which means that the player can demand a new solution set by clicking refresh button. However, if a user clicks the refresh button, the time will be increased 5 seconds as a punishment.
+Normal mode: The normal Katamino experience.
 
-Challenge mode: Game usually assign a solution set with a proper number of blocks for players. In this mode, game will assign a solution set with 2 addition useless blocks. The challenge mode’s leaderboard will be different from normal game mode’s leaderboard.
+Challenge mode: Game usually assign a solution set with a proper number of blocks for players. In this mode, game will assign a solution set with 2 addition useless blocks.
 
-Giving Hints: Players who don't succeed to find the solution are given hints like putting a piece into it's place. That offers the player one of the specific solutions defined by designers.
-
-Improve the Game: Players have chance to add new solutions which did not forsee by designers. That also makes the game interactive. 
-
-Game's Learning Machine: The machine inside the game will learn the player's actions and offer them new games according to their preferences. Also that will help players to add new solutions. Some solutions which is learned from some (more intellegent) players will expand the game solutions. These solutions will also be offered other players and make game more user-centered. 
+Dynamic Mode: The game mode which change the game board in increasing levels which means for players to experience a flexible game.
 
 
 ### References
